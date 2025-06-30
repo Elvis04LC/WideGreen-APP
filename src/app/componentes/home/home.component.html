@@ -1,0 +1,90 @@
+<app-navbar></app-navbar>
+
+<main class="main">
+  <!-- Sección Hero -->
+  <section class="main__hero">
+    <div class="main__hero-image-container">
+<img class="main__hero-image" src="/assets/plant.png"  alt="plantación" />
+    </div>
+    <div class="main__hero-content">
+      <h1 class="main__hero-title">Promueve el cuidado ambiental para un futuro sostenible</h1>
+      <div class="main__hero-wrapper">
+        <p class="main__hero-description">
+          WideGreen es una startup dedicada a fomentar, difundir e informar iniciativas de cuidado ambiental.
+        </p>
+        <button mat-raised-button color="accent" class="default-btn black-btn">Leer más</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección Iniciativas -->
+  <section class="main__initiatives">
+    <div class="main__initiatives-wrapper">
+      <h2 class="main__initiatives-title">Explore iniciativas ambientales cercanas a ti</h2>
+      <div class="main__initiatives-container">
+        <div class="main__initiative">
+          <h3 class="main__initiative-title">50%</h3>
+          <p class="main__initiative-description">Encuentre proyectos y organizaciones ambientales locales</p>
+        </div>
+        <div class="main__initiative">
+          <h3 class="main__initiative-title">50%</h3>
+          <p class="main__initiative-description">Conéctese con personas de ideas afines y comparta ideas</p>
+        </div>
+      </div>
+      <button mat-stroked-button color="primary" class="default-btn white-btn">Leer más</button>
+    </div>
+    <div class="main__initiatives-image-container">
+      <img class="main__initiatives-image" src="assets/phone.png" alt="app preview" />
+    </div>
+  </section>
+
+  <!-- Sección Impacto -->
+  <section class="main__impact">
+    <div class="main__impact-image-container">
+      <img src="/assets/persons.png" alt="Impacto" class="main__impact-image" />
+    </div>
+    <div class="main__impact-content">
+      <h2 class="main__impact-title">Apoya en el impacto ambiental y obtén recompensas</h2>
+      <p class="main__impact-description">
+        El sistema de niveles de WideGreen premia tus acciones de cuidado del medio ambiente, motivándote a generar un impacto positivo en el planeta.
+      </p>
+      <button mat-raised-button color="accent" class="default-btn black-btn">Leer más</button>
+    </div>
+  </section>
+
+  <!-- Sección Unirse -->
+  <section class="main__join">
+    <div class="main__join-content">
+      <h2 class="main__join-title">Únase a WideGreen y marque la diferencia</h2>
+      <p class="main__join-description">Descubra, conéctese y contribuya en el cuidado del medio ambiente.</p>
+    </div>
+    <div class="main__join-buttons-container">
+      <button mat-raised-button color="accent" class="default-btn black-btn" routerLink="/login">Inicia Sesión</button>
+      <button mat-stroked-button color="primary" class="default-btn white-btn" routerLink="/registro">Regístrate</button>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer__contact">
+    <div class="footer__logo-image-container">
+      <img class="footer__logo-image" src="/assets/Logox3.png" alt="WideGreen logo" />
+    </div>
+    <ul class="footer__contact-list">
+      <li class="footer__contact-item"><a href="https://www.facebook.com/" class="footer__contact-link">Facebook</a></li>
+      <li class="footer__contact-item"><a href="https://www.instagram.com/" class="footer__contact-link">Instagram</a></li>
+      <li class="footer__contact-item"><a href="https://x.com/" class="footer__contact-link">X</a></li>
+      <li class="footer__contact-item"><a href="https://pe.linkedin.com/" class="footer__contact-link">LinkedIn</a></li>
+      <li class="footer__contact-item"><a href="https://www.youtube.com/" class="footer__contact-link">YouTube</a></li>
+    </ul>
+  </div>
+  <div class="footer__policies">
+    <p class="footer__policies-text">&copy; 2024 WideGreen. Todos los derechos reservados.</p>
+    <ul class="footer__policies-list">
+      <li class="footer__policies-item"><a href="#" class="footer__policies-link">Política de Privacidad</a></li>
+      <li class="footer__policies-item"><a href="#" class="footer__policies-link">Términos y Condiciones</a></li>
+      <li class="footer__policies-item"><a href="#" class="footer__policies-link">Cookies</a></li>
+    </ul>
+  </div>
+</footer>

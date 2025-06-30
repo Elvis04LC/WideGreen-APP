@@ -1,0 +1,66 @@
+<main class="main">
+  <section class="main__create-account">
+    <div class="main__create-account-container">
+      <button class="main__create-account-close" (click)="goBack()">
+        <mat-icon>close</mat-icon>
+      </button>
+
+      <img src="/assets/Logox3.png" alt="Logo" class="main__create-account-logo" />
+
+      <h1 class="main__create-account-title">Crea tu Cuenta</h1>
+
+      <form [formGroup]="formRegistro" class="main__create-account-form" (ngSubmit)="registrarUsuario()">
+        
+        <mat-form-field appearance="outline" class="main__create-account-input">
+          <mat-label>Nombre</mat-label>
+          <input matInput placeholder="Username" formControlName="username" />
+          <mat-error *ngIf="formRegistro.get('username')?.hasError('required')">
+            El nombre es obligatorio
+          </mat-error>
+          <mat-error *ngIf="formRegistro.get('username')?.hasError('minlength')">
+            Mínimo 3 caracteres
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="main__create-account-input">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="ej. nombre@correo.com" formControlName="email" type="email" />
+          <mat-error *ngIf="formRegistro.get('email')?.hasError('required')">
+            El email es obligatorio
+          </mat-error>
+          <mat-error *ngIf="formRegistro.get('email')?.hasError('email')">
+            Formato de email inválido
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="main__create-account-input">
+          <mat-label>Contraseña</mat-label>
+
+          <input matInput
+                [type]="mostrarContrasena ? 'text' : 'password'"
+                formControlName="password"
+                placeholder="Mínimo 6 caracteres" />
+
+          <mat-icon class="clickable-icon" (click)="toggleContrasena()" style="position: absolute; right: 10px; top: 38px;">
+            {{ mostrarContrasena ? 'visibility_off' : 'visibility' }}
+          </mat-icon>
+          <mat-error *ngIf="formRegistro.get('password')?.hasError('required')">
+            La contraseña es obligatoria
+          </mat-error>
+          <mat-error *ngIf="formRegistro.get('password')?.hasError('minlength')">
+            Debe tener mínimo 6 caracteres
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button
+                color="primary"
+                class="main__create-account-button"
+                type="submit"
+                >
+          Registrarse
+        </button>
+      </form>
+    </div>
+  </section>
+
+
+</main>

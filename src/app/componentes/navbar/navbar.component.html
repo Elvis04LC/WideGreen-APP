@@ -1,0 +1,27 @@
+<mat-toolbar class="header" color="primary">
+  <nav class="header__nav">
+    <a routerLink="/" id="logo-link" class="header__nav-link">🌿 WideGreen</a>
+
+    <ul class="header__nav-list">
+      <li class="header__nav-item">
+        <a mat-button routerLink="/equipo" class="header__nav-link">Nuestro Equipo</a>
+      </li>
+      <li class="header__nav-item">
+        <a mat-button routerLink="/acerca" class="header__nav-link">Acerca de</a>
+      </li>
+      <li class="header__nav-item">
+        <a mat-button routerLink="/contactos" class="header__nav-link">Contactos</a>
+      </li>
+    </ul>
+
+  <div class="header__actions">
+    <button id="login-button" mat-button class="header__button" routerLink="/login">
+      <span class="header__button-text">Inicia Sesión</span>
+    </button>
+    <button id="register-button" mat-button class="header__button" routerLink="/registro">
+      <span class="header__button-text">Regístrate</span>
+    </button>
+  </div>
+
+  </nav>
+</mat-toolbar>

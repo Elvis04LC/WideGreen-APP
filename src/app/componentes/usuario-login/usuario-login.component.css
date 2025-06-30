@@ -1,0 +1,101 @@
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--color-bg-primary);
+}
+
+.main__login {
+  background-color: var(--color-bg-tertiary);
+  border-radius: 12px;
+  padding: 40px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.main__login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main__login-close {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  font-size: 24px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.main__login-logo {
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+.main__login-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--color-text-secondary);
+  margin-bottom: 30px;
+}
+
+.main__login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.main__login-input {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.clickable-icon {
+  position: absolute;
+  top: 36px;
+  right: 10px;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  font-size: 24px;
+  z-index: 2;
+  user-select: none;
+}
+
+.main__login-button {
+  background-color: var(--color-bg-secondary) !important;
+  color: var(--color-text-secondary) !important;
+  border-radius: 25px;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.main__login-button:hover {
+  transform: translateY(-2px);
+}
+
+.clickable-icon {
+  position: absolute;
+  top: 45%; /* 🔼 antes era 50%, ahora lo subimos un poco */
+  right: 16px;
+  transform: translateY(-38%);
+  cursor: pointer;
+  color: var(--color-text-secondary); /* blanco o negro según fondo */
+  font-size: 24px;
+  z-index: 2;
+  user-select: none;
+  transition: color 0.2s ease;
+}
+
+.clickable-icon:hover {
+  color: #ffffffcc; /* tono más claro al pasar el mouse */
+}
+
+.clickable-icon:active {
+  transform: translateY(-70%) scale(0.95); /* efecto de clic */
+}

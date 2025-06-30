@@ -1,0 +1,112 @@
+
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+}
+
+/* CENTRADO PRINCIPAL */
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* FORMULARIO */
+.main__create-account {
+  background-color: #B2DDCB;
+  border-radius: 12px;
+  padding: 40px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* CONTENEDOR INTERNO */
+.main__create-account-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* BOTÓN DE CIERRE */
+.main__create-account-close {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  font-size: 24px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+/* LOGO */
+.main__create-account-logo {
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+/* TÍTULO */
+.main__create-account-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--color-text-secondary);
+  margin-bottom: 30px;
+}
+
+/* FORMULARIO */
+.main__create-account-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* CAMPOS DE INPUT */
+.main__create-account-input {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+/* ÍCONO OJO */
+.mat-icon {
+
+  font-size:30px;
+}
+.clickable-icon {
+  position: absolute;
+  top: 45%; /* 🔼 antes era 50%, ahora lo subimos un poco */
+  right: 16px;
+  transform: translateY(-80%);
+  cursor: pointer;
+  color: var(--color-text-secondary); /* blanco o negro según fondo */
+  font-size: 24px;
+  z-index: 2;
+  user-select: none;
+  transition: color 0.2s ease;
+}
+
+.clickable-icon:hover {
+  color: #ffffffcc; /* tono más claro al pasar el mouse */
+}
+
+.clickable-icon:active {
+  transform: translateY(-70%) scale(0.95); /* efecto de clic */
+}
+
+/* BOTÓN REGISTRARSE */
+.main__create-account-button {
+  background-color: var(--color-bg-secondary) !important;
+  color: var(--color-text-secondary) !important;
+  border-radius: 25px;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.main__create-account-button:hover {
+  transform: translateY(-2px);
+}
