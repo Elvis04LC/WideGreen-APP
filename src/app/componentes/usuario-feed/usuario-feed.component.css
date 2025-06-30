@@ -1,58 +1,151 @@
 /* NUEVA PUBLICACIÓN */
 .main__nueva-publicacion {
-  background: #fff;
-  padding: 1.5rem;
+  background: #ffffff;
+  padding: 2rem;
   border-radius: 12px;
   max-width: 640px;
+  width: 100%;
   margin: 2rem auto;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
+
 /* Estilo a los campos */
 mat-form-field {
-  width: 100%;
-  margin-bottom: 1rem;
+  width: 90%;
+  margin-bottom: 1.5rem;
 }
 
 .main__nueva-publicacion-textarea,
 .main__nueva-publicacion-titulo {
+  width: 95%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.main__nueva-publicacion-textarea {
+  height: 120px;
+}
+
+/* Cambiar el borde del input al foco */
+.main__nueva-publicacion-textarea:focus,
+.main__nueva-publicacion-titulo:focus {
+  border: 1px solid #4caf50;
+  outline: none;
+}
+
+/* Acciones de los botones */
+.main__nueva-publicacion-actions {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
   width: 100%;
 }
 
-/* Área de acciones */
-.main__nueva-publicacion-actions {
+/* Para el campo de la URL de la imagen */
+
+/* Botón de selección de imagen (Ícono) */
+.main__nueva-publicacion-actions button {
+  color: #4caf50;
+  font-size: 1rem;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 6px 12px;
+  background-color: #f1f1f1;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
-.main__nueva-publicacion-actions button {
-  color: #272b27;
-  transition: color 0.2s ease;
-}
+
 .main__nueva-publicacion-actions button:hover {
-  color: #1b5e20;
+  color: white;
+  background-color: #4caf50;
 }
-/* FEED */
+
+/* Botón de publicar */
+button.mat-raised-button {
+  background-color: #4caf50;
+  color: white;
+  border-radius: 8px;
+  padding: 0.75rem 2rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button.mat-raised-button:hover {
+  background-color: #388e3c;
+  transform: translateY(-2px);
+}
+
+
+/* Imagen de vista previa */
+.preview-container {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.preview-img {
+  width: 100%;
+  max-width: 280px;
+  max-height: 200px;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  margin-bottom: 1rem;
+}
+/* Mejorar los iconos */
+button.mat-icon-button {
+  padding: 6px;
+  border-radius: 50%;
+  background-color: #e0f7e0;
+  transition: background-color 0.3s ease;
+}
+
+button.mat-icon-button:hover {
+  background-color: #c8e6c9;
+}
+
+/* Estilo del campo de URL de imagen */
+.main__nueva-publicacion-urlimg input {
+  width: 95%;
+  padding: 0.5rem;
+  border-radius: 8px;
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+/* FEED DE PUBLICACIONES */
 .feed-container {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
   align-items: center;
-  margin-top: 1rem;
+  margin-top: 2rem;
+  padding: 0 1rem;
 }
-
 /* PUBLICACIÓN INDIVIDUAL */
 .publicacion {
   width: 100%;
   max-width: 640px;
-  padding: 1rem 1.25rem;
+  padding: 1.5rem;
   background-color: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 1.5rem;
 }
 
 .publicacion:hover {
-  transform: scale(1.01);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 /* ENCABEZADO */
@@ -62,7 +155,7 @@ mat-form-field {
   font-weight: 600;
   color: #2e7d32;
   font-size: 0.95rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 /* IMAGEN */
@@ -72,18 +165,19 @@ mat-form-field {
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 0.75rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 /* CONTENIDO */
 .publicacion-contenido {
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
   color: #333;
 }
 
 .publicacion-contenido h3 {
-  margin: 0 0 0.3rem;
-  font-size: 1.2rem;
+  margin: 0 0 0.4rem;
+  font-size: 1.3rem;
   color: #1b5e20;
 }
 
@@ -96,39 +190,49 @@ mat-form-field {
 
 .publicacion-footer button {
   color: #4caf50;
-  transition: color 0.2s ease;
+  transition: color 0.3s ease;
 }
 
 .publicacion-footer button:hover {
-  color: #2e7d32;
+  color: #1b5e20;
 }
-
-/*PREVIEW IMAGEN*/
-.preview-container {
-  margin-top: 1rem;
-  text-align: center;
-}
-
-.preview-nombre {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: #444;
-}
-
-.preview-img {
-  width: 100%;
-  max-width: 280px;
-  max-height: 200px;
-  object-fit: contain;
+/* Botón de publicar */
+button.mat-raised-button {
+  background-color: #4caf50;
+  color: white;
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  margin-bottom: 1rem;
+  padding: 0.75rem 2rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.preview-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
+button.mat-raised-button:hover {
+  background-color: #1b5e20;
+  transform: translateY(-2px);
 }
 
+/* Botón eliminar */
+button.mat-icon-button.color-warn {
+  background-color: #ff7043;
+  border-radius: 50%;
+  padding: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button.mat-icon-button.color-warn:hover {
+  background-color: #d32f2f;
+  transform: scale(1.1);
+}
+/* Sidebar */
+.sidebar {
+  background-color: #f0f8f1;
+  width: 250px;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Mejorar márgenes en general */
+.main__nueva-publicacion {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}

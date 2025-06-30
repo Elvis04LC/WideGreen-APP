@@ -7,47 +7,48 @@
   <mat-form-field appearance="fill" class="main__nueva-publicacion-textarea">
     <textarea matInput placeholder="¿Qué estás pensando?" formControlName="contenido"></textarea>
   </mat-form-field>
-    <mat-form-field appearance="fill">
-    <mat-label>Categoría</mat-label>
-    <mat-select [(value)]="idCategoriaSeleccionada" required>
-    <mat-option *ngFor="let cat of categorias" [value]="cat.id">
-        {{ cat.nombreCategoria }}
-    </mat-option>
-    </mat-select>
-</mat-form-field>
-  <!-- INPUT PARA IMAGEN -->
-  <!-- INPUT oculto -->
-<input
-  type="file"
-  #fileInput
-  style="display: none"
-  accept="image/*"
-  (change)="onFileSelected($event)"
-/>
 
+  <mat-form-field appearance="fill">
+    <mat-label>Categoría</mat-label>
+    <mat-select [(value)]="idCategoriaFormulario" required>
+      <mat-option *ngFor="let cat of categorias" [value]="cat.id">
+        {{ cat.nombreCategoria }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- INPUT PARA IMAGEN -->
+  <input type="file" #fileInput style="display: none" accept="image/*" (change)="onFileSelected($event)" />
 
   <div class="main__nueva-publicacion-actions">
-    <div>
-      <!-- BOTÓN visible con ícono -->
-        <button mat-icon-button type="button" (click)="fileInput.click()" matTooltip="Seleccionar imagen">
-        <mat-icon>image</mat-icon>
-        </button>
-        <div class="preview-container" *ngIf="imagenSeleccionada">
-            <div class="preview-header">
-                <span class="preview-nombre">{{ imagenSeleccionada.name }}</span>
-                <button mat-icon-button color="warn" (click)="quitarImagen()" matTooltip="Eliminar imagen seleccionada">
-                <mat-icon>close</mat-icon>
-                </button>
-            </div>
-            <img [src]="previewUrl" alt="Vista previa" class="preview-img" />
-        </div>
-    </div>
-    <div>
+  <!-- Botón para Foto -->
+      <button mat-icon-button type="button" (click)="fileInput.click()" matTooltip="Foto/video" [disabled]="urlImagenSeleccionada">
+        <mat-icon>photo_camera</mat-icon>
+        Foto
+      </button>
+
+      <!-- Botón para URL de imagen -->
+      <mat-form-field appearance="fill" class="main__nueva-publicacion-urlimg" *ngIf="!imagenSeleccionada">
+        <mat-label>URL de la imagen (opcional)</mat-label>
+        <input matInput placeholder="https://ejemplo.com/tu-imagen.jpg" formControlName="urlImagen" (input)="onUrlImagenChange($event)">
+      </mat-form-field>
+
+      <!-- Botón de publicar -->
       <button mat-raised-button color="primary" type="submit" [disabled]="formPublicacion.invalid">Publicar</button>
-    </div>
+  </div>
+  
+  <div class="preview-container" *ngIf="imagenSeleccionada || formPublicacion.get('urlImagen')?.value">
+    <img [src]="previewUrl || formPublicacion.get('urlImagen')?.value" alt="Vista previa" class="preview-img" />
   </div>
 </form>
-
+<mat-form-field appearance="fill">
+  <mat-label>Seleccionar categoría</mat-label>
+  <mat-select [(value)]="idCategoriaSeleccionada" (selectionChange)="filtrarPorCategoria()">
+    <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
+      {{ categoria.nombreCategoria }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
 <!-- FEED DE PUBLICACIONES -->
 <div class="feed-container">
   <div class="publicacion mat-elevation-z2" *ngFor="let pub of publicaciones">
@@ -55,14 +56,20 @@
       <span>{{ pub.usuarioEmail }}</span>
       <span>{{ pub.fecha | date: 'dd/MM/yyyy HH:mm' }}</span>
     </div>
-
+  <!-- Imagen por subir PC -->
+<img
+    *ngIf="pub.imagenUrl"
+    [src]="'http://localhost:8080' + pub.imagenUrl"
+    alt=""
+    class="publicacion-imagen"
+/>
+    <!-- Imagen por URL externa -->
     <img
-        *ngIf="pub.imagenUrl"
-        [src]="'http://localhost:8080' + pub.imagenUrl"
-        alt="Imagen de la publicación"
-        class="publicacion-imagen"
+      *ngIf="pub.imagenUrl"
+      [src]="pub.imagenUrl.startsWith('http') ? pub.imagenUrl : 'http://localhost:8080/' + pub.imagenUrl"
+      alt=""
+      class="publicacion-imagen"
     />
-
 
     <div class="publicacion-contenido">
       <h3 *ngIf="pub.titulo">{{ pub.titulo }}</h3>

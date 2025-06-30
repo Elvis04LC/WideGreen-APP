@@ -13,6 +13,7 @@ import { CategoriaPublicacion } from '../../models/CategoriaPublicacion';
 import { PublicacioncategoriaService } from '../../services/publicacioncategoria.service';
 import { CategoriaPublicacionService } from '../../services/categoria-publicacion.service';
 import { MatSelectModule } from '@angular/material/select';
+import { PublicacionCategoria } from '../../models/publicacion-categoria';
 
 
 
@@ -35,9 +36,12 @@ export class UsuarioFeedComponent {
   publicaciones: Publicacion[] = [];
   formPublicacion: FormGroup;
   imagenSeleccionada!: File | null;
+  urlImagenSeleccionada = false;
   previewUrl: string | null = null;
   categorias: CategoriaPublicacion[] = [];
-  idCategoriaSeleccionada!: number;
+  idCategoriaSeleccionada: number | null = null;
+  publicacionCategoria: PublicacionCategoria[] = [];
+  idCategoriaFormulario: number | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -48,7 +52,8 @@ export class UsuarioFeedComponent {
   ) {
     this.formPublicacion = this.fb.group({
       titulo: ['', [Validators.required, Validators.maxLength(100)]],
-      contenido: ['', [Validators.required, Validators.maxLength(500)]]
+      contenido: ['', [Validators.required, Validators.maxLength(500)]],
+      urlImagen: ['', [Validators.pattern('^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})(\/[\w\.-]*)*\/?$')]]
     });
   }
 
@@ -64,7 +69,7 @@ export class UsuarioFeedComponent {
     });
   }
   cargarPublicaciones(): void {
-     this.publicacionService.listarPublicaciones().subscribe({
+    this.publicacionService.listarPublicaciones().subscribe({
     next: (data) => {
       console.log('📦 Publicaciones cargadas:', data);
       this.publicaciones = data.reverse();
@@ -74,7 +79,7 @@ export class UsuarioFeedComponent {
   }
 
 publicar(): void {
-  if (this.formPublicacion.invalid) return;
+   if (this.formPublicacion.invalid) return;
 
   const formData = new FormData();
   formData.append('titulo', this.formPublicacion.get('titulo')?.value);
@@ -82,15 +87,20 @@ publicar(): void {
 
   if (this.imagenSeleccionada) {
     formData.append('imagen', this.imagenSeleccionada);
+  } else if (this.formPublicacion.get('urlImagen')?.value) {
+    formData.append('urlImagen', this.formPublicacion.get('urlImagen')?.value);
   }
 
   this.publicacionService.crearPublicacion(formData).subscribe({
     next: (publicacionCreada) => {
-      if (this.idCategoriaSeleccionada) {
-        this.publicacionCategoriaService.asociarCategoria({
+      if (this.idCategoriaFormulario) {
+        // Crear un objeto de tipo PublicacionCategoria para asociar la categoría
+        const publicacionCategoria = {
           idPublicacion: publicacionCreada.idPublicacion,
-          idCategoria: this.idCategoriaSeleccionada
-        }).subscribe({
+          idCategoria: this.idCategoriaFormulario
+        };
+
+        this.publicacionCategoriaService.asociarCategoria(publicacionCategoria).subscribe({
           next: () => {
             this.publicaciones.unshift(publicacionCreada);
             this.snackBar.open('¡Publicación y categoría asociadas!', 'Cerrar', { duration: 3000 });
@@ -112,13 +122,17 @@ resetFormulario() {
   this.formPublicacion.reset();
   this.imagenSeleccionada = null;
   this.previewUrl = null;
+  this.urlImagenSeleccionada = false;
+  this.idCategoriaFormulario = null;  // Resetear la categoría seleccionada en el formulario
+
 }
 
   onFileSelected(event: Event): void {
-   const fileInput = event.target as HTMLInputElement;
+  const fileInput = event.target as HTMLInputElement;
   if (fileInput.files && fileInput.files.length > 0) {
     this.imagenSeleccionada = fileInput.files[0];
-
+    this.urlImagenSeleccionada = false;
+    this.formPublicacion.get('urlImagen')?.disable();
     // Vista previa de imagen
     const reader = new FileReader();
     reader.onload = () => {
@@ -127,6 +141,13 @@ resetFormulario() {
     reader.readAsDataURL(this.imagenSeleccionada);
   }
 }
+  onUrlImagenChange(event: any) {
+    this.urlImagenSeleccionada = event.target.value ? true : false;
+    this.imagenSeleccionada = null; // Desactivar la opción de imagen si se puso una URL
+    if (!this.imagenSeleccionada) {
+      this.formPublicacion.get('urlImagen')?.enable();
+    }
+  }
   eliminar(id: number): void {
     this.publicacionService.eliminarPublicacion(id).subscribe({
       next: () => {
@@ -143,4 +164,20 @@ resetFormulario() {
   editar(id: number): void {
     // puedes abrir un diálogo o input dinámico para editar. Lo dejamos preparado.
   }
+  filtrarPorCategoria(): void {
+    if (this.idCategoriaSeleccionada) {
+      // Llamar al servicio para obtener las publicaciones filtradas por categoría
+      this.publicacionService.obtenerPublicacionesPorCategoria(this.idCategoriaSeleccionada).subscribe({
+        next: (data) => {
+          this.publicaciones = data;  // Actualizar las publicaciones con las obtenidas de la categoría seleccionada
+        },
+        error: () => this.snackBar.open('Error al obtener publicaciones por categoría', 'Cerrar', { duration: 3000 })
+      });
+    } else {
+      // Si no se selecciona ninguna categoría, cargar todas las publicaciones
+      this.cargarPublicaciones();
+    }
+  }
 }
+
+

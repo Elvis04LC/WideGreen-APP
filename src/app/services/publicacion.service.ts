@@ -45,5 +45,10 @@ export class PublicacionService {
       headers: this.getAuthHeaders()
     });
   }
+   obtenerPublicacionesPorCategoria(idCategoria: number): Observable<Publicacion[]> {
+    return this.http.get<Publicacion[]>(`${this.apiUrl}/categoria/${idCategoria}`, {
+      headers: this.getAuthHeaders()
+    });
+  }
 }
 

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CategoriaPublicacion } from '../models/CategoriaPublicacion';
 import { Observable } from 'rxjs';
+import { PublicacionCategoria } from '../models/publicacion-categoria';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ private apiUrl = 'http://localhost:8080/api/publicacion-categoria';
       }
     });
   }
-  listarCategoriasPorPublicacion(idPublicacion: number) {
-    return this.http.get(`${this.apiUrl}/publicacion/${idPublicacion}`);
+  listarCategoriasPorPublicacion(idPublicacion: number): Observable<PublicacionCategoria[]> {
+    return this.http.get<PublicacionCategoria[]>(`${this.apiUrl}/publicacion/${idPublicacion}`);
   }
 }

@@ -4,9 +4,10 @@ import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angula
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { UsuarioPerfilCrearService } from '../../services/usuario-perfil-crear.service';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-usuario-perfil-crear',
@@ -17,7 +18,9 @@ import { UsuarioPerfilCrearService } from '../../services/usuario-perfil-crear.s
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    RouterModule],
+    RouterModule,
+    MatSnackBarModule
+  ],
   templateUrl: './usuario-perfil-crear.component.html',
   styleUrl: './usuario-perfil-crear.component.css'
 })
@@ -26,7 +29,9 @@ export class UsuarioPerfilCrearComponent {
 
   constructor(
     private fb: FormBuilder,
-    private perfilService: UsuarioPerfilCrearService
+    private perfilService: UsuarioPerfilCrearService,
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -40,12 +45,24 @@ export class UsuarioPerfilCrearComponent {
 
 
   registrarPerfil() {
-    if (this.perfilForm.valid) {
-      const perfil = this.perfilForm.value;
-      this.perfilService.registrarPerfil(perfil).subscribe({
-        next: () => alert('¡Perfil creado exitosamente!'),
-        error: () => alert('Error al registrar perfil')
+    if (this.perfilForm.invalid) {
+    return;
+  }
+  this.perfilService.registrarPerfil(this.perfilForm.value).subscribe({
+    next: (res) => {
+      this.snackBar.open('¡Perfil creado correctamente!', 'Cerrar', {
+        duration: 2500, // en milisegundos
+        verticalPosition: 'top'
       });
+      this.router.navigate(['/home']);
+    },
+    error: (err) => {
+      this.snackBar.open('Error al registrar perfil', 'Cerrar', {
+        duration: 2500,
+        verticalPosition: 'top'
+      });
+      console.error(err);
     }
+  });
   }
 }
