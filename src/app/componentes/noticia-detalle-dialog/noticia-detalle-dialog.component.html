@@ -1,0 +1,18 @@
+<div class="detalle-noticia-dialog">
+  <h2 class="detalle-titulo" mat-dialog-title>
+    {{ data.titulo }}
+  </h2>
+
+  <div class="mat-dialog-content">
+    <img *ngIf="data.imagenUrl" [src]="'http://localhost:8080' + data.imagenUrl" class="detalle-img" alt="Imagen de la noticia" />
+    <p class="detalle-fecha">
+      <mat-icon style="font-size:18px; vertical-align:middle;">event</mat-icon>
+      {{ data.fecha | date: 'dd/MM/yyyy' }}
+    </p>
+    <p class="detalle-contenido">{{ data.contenido }}</p>
+  </div>
+
+  <div mat-dialog-actions class="detalle-dialog-actions">
+    <button mat-stroked-button color="primary" (click)="cerrar()">Cerrar</button>
+  </div>
+</div>

@@ -1,0 +1,134 @@
+/* NUEVA PUBLICACIÓN */
+.main__nueva-publicacion {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  max-width: 640px;
+  margin: 2rem auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+/* Estilo a los campos */
+mat-form-field {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.main__nueva-publicacion-textarea,
+.main__nueva-publicacion-titulo {
+  width: 100%;
+}
+
+/* Área de acciones */
+.main__nueva-publicacion-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.main__nueva-publicacion-actions button {
+  color: #272b27;
+  transition: color 0.2s ease;
+}
+.main__nueva-publicacion-actions button:hover {
+  color: #1b5e20;
+}
+/* FEED */
+.feed-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+/* PUBLICACIÓN INDIVIDUAL */
+.publicacion {
+  width: 100%;
+  max-width: 640px;
+  padding: 1rem 1.25rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.publicacion:hover {
+  transform: scale(1.01);
+}
+
+/* ENCABEZADO */
+.publicacion-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  color: #2e7d32;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+/* IMAGEN */
+.publicacion-imagen {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+}
+
+/* CONTENIDO */
+.publicacion-contenido {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.publicacion-contenido h3 {
+  margin: 0 0 0.3rem;
+  font-size: 1.2rem;
+  color: #1b5e20;
+}
+
+/* FOOTER DE ICONOS */
+.publicacion-footer {
+  display: flex;
+  justify-content: start;
+  gap: 16px;
+}
+
+.publicacion-footer button {
+  color: #4caf50;
+  transition: color 0.2s ease;
+}
+
+.publicacion-footer button:hover {
+  color: #2e7d32;
+}
+
+/*PREVIEW IMAGEN*/
+.preview-container {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.preview-nombre {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #444;
+}
+
+.preview-img {
+  width: 100%;
+  max-width: 280px;
+  max-height: 200px;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  margin-bottom: 1rem;
+}
+
+.preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+

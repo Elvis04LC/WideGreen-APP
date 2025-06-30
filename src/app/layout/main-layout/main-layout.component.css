@@ -1,0 +1,26 @@
+.sidenav-container {
+  height: 100vh;
+}
+
+.sidenav {
+  width: 220px;
+  background-color: #5fae9f;
+  color: white;
+  padding-top: 1rem;
+}
+
+.logo {
+  width: 150px;
+  margin: 0 auto 1rem auto;
+  display: block;
+}
+
+mat-nav-list a {
+  color: white;
+}
+
+.content {
+  padding: 1rem;
+  background-color: #b0e0d3;
+  min-height: 100vh;
+}

@@ -1,25 +1,44 @@
-<h2>Crea tu Perfil</h2>
+<main class="main">
+  <section class="main__create-account">
+    <div class="main__create-account-container">
 
-<form [formGroup]="perfilForm" (ngSubmit)="registrarPerfil()">
-  <mat-form-field appearance="fill" class="full-width">
-    <mat-label>Nombre</mat-label>
-    <input matInput formControlName="nombre">
-  </mat-form-field>
+      <h1 class="main__create-account-title">Crea tu Perfil</h1>
 
-  <mat-form-field appearance="fill" class="full-width">
-    <mat-label>Apellido</mat-label>
-    <input matInput formControlName="apellido">
-  </mat-form-field>
+      <form [formGroup]="perfilForm" class="main__create-account-form" (ngSubmit)="registrarPerfil()">
 
-  <mat-form-field appearance="fill" class="full-width">
-    <mat-label>Foto (URL)</mat-label>
-    <input matInput formControlName="foto">
-  </mat-form-field>
+        <mat-form-field appearance="outline" class="main__create-account-input">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombre" placeholder="Tu nombre" />
+          <mat-error *ngIf="perfilForm.get('nombre')?.hasError('required')">
+            El nombre es obligatorio
+          </mat-error>
+        </mat-form-field>
 
-  <mat-form-field appearance="fill" class="full-width">
-    <mat-label>Biografía</mat-label>
-    <textarea matInput formControlName="bio" rows="4"></textarea>
-  </mat-form-field>
+        <mat-form-field appearance="outline" class="main__create-account-input">
+          <mat-label>Apellido</mat-label>
+          <input matInput formControlName="apellido" placeholder="Tu apellido" />
+          <mat-error *ngIf="perfilForm.get('apellido')?.hasError('required')">
+            El apellido es obligatorio
+          </mat-error>
+        </mat-form-field>
 
-  <button mat-raised-button color="primary" type="submit">Guardar Perfil</button>
-</form>
+        <mat-form-field appearance="outline" class="main__create-account-input">
+          <mat-label>Foto (URL)</mat-label>
+          <input matInput formControlName="foto" placeholder="https://tufoto.com/ejemplo.jpg" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="main__create-account-input">
+          <mat-label>Biografía</mat-label>
+          <textarea matInput formControlName="bio" rows="4" placeholder="Cuéntanos algo sobre ti..."></textarea>
+        </mat-form-field>
+
+        <button mat-raised-button
+                color="primary"
+                class="main__create-account-button"
+                type="submit">
+          Guardar Perfil
+        </button>
+      </form>
+    </div>
+  </section>
+</main>

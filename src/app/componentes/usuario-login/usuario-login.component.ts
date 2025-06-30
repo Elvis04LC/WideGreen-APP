@@ -59,7 +59,7 @@ export class UsuarioLoginComponent {
     next: (res) => {
       localStorage.setItem('token', res.token);
       this.snackBar.open('Inicio de sesión exitoso', 'Cerrar', { duration: 3000 });
-      this.router.navigate(['/']); // Redirige a home o dashboard
+      this.router.navigate(['/home']); // Redirige a home o dashboard
     },
     error: () => {
       this.snackBar.open('Credenciales incorrectas. Intenta nuevamente.', 'Cerrar', { duration: 4000 });

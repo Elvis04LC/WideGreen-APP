@@ -1,0 +1,81 @@
+
+  <!-- SOLO ADMIN ve este bloque -->
+  <section *ngIf="isAdmin" class="crear-noticia-section">
+    <mat-card class="crear-noticia-card">
+      <form [formGroup]="formNoticia" (ngSubmit)="crearNoticia()" enctype="multipart/form-data">
+    <mat-form-field appearance="fill">
+        <mat-label>Título de la noticia</mat-label>
+        <input matInput formControlName="titulo" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Fecha</mat-label>
+        <input matInput formControlName="fecha" [matDatepicker]="picker" required />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Contenido</mat-label>
+        <textarea matInput formControlName="contenido" required></textarea>
+    </mat-form-field>
+
+<!-- El input file SIEMPRE va fuera de mat-form-field -->
+
+<input
+  type="file"
+  #fileInput
+  style="display: none"
+  accept="image/*"
+  (change)="onFileSelected($event)"
+/>
+<div>
+      <!-- BOTÓN visible con ícono -->
+        <button mat-icon-button type="button" (click)="fileInput.click()" matTooltip="Seleccionar imagen">
+        <mat-icon>image</mat-icon>
+        </button>
+        <div class="preview-container" *ngIf="imagenSeleccionada">
+            <div class="preview-header">
+                <span class="preview-nombre">{{ imagenSeleccionada.name }}</span>
+                <button mat-icon-button color="warn" (click)="quitarImagen()" matTooltip="Eliminar imagen seleccionada">
+                <mat-icon>close</mat-icon>
+                </button>
+            </div>
+            <img [src]="previewUrl" alt="Vista previa" class="preview-img" />
+        </div>
+    </div>
+        <button mat-raised-button color="primary" type="submit" [disabled]="formNoticia.invalid">
+          Crear Noticia
+        </button>
+      </form>
+    </mat-card>
+    <br />
+  </section>
+
+  <!-- AQUÍ SIEMPRE SE VEN LAS NOTICIAS -->
+ <main class="main">
+  <section class="main__noticias">
+    <div class="main__noticias-container">
+      <div class="main__noticia" *ngFor="let noticia of noticias">
+        <!-- Aquí tu card/noticia, igual que antes -->
+        <div class="main__noticia-header" *ngIf="noticia.imagenUrl">
+        <img [src]="'http://localhost:8080' + noticia.imagenUrl" alt="Imagen de la noticia" class="main__noticia-image" loading="lazy" />
+        </div>
+        <div class="main__noticia-body">
+            <h2 class="main__noticia-text">{{ noticia.titulo }}</h2>
+            <div class="main__noticia-content">
+                {{ noticia.contenido | slice:0:120 }}<span *ngIf="noticia.contenido.length > 120">...</span>
+            </div>
+            <div>
+                <span class="main__noticia-date">{{ noticia.fecha | date: 'dd/MM/yyyy' }}</span>
+            </div>
+        </div>
+        <div class="main__noticia-footer">
+            <button class="main__noticia-button" (click)="abrirDetalle(noticia)">
+                <mat-icon>article</mat-icon> Ver Noticia
+            </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

@@ -70,14 +70,14 @@ export class UsuarioRegistrarComponent {
     next: (res) => {
       this.snackBar.open(res.message || 'Usuario registrado correctamente', 'Cerrar', { duration: 3000 });
 
-      // 🔐 Autologin con el mismo servicio
+      //Autologin con el mismo servicio
       this.usuarioService.login({
         email: datos.email,
         password: datos.password
       }).subscribe({
         next: (res) => {
-          localStorage.setItem('jwtToken', res.token); // este ya lo hace tu service igual
-          this.router.navigate(['/crear-perfil']); // <-- esta redirección debería activarse
+          localStorage.setItem('jwtToken', res.token);
+          this.router.navigate(['/crear-perfil']);
         },
         error: () => {
             this.snackBar.open('Error al iniciar sesión automáticamente', 'Cerrar', { duration: 4000 });
