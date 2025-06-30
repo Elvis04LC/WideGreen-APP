@@ -4,7 +4,7 @@ body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
   color: var(--color-text-primary);
-  background-color: var(--color-bg-primary);
+  
 }
 
 /* CENTRADO PRINCIPAL */
@@ -13,6 +13,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background-color: var(--color-bg-secondary);
 }
 
 /* FORMULARIO */

@@ -9,10 +9,11 @@ import { MatInput } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatLabel } from '@angular/material/form-field';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UsuarioRegistro } from '../../models/Usuario';
+
 
 
 @Component({
@@ -36,12 +37,12 @@ import { UsuarioRegistro } from '../../models/Usuario';
 export class UsuarioRegistrarComponent {
   formRegistro: FormGroup;
   mostrarContrasena: boolean = false;
-  hide: boolean = true;
 
 
   constructor(private fb: FormBuilder, private location: Location,
     private usuarioService: UsuarioService,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    private router: Router) {
     this.formRegistro = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
@@ -54,25 +55,41 @@ export class UsuarioRegistrarComponent {
   }
 
   registrarUsuario(): void {
-    if (this.formRegistro.invalid) {
+  if (this.formRegistro.invalid) {
       this.snackBar.open('Completa correctamente todos los campos.', 'Cerrar', { duration: 3000 });
       return;
     }
-    const usuario: UsuarioRegistro = {
+  const usuario: UsuarioRegistro = this.formRegistro.value;
+    const datos: UsuarioRegistro = {
       username: this.formRegistro.value.username,
       email: this.formRegistro.value.email,
       password: this.formRegistro.value.password
     };
 
-      this.usuarioService.registrar(usuario).subscribe({
+  this.usuarioService.registrar(datos).subscribe({
+    next: (res) => {
+      this.snackBar.open(res.message || 'Usuario registrado correctamente', 'Cerrar', { duration: 3000 });
+
+      // 🔐 Autologin con el mismo servicio
+      this.usuarioService.login({
+        email: datos.email,
+        password: datos.password
+      }).subscribe({
         next: (res) => {
-          this.snackBar.open(res.message || 'Usuario registrado correctamente', 'Cerrar', { duration: 3000 });
-          this.formRegistro.reset();
+          localStorage.setItem('jwtToken', res.token); // este ya lo hace tu service igual
+          this.router.navigate(['/crear-perfil']); // <-- esta redirección debería activarse
         },
-        error: (err) => {
-          this.snackBar.open(`Error al registrar: ${err.error?.error || 'verifica los datos'}`, 'Cerrar', { duration: 4000 });
+        error: () => {
+            this.snackBar.open('Error al iniciar sesión automáticamente', 'Cerrar', { duration: 4000 });
         }
       });
+
+      this.formRegistro.reset();
+    },
+    error: (err) => {
+      this.snackBar.open(`Error al registrar: ${err.error?.error || 'verifica los datos'}`, 'Cerrar', { duration: 4000 });
+    }
+  });
   }
   goBack() {
     this.location.back();

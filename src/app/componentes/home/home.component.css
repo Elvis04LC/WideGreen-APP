@@ -219,7 +219,6 @@
 
 /* Botón oscuro */
 .black-btn {
-  color: var(--color-bg-primary);
   padding: 8px 20px;
   border-radius: 6px;
   font-weight: 500;

@@ -1,0 +1,25 @@
+<h2>Crea tu Perfil</h2>
+
+<form [formGroup]="perfilForm" (ngSubmit)="registrarPerfil()">
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Nombre</mat-label>
+    <input matInput formControlName="nombre">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Apellido</mat-label>
+    <input matInput formControlName="apellido">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Foto (URL)</mat-label>
+    <input matInput formControlName="foto">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Biografía</mat-label>
+    <textarea matInput formControlName="bio" rows="4"></textarea>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Guardar Perfil</button>
+</form>
