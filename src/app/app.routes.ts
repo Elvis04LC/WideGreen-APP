@@ -6,6 +6,7 @@ import { UsuarioPerfilCrearComponent } from './componentes/usuario-perfil-crear/
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 import { UsuarioFeedComponent } from './componentes/usuario-feed/usuario-feed.component';
 import { NoticiasComponent } from './componentes/noticias/noticias.component';
+import { AcercaDeComponent } from './componentes/acerca-de/acerca-de.component';
 
 export const routes: Routes = [
      
@@ -19,6 +20,7 @@ export const routes: Routes = [
        children: [
           { path: 'home', component: UsuarioFeedComponent },
           { path: 'noticias', component: NoticiasComponent },
+          { path: 'acerca-de', component: AcercaDeComponent },
            //{ path: 'actividades', component: ActividadesComponent },
            //{ path: 'mapa', component: MapaComponent }
        ]
