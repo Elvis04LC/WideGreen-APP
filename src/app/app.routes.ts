@@ -7,6 +7,7 @@ import { MainLayoutComponent } from './layout/main-layout/main-layout.component'
 import { UsuarioFeedComponent } from './componentes/usuario-feed/usuario-feed.component';
 import { NoticiasComponent } from './componentes/noticias/noticias.component';
 import { AcercaDeComponent } from './componentes/acerca-de/acerca-de.component';
+import { ContactosComponent } from './componentes/contactos/contactos.component';
 
 export const routes: Routes = [     
      { path: '', component: HomeComponent },
@@ -14,6 +15,7 @@ export const routes: Routes = [
      { path: 'login', component: UsuarioLoginComponent },
      { path: 'crear-perfil', component: UsuarioPerfilCrearComponent },
      { path: 'acerca-de', component: AcercaDeComponent },
+     {path: 'contactos', component: ContactosComponent},
      {
        path: '',
        component: MainLayoutComponent,
