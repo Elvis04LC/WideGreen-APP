@@ -1,19 +1,28 @@
 <!-- header -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 <header class="header">
   <nav class="header__nav">
     <ul class="header__nav-list">
       <li class="header__nav-item">
-        <a routerLink="/" id="logo-link"><img src="assets/images/logo.png" alt="WideGreen logo" /></a>
+        <a routerLink="/inicio" id="logo-link">
+          <img src="/assets/logo.png" alt="WideGreen logo" />
+        </a>
       </li>
-      <li class="header__nav-item"><a routerLink="/equipo" class="header__nav-link">Nuestro Equipo</a></li>
-      <li class="header__nav-item"><a routerLink="/acerca-de" class="header__nav-link">Acerca de</a></li>
-      <li class="header__nav-item"><a routerLink="/contactos" class="header__nav-link">Contactos</a></li>
+      <li class="header__nav-item">
+        <a routerLink="/nuestro-equipo" class="header__nav-link">Nuestro Equipo</a>
+      </li>
+      <li class="header__nav-item">
+        <a routerLink="/acerca-de" class="header__nav-link">Acerca de</a>
+      </li>
+      <li class="header__nav-item">
+        <a routerLink="/contactos" class="header__nav-link">Contactos</a>
+      </li>
     </ul>
     <div class="header__actions">
-      <button class="header__button" id="login-button" (click)="redirectTo('login')">
+      <button id="login-button" mat-button class="header__button" routerLink="/login">
         <span class="header__button-text">Inicia Sesión</span>
       </button>
-      <button class="header__button" id="register-button" (click)="redirectTo('registro')">
+      <button id="register-button" mat-button class="header__button" routerLink="/registro">
         <span class="header__button-text">Regístrate</span>
       </button>
     </div>
@@ -27,11 +36,15 @@
     <div class="main__map-features">
       <div class="main__map-feature">
         <h2 class="main__map-feature-title">Busca</h2>
-        <p class="main__map-feature-text">En el mapa para descubrir una diversidad de iniciativas cercanas a tu localidad y elige aquella que más te inspire.</p>
+        <p class="main__map-feature-text">
+          En el mapa para descubrir una diversidad de iniciativas cercanas a tu localidad y elige aquella que más te inspire.
+        </p>
       </div>
       <div class="main__map-feature">
         <h2 class="main__map-feature-title">Interactúa</h2>
-        <p class="main__map-feature-text">Con las tareas, personas de la iniciativa para formar parte de una experiencia única y obtener recompensas.</p>
+        <p class="main__map-feature-text">
+          Con las tareas, personas de la iniciativa para formar parte de una experiencia única y obtener recompensas.
+        </p>
       </div>
     </div>
   </section>
@@ -39,7 +52,9 @@
   <section class="main__explore">
     <div class="main__explore-content">
       <h2 class="main__explore-title">Descubra iniciativas y comunidades cercanas</h2>
-      <p class="main__explore-text">Explore una amplia gama de iniciativas ambientales que están sucediendo en su área. Nuestro mapa interactivo le permite localizar fácilmente y conocer más sobre estas iniciativas.</p>
+      <p class="main__explore-text">
+        Explore una amplia gama de iniciativas ambientales que están sucediendo en su área. Nuestro mapa interactivo le permite localizar fácilmente y conocer más sobre estas iniciativas.
+      </p>
       <ul class="main__explore-list">
         <li class="main__explore-item"><i class="fa-solid fa-leaf"></i>Vea información detallada de la iniciativa</li>
         <li class="main__explore-item"><i class="fa-solid fa-leaf"></i>Visualice el estado de la zona</li>
@@ -47,7 +62,7 @@
       </ul>
     </div>
     <div class="main__explore-image-container">
-      <img class="main__explore-image" src="assets/images/explore.png" alt="Mapa interactivo">
+      <img class="main__explore-image" src="/assets/explore.png" alt="Mapa interactivo" />
     </div>
   </section>
 </main>
@@ -56,14 +71,24 @@
 <footer class="footer">
   <div class="footer__contact">
     <div class="footer__logo-image-container">
-      <img class="footer__logo-image" src="assets/images/Logox3.png" alt="WideGreen logo" />
+      <img class="footer__logo-image" src="/assets/Logox3.png" alt="WideGreen logo" />
     </div>
     <ul class="footer__contact-list">
-      <li><a href="https://facebook.com/" class="footer__contact-link"><span class="footer__contact-icon"><i class="fa-brands fa-facebook fa-xl"></i></span></a></li>
-      <li><a href="https://instagram.com/" class="footer__contact-link"><span class="footer__contact-icon"><i class="fa-brands fa-instagram fa-xl"></i></span></a></li>
-      <li><a href="https://x.com/" class="footer__contact-link"><span class="footer__contact-icon"><i class="fa-brands fa-x-twitter fa-xl"></i></span></a></li>
-      <li><a href="https://linkedin.com/" class="footer__contact-link"><span class="footer__contact-icon"><i class="fa-brands fa-linkedin fa-xl"></i></span></a></li>
-      <li><a href="https://youtube.com/" class="footer__contact-link"><span class="footer__contact-icon"><i class="fa-brands fa-youtube fa-xl"></i></span></a></li>
+      <li class="footer__contact-item">
+        <a href="https://www.facebook.com/" class="footer__contact-link"><span class="footer__contact-icon"><i class="fa-brands fa-facebook fa-xl"></i></span></a>
+      </li>
+      <li class="footer__contact-item">
+        <a href="https://www.instagram.com/" class="footer__contact-link"><span class="footer__contact-icon"><i class="fa-brands fa-instagram fa-xl"></i></span></a>
+      </li>
+      <li class="footer__contact-item">
+        <a href="https://x.com/" class="footer__contact-link"><span class="footer__contact-icon"><i class="fa-brands fa-x-twitter fa-xl"></i></span></a>
+      </li>
+      <li class="footer__contact-item">
+        <a href="https://pe.linkedin.com/" class="footer__contact-link"><span class="footer__contact-icon"><i class="fa-brands fa-linkedin fa-xl"></i></span></a>
+      </li>
+      <li class="footer__contact-item">
+        <a href="https://www.youtube.com/" class="footer__contact-link"><span class="footer__contact-icon"><i class="fa-brands fa-youtube fa-xl"></i></span></a>
+      </li>
     </ul>
   </div>
   <div class="footer__policies">
@@ -71,7 +96,7 @@
     <ul class="footer__policies-list">
       <li class="footer__policies-item"><a href="#" class="footer__policies-link">Política de Privacidad</a></li>
       <li class="footer__policies-item"><a href="#" class="footer__policies-link">Términos y Condiciones</a></li>
-      <li class="footer__policies-item"><a href="#" class="footer__policies-link">Cookies</a></li>
+      <li class="footer__policies-item"><a href="#" class="footer__policies-link">Configuración de Cookies</a></li>
     </ul>
   </div>
 </footer>
