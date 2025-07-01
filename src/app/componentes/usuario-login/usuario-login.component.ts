@@ -67,6 +67,6 @@ export class UsuarioLoginComponent {
   });
   }
     goBack() {
-    this.location.back();
+     this.router.navigate(['']);
   }
 }

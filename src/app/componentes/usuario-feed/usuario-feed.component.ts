@@ -53,7 +53,8 @@ export class UsuarioFeedComponent {
     this.formPublicacion = this.fb.group({
       titulo: ['', [Validators.required, Validators.maxLength(100)]],
       contenido: ['', [Validators.required, Validators.maxLength(500)]],
-      urlImagen: ['', [Validators.pattern('^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})(\/[\w\.-]*)*\/?$')]]
+      idCategoria: ['', Validators.required],
+      urlImagen: ['']
     });
   }
 

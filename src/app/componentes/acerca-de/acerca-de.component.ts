@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-acerca-de',
@@ -10,7 +11,8 @@ import { RouterModule } from '@angular/router';
     CommonModule, 
     RouterModule, 
     MatToolbarModule, 
-    MatButtonModule
+    MatButtonModule,
+    NavbarComponent
   ],
   templateUrl: './acerca-de.component.html',
   styleUrl: './acerca-de.component.css'

@@ -8,25 +8,41 @@
       <img src="/assets/Logox3.png" alt="Logo" class="main__login-logo" />
       <h1 class="main__login-title">Inicia Sesión</h1>
 
-      <form [formGroup]="formLogin" class="main__login-form" (ngSubmit)="iniciarSesion()">
-
+      <form
+        [formGroup]="formLogin"
+        class="main__login-form"
+        (ngSubmit)="iniciarSesion()"
+      >
         <mat-form-field appearance="outline" class="main__login-input">
           <mat-label>Email</mat-label>
-          <input matInput placeholder="ej. nombre@correo.com" formControlName="email" type="email" />
+          <input
+            matInput
+            placeholder="ej. nombre@correo.com"
+            formControlName="email"
+            type="email"
+          />
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="main__login-input">
           <mat-label>Contraseña</mat-label>
-          <input matInput
-                [type]="mostrarContrasena ? 'text' : 'password'"
-                placeholder="Tu contraseña"
-                formControlName="password" />
-          <mat-icon class="clickable-icon" (click)="toggleContrasena()"> 
-            {{ mostrarContrasena ? 'visibility_off' : 'visibility' }}
+          <input
+            matInput
+            [type]="mostrarContrasena ? 'text' : 'password'"
+            placeholder="Tu contraseña"
+            formControlName="password"
+          />
+          <mat-icon class="clickable-icon" (click)="toggleContrasena()">
+            {{ mostrarContrasena ? "visibility_off" : "visibility" }}
           </mat-icon>
         </mat-form-field>
 
-        <button mat-raised-button color="primary" class="main__login-button" type="submit" [disabled]="formLogin.invalid">
+        <button
+          mat-raised-button
+          color="primary"
+          class="main__login-button"
+          type="submit"
+          [disabled]="formLogin.invalid"
+        >
           Iniciar Sesión
         </button>
       </form>

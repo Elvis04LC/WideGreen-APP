@@ -3,7 +3,7 @@
   border-radius: 18px;
   overflow: hidden;
   background: #fff;
-  box-shadow: 0 4px 24px 0 rgba(44, 68, 92, 0.10);
+  box-shadow: 0 4px 24px 0 rgba(44, 68, 92, 0.1);
   transition: box-shadow 0.3s;
   display: flex;
   flex-direction: column;
@@ -43,7 +43,7 @@
   font-weight: 700;
   color: #21415a;
   margin-bottom: 10px;
-  font-family: 'Montserrat', Arial, sans-serif;
+  font-family: "Montserrat", Arial, sans-serif;
 }
 
 .main__noticia-date {
@@ -86,10 +86,10 @@
 }
 
 .crear-noticia-card {
- width: 100%;
+  width: 100%;
   max-width: 600px;
   margin: 0 auto;
-  padding: 2rem 2.5rem 1.5rem 2.5rem;  /* Más padding en los costados y arriba */
+  padding: 2rem 2.5rem 1.5rem 2.5rem; /* Más padding en los costados y arriba */
   background: #fafafd;
   border-radius: 16px;
   box-shadow: 0 6px 32px 0 rgba(60, 72, 89, 0.12);
@@ -138,9 +138,16 @@ mat-form-field {
   margin-left: 10px;
 }
 @media (max-width: 800px) {
-  .main__noticia-header { height: 180px; }
-  .crear-noticia-card { padding: 1rem; }
-  .main__noticia-body, .main__noticia-footer { padding: 14px; }
+  .main__noticia-header {
+    height: 180px;
+  }
+  .crear-noticia-card {
+    padding: 1rem;
+  }
+  .main__noticia-body,
+  .main__noticia-footer {
+    padding: 14px;
+  }
 }
 .main__noticia-content {
   color: #333;
@@ -148,7 +155,7 @@ mat-form-field {
   margin-bottom: 0.5rem;
   /* Opcional: recorta líneas con puntos suspensivos en multilinea */
   display: -webkit-box;
-  -webkit-line-clamp: 2;  /* Máximo de líneas antes de los ... */
+  -webkit-line-clamp: 2; /* Máximo de líneas antes de los ... */
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
