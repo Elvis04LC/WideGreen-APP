@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { PerfilUsuario } from '../models/PerfilUsuario';
 
 @Injectable({ providedIn: 'root' })
 export class UsuarioPerfilCrearService {
@@ -15,4 +16,5 @@ export class UsuarioPerfilCrearService {
     });
     return this.http.post(`${this.apiUrl}/registrar`, perfil, { headers });
   }
+
 }

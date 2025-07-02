@@ -94,6 +94,7 @@ publicar(): void {
 
   this.publicacionService.crearPublicacion(formData).subscribe({
     next: (publicacionCreada) => {
+      this.idCategoriaFormulario = this.formPublicacion.get('idCategoria')?.value;
       if (this.idCategoriaFormulario) {
         // Crear un objeto de tipo PublicacionCategoria para asociar la categoría
         const publicacionCategoria = {

@@ -50,5 +50,8 @@ export class PublicacionService {
       headers: this.getAuthHeaders()
     });
   }
+ listarPorUsuario(idUsuario: number): Observable<Publicacion[]> {
+    return this.http.get<Publicacion[]>(`${this.apiUrl}/usuario/${idUsuario}`);
+  }
 }
 

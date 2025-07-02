@@ -1,0 +1,81 @@
+/* Contenedor principal del perfil */
+.perfil-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Spinner de carga centrado */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+/* Tarjeta de perfil */
+.perfil-card {
+  padding: 1rem;
+  background-color: #fdfdfd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Avatar circular */
+.perfil-avatar {
+  border-radius: 50%;
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
+}
+
+/* Imagen del perfil */
+.perfil-foto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Espaciado inferior para el botón */
+mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Sección de publicaciones */
+h3 {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* Tarjeta individual de publicación */
+.publicacion-card {
+  margin-bottom: 1.5rem;
+  background-color: #f8f8f8;
+  transition: transform 0.2s ease;
+}
+
+.publicacion-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Imagen en la publicación */
+mat-card-image {
+  max-height: 300px;
+  object-fit: cover;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .perfil-container {
+    padding: 0.5rem;
+  }
+
+  .perfil-card {
+    padding: 0.5rem;
+  }
+}

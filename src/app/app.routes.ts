@@ -9,24 +9,25 @@ import { NoticiasComponent } from './componentes/noticias/noticias.component';
 import { AcercaDeComponent } from './componentes/acerca-de/acerca-de.component';
 import { ContactosComponent } from './componentes/contactos/contactos.component';
 import { ActividadesComponent } from './componentes/actividades/actividades.component';
+import { UsuarioPerfilComponent } from './componentes/usuario-perfil/usuario-perfil.component';
 
-export const routes: Routes = [     
-     { path: '', component: HomeComponent },
-     { path: 'registro', component: UsuarioRegistrarComponent },
-     { path: 'login', component: UsuarioLoginComponent },
-     { path: 'crear-perfil', component: UsuarioPerfilCrearComponent },
-     { path: 'acerca-de', component: AcercaDeComponent },
-     {path: 'contactos', component: ContactosComponent},
-     {
-       path: '',
-       component: MainLayoutComponent,
-       children: [
-          { path: 'home', component: UsuarioFeedComponent },
-          { path: 'noticias', component: NoticiasComponent },
-          { path: 'actividades', component: ActividadesComponent}
-
-           //{ path: 'actividades', component: ActividadesComponent },
-           //{ path: 'mapa', component: MapaComponent }
-       ]
-     },
+export const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'registro', component: UsuarioRegistrarComponent },
+  { path: 'login', component: UsuarioLoginComponent },
+  { path: 'crear-perfil', component: UsuarioPerfilCrearComponent },
+  { path: 'acerca-de', component: AcercaDeComponent },
+  { path: 'contactos', component: ContactosComponent },
+  {
+    path: '',
+    component: MainLayoutComponent,
+    children: [
+      { path: 'home', component: UsuarioFeedComponent },
+      { path: 'noticias', component: NoticiasComponent },
+      { path: 'actividades', component: ActividadesComponent },
+      { path: 'perfil',component: UsuarioPerfilComponent,},
+      //{ path: 'actividades', component: ActividadesComponent },
+      //{ path: 'mapa', component: MapaComponent }
+    ],
+  },
 ];

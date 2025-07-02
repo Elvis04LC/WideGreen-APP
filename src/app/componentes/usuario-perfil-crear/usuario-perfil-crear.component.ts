@@ -35,7 +35,7 @@ export class UsuarioPerfilCrearComponent {
   ) {}
 
   ngOnInit(): void {
-    this.perfilForm = this.fb.group({
+      this.perfilForm = this.fb.group({
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
       foto: [''],
