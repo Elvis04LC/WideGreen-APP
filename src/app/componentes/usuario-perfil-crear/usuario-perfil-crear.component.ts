@@ -8,6 +8,7 @@ import { Router, RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { UsuarioPerfilCrearService } from '../../services/usuario-perfil-crear.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-usuario-perfil-crear',
@@ -17,6 +18,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatIconModule,
     MatButtonModule,
     RouterModule,
     MatSnackBarModule
@@ -26,6 +28,9 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 })
 export class UsuarioPerfilCrearComponent {
   perfilForm!: FormGroup;
+  imagenSeleccionada: File | null = null;
+  urlImagenSeleccionada = false;
+  previewUrl: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -35,34 +40,58 @@ export class UsuarioPerfilCrearComponent {
   ) {}
 
   ngOnInit(): void {
-      this.perfilForm = this.fb.group({
+    this.perfilForm = this.fb.group({
       nombre: ['', Validators.required],
       apellido: ['', Validators.required],
       foto: [''],
-      bio: ['']
+      bio: [''],
+      urlImagen: ['']
     });
   }
 
+  onFileSelected(event: Event): void {
+    const fileInput = event.target as HTMLInputElement;
+    if (fileInput.files && fileInput.files.length > 0) {
+      this.imagenSeleccionada = fileInput.files[0];
+      this.urlImagenSeleccionada = false;
+      this.perfilForm.get('urlImagen')?.disable();
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.previewUrl = reader.result as string;
+      };
+      reader.readAsDataURL(this.imagenSeleccionada);
+    }
+  }
+
+  onUrlImagenChange(event: any): void {
+    const value = event.target.value;
+    this.urlImagenSeleccionada = !!value;
+    if (value) {
+      this.imagenSeleccionada = null;
+      this.previewUrl = value;
+      this.perfilForm.get('urlImagen')?.enable();
+    }
+  }
 
   registrarPerfil() {
-    if (this.perfilForm.invalid) {
-    return;
-  }
-  this.perfilService.registrarPerfil(this.perfilForm.value).subscribe({
-    next: (res) => {
-      this.snackBar.open('¡Perfil creado correctamente!', 'Cerrar', {
-        duration: 2500, // en milisegundos
-        verticalPosition: 'top'
-      });
-      this.router.navigate(['/home']);
-    },
-    error: (err) => {
-      this.snackBar.open('Error al registrar perfil', 'Cerrar', {
-        duration: 2500,
-        verticalPosition: 'top'
-      });
-      console.error(err);
-    }
-  });
+    if (this.perfilForm.invalid) return;
+
+    this.perfilService.registrarPerfil(this.perfilForm.value).subscribe({
+      next: () => {
+        this.snackBar.open('¡Perfil creado correctamente!', 'Cerrar', {
+          duration: 2500,
+          verticalPosition: 'top'
+        });
+        this.router.navigate(['/home']);
+      },
+      error: (err) => {
+        this.snackBar.open('Error al registrar perfil', 'Cerrar', {
+          duration: 2500,
+          verticalPosition: 'top'
+        });
+        console.error(err);
+      }
+    });
   }
 }
