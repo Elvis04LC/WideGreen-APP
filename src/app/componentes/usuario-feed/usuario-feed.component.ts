@@ -8,7 +8,7 @@ import { Publicacion } from '../../models/Publicacion';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PublicacionService } from '../../services/publicacion.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { HttpClientModule } from '@angular/common/http';
+//import { HttpClientModule } from '@angular/common/http';
 import { CategoriaPublicacion } from '../../models/CategoriaPublicacion';
 import { PublicacioncategoriaService } from '../../services/publicacioncategoria.service';
 import { CategoriaPublicacionService } from '../../services/categoria-publicacion.service';
@@ -25,7 +25,7 @@ import { PublicacionCategoria } from '../../models/publicacion-categoria';
     MatButtonModule,
     MatInputModule,
     MatFormField,
-    HttpClientModule,
+    //HttpClientModule,
     ReactiveFormsModule,
     MatSelectModule
   ],
