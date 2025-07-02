@@ -8,6 +8,7 @@ import { UsuarioFeedComponent } from './componentes/usuario-feed/usuario-feed.co
 import { NoticiasComponent } from './componentes/noticias/noticias.component';
 import { AcercaDeComponent } from './componentes/acerca-de/acerca-de.component';
 import { ContactosComponent } from './componentes/contactos/contactos.component';
+import { ActividadesComponent } from './componentes/actividades/actividades.component';
 
 export const routes: Routes = [     
      { path: '', component: HomeComponent },
@@ -22,6 +23,7 @@ export const routes: Routes = [
        children: [
           { path: 'home', component: UsuarioFeedComponent },
           { path: 'noticias', component: NoticiasComponent },
+          { path: 'actividades', component: ActividadesComponent}
 
            //{ path: 'actividades', component: ActividadesComponent },
            //{ path: 'mapa', component: MapaComponent }
