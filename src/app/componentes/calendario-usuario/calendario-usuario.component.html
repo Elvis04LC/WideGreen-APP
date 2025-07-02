@@ -1,0 +1,16 @@
+<mat-card *ngIf="!isLoading && calendario">
+  <mat-card-title>Mi Calendario</mat-card-title>
+  <mat-card-content>
+    <p>ID del Calendario: {{ calendario.id }}</p>
+    <p>Usuario ID: {{ calendario.idUsuario }}</p>
+    <!-- Luego puedes listar actividades aquí -->
+  </mat-card-content>
+</mat-card>
+
+<div *ngIf="isLoading">
+  <p>Cargando calendario...</p>
+</div>
+
+<div *ngIf="errorMsg">
+  <p style="color: red;">{{ errorMsg }}</p>
+</div>

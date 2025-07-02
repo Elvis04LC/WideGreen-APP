@@ -31,4 +31,7 @@ export class CalendarioService {
   eliminarCalendario(id: number): Observable<string> {
     return this.http.delete<string>(`${this.apiUrl}/${id}`);
   }
+  obtenerCalendarioAutenticado(): Observable<Calendario> {
+    return this.http.get<Calendario>(`${this.apiUrl}/autenticado`);
+  }
 }

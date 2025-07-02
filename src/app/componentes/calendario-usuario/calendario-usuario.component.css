@@ -1,0 +1,33 @@
+mat-card {
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+mat-card-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 12px;
+}
+
+mat-card-content p {
+  font-size: 16px;
+  margin: 8px 0;
+  color: #34495e;
+}
+
+div[ngIf="isLoading"] {
+  text-align: center;
+  font-style: italic;
+  color: #7f8c8d;
+  margin-top: 20px;
+}
+
+div[ngIf="errorMsg"] {
+  text-align: center;
+  font-weight: bold;
+  color: red;
+  margin-top: 20px;
+}

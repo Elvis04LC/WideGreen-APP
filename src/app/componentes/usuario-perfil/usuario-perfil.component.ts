@@ -12,6 +12,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { PublicacionService } from '../../services/publicacion.service';
 import { Publicacion } from '../../models/Publicacion';
 import { CommonModule } from '@angular/common';
+import { CalendarioUsuarioComponent } from '../calendario-usuario/calendario-usuario.component';
 
 @Component({
   selector: 'app-usuario-perfil',
@@ -21,7 +22,8 @@ import { CommonModule } from '@angular/common';
     MatCardModule,
     MatButtonModule,
     MatProgressSpinnerModule,
-    MatDividerModule, // Para el spinner de carga
+    MatDividerModule,
+     CalendarioUsuarioComponent // Para el spinner de carga
   ],
   templateUrl: './usuario-perfil.component.html',
   styleUrl: './usuario-perfil.component.css',
