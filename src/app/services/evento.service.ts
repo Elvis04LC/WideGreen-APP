@@ -33,4 +33,17 @@ export class EventoService {
       headers: this.getAuthHeaders()
     });
   }
+  obtenerEventoPorId(id: number): Observable <Evento> {
+    return this.http.get<Evento>(`${this.apiUrl}/id/${id}`);
+  }
+  eliminarEvento(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`, {
+      headers: this.getAuthHeaders()
+    });
+  }
+  actualizarEvento(id: number, dto: Evento): Observable<Evento> {
+    return this.http.put<Evento>(`${this.apiUrl}/${id}`, dto, {
+      headers: this.getAuthHeaders()
+    });
+  }
 }
