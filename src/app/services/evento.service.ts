@@ -1,5 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Evento } from '../models/Eventos';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +17,20 @@ export class EventoService {
     return new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`
+    });
+  }
+
+  crearEvento(formData: FormData): Observable<Evento> {
+    return this.http.post<Evento>(`${this.apiUrl}/registrar`,formData, {
+      headers: {
+      Authorization: `Bearer ${localStorage.getItem('jwtToken') || ''}`
+    }
+  });
+  }
+
+  listarEventos(): Observable<Evento[]> {
+    return this.http.get<Evento[]>(this.apiUrl, {
+      headers: this.getAuthHeaders()
     });
   }
 }
