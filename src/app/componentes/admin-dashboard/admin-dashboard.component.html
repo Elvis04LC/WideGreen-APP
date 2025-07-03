@@ -1,0 +1,51 @@
+<h2>Panel del Administrador</h2>
+
+<mat-card *ngIf="isAdmin" class="admin-card">
+  <mat-card-title>Gestión de Contenidos</mat-card-title>
+  <mat-card-content>
+    
+    <button mat-raised-button color="accent" [routerLink]="['/eventos']">
+      Gestionar Eventos
+    </button>
+    <button mat-raised-button color="warn" [routerLink]="['/noticias']">
+      Gestionar Noticias
+    </button>
+  </mat-card-content>
+  
+</mat-card>
+<mat-card>
+      <mat-card-title>Gestión de Organizadores</mat-card-title>
+      <mat-card-content>
+        <div class="botonera">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="abrirDialogoOrganizador()"
+          >
+            Registrar Organizador
+          </button>
+
+          <button
+            mat-raised-button
+            color="accent"
+            (click)="abrirDialogoEventoOrganizador()"
+          >
+            Asociar Organizador a Evento
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+<mat-card *ngIf="isAdmin" class="admin-card">
+  <mat-card-title>Estadísticas</mat-card-title>
+  <mat-card-content>
+    <p>Publicaciones totales, usuarios registrados, eventos activos, etc.</p>
+    <button
+      mat-stroked-button
+      color="primary"
+      [routerLink]="['/admin-estadisticas']"
+    >
+      Ver estadísticas
+    </button>
+  </mat-card-content>
+</mat-card>

@@ -1,8 +1,8 @@
-import { Evento } from "./Eventos";
-import { Organizador } from "./Organizador";
+import { Evento } from './Eventos';
+import { OrganizadorEvento } from './Organizador';
 
 export interface EventoOrganizador {
-    id: number;
-    evento: Evento;
-    organizador: Organizador;
+  id?: number;
+  idEvento: number;
+  idOrganizador: number;
 }

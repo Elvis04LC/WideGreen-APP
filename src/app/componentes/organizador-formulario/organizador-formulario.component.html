@@ -1,1 +1,45 @@
-<p>organizador-formulario works!</p>
+<h2 mat-dialog-title>Registrar Organizador</h2>
+
+<form
+  [formGroup]="formOrganizador"
+  (ngSubmit)="registrar()"
+  class="formulario-organizador"
+>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Nombre del Organizador</mat-label>
+    <input
+      matInput
+      formControlName="nombreOrganizador"
+      placeholder="Ej. ONG Verde Perú"
+    />
+    <mat-error
+      *ngIf="formOrganizador.get('nombreOrganizador')?.hasError('required')"
+    >
+      El nombre es obligatorio
+    </mat-error>
+    <mat-error
+      *ngIf="formOrganizador.get('nombreOrganizador')?.hasError('maxlength')"
+    >
+      Máximo 100 caracteres
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Contacto</mat-label>
+    <input
+      matInput
+      formControlName="contacto"
+      placeholder="Ej. contacto@verdeperu.org"
+    />
+    <mat-error *ngIf="formOrganizador.get('contacto')?.hasError('required')">
+      El contacto es obligatorio
+    </mat-error>
+  </mat-form-field>
+
+  <div mat-dialog-actions class="botones">
+    <button mat-button mat-dialog-close type="submit">Cancelar</button>
+    <button mat-raised-button color="primary" type="submit">
+      Registrar
+    </button>
+  </div>
+</form>

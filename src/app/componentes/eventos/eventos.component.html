@@ -16,17 +16,49 @@
   <mat-card class="evento-card" *ngFor="let evento of eventos">
     <mat-card-header>
       <mat-card-title>{{ evento.nombre }}</mat-card-title>
-      <mat-card-subtitle>{{ evento.fecha }} • {{ evento.hora }}</mat-card-subtitle>
+      <mat-card-subtitle
+        >{{ evento.fecha }} • {{ evento.hora }}</mat-card-subtitle
+      >
     </mat-card-header>
 
     <mat-card-content>
       <p><strong>Descripción:</strong> {{ evento.descripcion }}</p>
       <p><strong>Ubicación:</strong> {{ evento.ubicacion }}</p>
-      <p><strong>ID Tipo Evento:</strong> {{ evento.idTipoEvento }}</p>
+      <p>
+        <strong>Tipo de Evento:</strong> {{ evento.nombreTipoEvento }} <br />
+        <span class="codigo-tipo-evento"
+          >Código de tipo: {{ evento.idTipoEvento }}</span
+        >
+      </p>
+
+      <!-- Mostrar organizadores si existen -->
+      <div *ngIf="evento.organizadores && evento.organizadores.length > 0">
+        <p class="titulo-organizadores">👥 Organiza:</p>
+        <mat-chip-set>
+          <mat-chip-row *ngFor="let organizador of evento.organizadores">
+            {{ organizador }}
+          </mat-chip-row>
+        </mat-chip-set>
+      </div>
     </mat-card-content>
 
     <mat-card-actions align="end">
-      <button mat-icon-button color="warn" (click)="eliminarEvento(evento.id)">
+      <!-- Botón de inscripción -->
+      <button
+        mat-stroked-button
+        color="accent"
+        (click)="abrirFormularioInscripcion(evento.id)"
+      >
+        <mat-icon>event_available</mat-icon> Registrarse al evento
+      </button>
+
+      <!-- Botón eliminar (solo admin) -->
+      <button
+        *ngIf="isAdmin"
+        mat-icon-button
+        color="warn"
+        (click)="eliminarEvento(evento.id)"
+      >
         <mat-icon>delete</mat-icon>
       </button>
     </mat-card-actions>

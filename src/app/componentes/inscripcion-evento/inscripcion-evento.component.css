@@ -1,0 +1,49 @@
+.formulario-inscripcion {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding: 1rem;
+  min-width: 300px;
+}
+
+.evento-nombre {
+  font-weight: bold;
+  color: #00796b;
+  font-size: 1.05rem;
+}
+
+.boton-inscribirse {
+  display: flex;
+  justify-content: flex-end;
+}
+.cerrar-dialogo {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 1000;
+  background-color: transparent;
+  color: #555;
+}
+
+button.mat-raised-button {
+  border-radius: 6px; /* Esquinas ligeramente redondeadas */
+  box-shadow: none;
+  outline: none;
+  padding: 10px 20px;
+  font-weight: 500;
+}
+
+button.mat-raised-button:hover {
+  background-color: #1976d2; /* o tu color primario */
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transform: scale(1.01);
+  transition: all 0.2s ease-in-out;
+}
+
+button.mat-raised-button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+

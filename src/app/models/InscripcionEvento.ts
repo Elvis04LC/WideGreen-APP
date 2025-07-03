@@ -1,9 +1,5 @@
-import { Evento } from "./Eventos";
-import { Usuario } from "./Usuario";
-
-export interface InscripcionEvento {
-    idInscripcion: number;
-    fechaInscripcion: string | undefined;
-    usuario: Usuario;
-    evento: Evento
+export interface InscripcionEventoDTO {
+  idUsuario?: number;          // opcional, ya que lo resuelve el backend por JWT
+  idEvento: number;
+  fechaInscripcion?: string;     // opcional, ya que puede ser generado en backend
 }

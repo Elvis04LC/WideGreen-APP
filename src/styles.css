@@ -9,3 +9,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   --color-text-primary: #000000;
   --color-text-secondary: #FFFFFF;
 }
+/* styles.css o en angular.json → styles */
+.custom-dialog-container .mat-mdc-dialog-container {
+  background: transparent !important; /* elimina el fondo blanco base */
+  box-shadow: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

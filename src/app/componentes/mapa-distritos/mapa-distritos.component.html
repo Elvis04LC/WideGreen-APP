@@ -1,0 +1,13 @@
+<google-map
+  height="500px"
+  width="100%"
+  [center]="center"
+  [zoom]="zoom"
+>
+  <map-marker
+    *ngFor="let marcador of marcadores"
+    [position]="{ lat: marcador.latitud, lng: marcador.longitud }"
+    [label]="marcador.nombreDistrito"
+    title="{{ marcador.zona }}"
+  ></map-marker>
+</google-map>

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { UsuarioLogin, UsuarioRegistro } from '../models/Usuario';
+import { Usuario, UsuarioLogin, UsuarioRegistro } from '../models/Usuario';
 import { Token } from '../models/Token';
 
 
@@ -37,4 +37,8 @@ export class UsuarioService {
   getToken(): string | null {
     return localStorage.getItem('jwtToken');
   }
+  getUsuarioAutenticado(): Observable<Usuario> {
+  return this.http.get<Usuario>('http://localhost:8080/api/usuarios/autenticado');
+}
+
 }

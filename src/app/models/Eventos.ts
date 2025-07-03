@@ -6,4 +6,8 @@ export interface Evento {
   hora: string;         // HH:mm:ss
   ubicacion: string;
   idTipoEvento: number;
+
+  organizadores?: string[];
+  nombreTipoEvento?: string;
+
 }

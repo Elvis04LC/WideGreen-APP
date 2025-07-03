@@ -1,0 +1,35 @@
+<h2>Asociar Organizador a Evento</h2>
+
+<form [formGroup]="form" (ngSubmit)="asociar()" class="formulario-organizador">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Selecciona un evento*</mat-label>
+    <mat-select formControlName="idEvento" required>
+      <mat-option *ngFor="let evento of eventos" [value]="evento.id">
+        {{ evento.nombre }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="form.get('idEvento')?.hasError('required')">
+      Debes seleccionar un evento
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Selecciona un organizador*</mat-label>
+    <mat-select formControlName="idOrganizador" required>
+      <mat-option
+        *ngFor="let organizador of organizadores"
+        [value]="organizador.idOrganizador"
+      >
+        {{ organizador.nombreOrganizador }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="form.get('idOrganizador')?.hasError('required')">
+      Debes seleccionar un organizador
+    </mat-error>
+  </mat-form-field>
+
+  <div class="botones">
+    <button mat-button type="button" (click)="cancelar()">Cancelar</button>
+    <button mat-raised-button color="primary" type="submit">Asociar</button>
+  </div>
+</form>

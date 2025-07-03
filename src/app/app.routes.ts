@@ -11,6 +11,8 @@ import { ContactosComponent } from './componentes/contactos/contactos.component'
 import { ActividadesComponent } from './componentes/actividades/actividades.component';
 import { UsuarioPerfilComponent } from './componentes/usuario-perfil/usuario-perfil.component';
 import { EventosComponent } from './componentes/eventos/eventos.component';
+import { AdminDashboardComponent } from './componentes/admin-dashboard/admin-dashboard.component';
+import { MapaDistritosComponent } from './componentes/mapa-distritos/mapa-distritos.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -31,7 +33,11 @@ export const routes: Routes = [
         path: 'eventos',
         component: EventosComponent,
       },
-      //{ path: 'mapa', component: MapaComponent }
+      {
+        path: 'admin-dashboard',
+        component: AdminDashboardComponent,
+      },
+      { path: 'mapa', component: MapaDistritosComponent}
     ],
   },
 ];

@@ -74,6 +74,17 @@
   margin: 0.3rem 0;
   color: #ffffff;
 }
+.titulo-organizadores {
+  margin-top: 10px;
+  font-weight: 600;
+  color: #e0f2f1;
+  font-size: 0.95rem;
+}
+.codigo-tipo-evento {
+  font-size: 0.85rem;
+  color: #c8e6c9;
+  font-style: italic;
+}
 
 /* Acciones (botón eliminar) */
 .evento-card mat-card-actions {
@@ -92,6 +103,21 @@
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
 }
+.organizador-info {
+  background-color: #e0f7fa;
+  border-left: 4px solid #00796b;
+  padding: 8px 12px;
+  margin-top: 10px;
+  border-radius: 4px;
+  font-weight: 500;
+  color: #004d40;
+}
+
+.nombre-organizador {
+  font-weight: 600;
+  font-size: 15px;
+  color: #00695c;
+}
 
 /* Responsivo */
 @media (max-width: 600px) {
@@ -104,4 +130,19 @@
     justify-content: center;
     padding: 1rem;
   }
+}
+/* Estilo para chips de organizadores */
+mat-chip-set {
+  margin-top: 0.5rem;
+}
+
+mat-chip-option {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #004d40;
+  border: 1px solid #004d40;
+  background-color: #b2dfdb;
+  border-radius: 16px;
+  padding: 4px 12px;
+  margin: 4px 4px 0 0;
 }
