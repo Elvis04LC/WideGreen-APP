@@ -29,14 +29,24 @@
 
 .main__definition-proposal,
 .main__origin-content,
-.main__team-member,
-.main__contact-item {
+.main__team-member{
   background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 15px;
+  box-shadow: 0 15px 15px rgba(0, 0, 0, 0.08);
   padding: 1.5rem;
   flex: 1 1 300px;
   max-width: 350px;
+}
+
+.main__contact-item {
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 15px 15px rgba(0, 0, 0, 0.08);
+  padding: 1cm;
+  flex: 1 1 300px;
+  max-width: 350px;
+  margin-left: 3cm; /* ← separación desde el borde izquierdo */
+   margin-bottom: 1cm;   /* separación entre contenedores */
 }
 
 .main__origin {
@@ -118,15 +128,17 @@
 }
 
 .main__contact-image-container {
-  flex: 1;
+  flex: 3;
   display: flex;
   justify-content: center;
+  align-items: center; /* centra verticalmente si hay espacio */
 }
 
 .main__contact-image {
-  width: 100%;
-  max-width: 400px;
-  border-radius: 12px;
+  width: 120%;           /* más pequeña que antes (antes era 80%) */
+  max-width: 900px;     /* también reduce el máximo */
+  border-radius: 10px;
+  object-fit: contain;  /* evita que se deforme */
 }
 
 .main__contact-icon {
