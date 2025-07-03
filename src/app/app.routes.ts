@@ -13,7 +13,6 @@ import { UsuarioPerfilComponent } from './componentes/usuario-perfil/usuario-per
 import { EventosComponent } from './componentes/eventos/eventos.component';
 import { AdminDashboardComponent } from './componentes/admin-dashboard/admin-dashboard.component';
 import { MapaDistritosComponent } from './componentes/mapa-distritos/mapa-distritos.component';
-import { NuestroEquipoComponent } from './componentes/nuestro-equipo/nuestro-equipo.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -32,15 +31,10 @@ export const routes: Routes = [
       { path: 'noticias', component: NoticiasComponent },
       { path: 'actividades', component: ActividadesComponent },
       { path: 'perfil', component: UsuarioPerfilComponent },
-      {
-        path: 'eventos',
-        component: EventosComponent,
-      },
-      {
-        path: 'admin-dashboard',
-        component: AdminDashboardComponent,
-      },
-      { path: 'mapa', component: MapaDistritosComponent}
+      { path: 'eventos', component: EventosComponent },
+      { path: 'admin-dashboard', component: AdminDashboardComponent },
+      { path: 'mapa', component: MapaDistritosComponent },
+      { path: 'foro', component: ForoComponent },
     ],
   },
 ];

@@ -1,0 +1,166 @@
+.foro-container {
+  margin: 24px auto;
+  padding: 24px;
+  max-width: 600px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  background-color: #ffffff;
+}
+.foro-item-card {
+  margin-bottom: 16px;
+  padding: 16px;
+  border-radius: 12px;
+  background-color: #fdfdfd;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+.full-width {
+  width: 100%;
+}
+
+.form-field {
+  margin-bottom: 20px;
+}
+
+.button-container {
+  text-align: right;
+}
+
+mat-card-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #3f51b5;
+  margin-bottom: 16px;
+}
+
+.foro-list-container {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+/* Estilo para el contenido del mat-card */
+.foro-list-content {
+  max-height: 300px; /* Ajusta este valor según el tamaño deseado */
+  overflow-y: auto; /* Habilita el scroll si el contenido excede la altura */
+  padding-right: 10px; /* Un pequeño margen derecho para el scroll */
+}
+
+/* Título de la lista de foros */
+.foro-list-container mat-card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-bg-secondary);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Contenido de la lista de foros */
+.foro-list-container mat-list {
+  padding: 0;
+  margin: 0;
+}
+
+/* Estilo de cada item de la lista */
+.foro-list-container mat-list-item {
+  background-color: var(--color-bg-tertiary);
+  border-radius: 8px;
+  margin-bottom: 15px;
+  height: auto;
+  padding: 15px;
+  color: var(--color-text-secondary);
+  transition: background-color 0.3s ease-in-out;
+}
+
+/* Hover effect */
+.foro-list-container mat-list-item:hover {
+  background-color: var(--color-bg-secondary);
+  cursor: pointer;
+}
+
+/* Título del foro dentro de la lista */
+.foro-list-container mat-list-item h3 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  margin: 0;
+  padding-bottom: 5px;
+}
+
+/* Descripción del foro */
+.foro-list-container mat-list-item p {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  margin: 5px 0;
+}
+
+/* Fecha de creación */
+.foro-list-container mat-list-item small {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  display: block;
+  margin-top: 5px;
+}
+
+/* Estilo cuando no hay foros */
+mat-card mat-card-title {
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--color-bg-secondary);
+}
+
+/* Estilos responsive */
+@media (max-width: 768px) {
+  .foro-list-container {
+    padding: 15px;
+    margin-top: 15px;
+  }
+
+  .foro-list-container mat-card-title {
+    font-size: 1.2rem;
+  }
+
+  .foro-list-container mat-list-item {
+    padding: 12px;
+  }
+
+  .foro-list-container mat-list-item h3 {
+    font-size: 1.1rem;
+  }
+
+  .foro-list-container mat-list-item p {
+    font-size: 0.95rem;
+  }
+
+  .foro-list-container mat-list-item small {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .foro-list-container {
+    padding: 10px;
+    margin-top: 10px;
+  }
+
+  .foro-list-container mat-card-title {
+    font-size: 1rem;
+  }
+
+  .foro-list-container mat-list-item {
+    padding: 10px;
+  }
+
+  .foro-list-container mat-list-item h3 {
+    font-size: 1rem;
+  }
+
+  .foro-list-container mat-list-item p {
+    font-size: 0.9rem;
+  }
+
+  .foro-list-container mat-list-item small {
+    font-size: 0.8rem;
+  }
+}
