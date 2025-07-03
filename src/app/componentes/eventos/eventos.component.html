@@ -1,0 +1,34 @@
+<div class="header-acciones">
+  <button mat-raised-button color="primary" (click)="abrirDialogRegistro()">
+    <mat-icon>add</mat-icon> Registrar Evento
+  </button>
+</div>
+<div *ngIf="isLoading" class="loading-container">
+  <mat-spinner></mat-spinner>
+  <p>Cargando eventos...</p>
+</div>
+
+<div *ngIf="!isLoading && eventos.length === 0" class="empty-message">
+  <p>No se encontraron eventos registrados.</p>
+</div>
+
+<div class="eventos-container" *ngIf="!isLoading && eventos.length > 0">
+  <mat-card class="evento-card" *ngFor="let evento of eventos">
+    <mat-card-header>
+      <mat-card-title>{{ evento.nombre }}</mat-card-title>
+      <mat-card-subtitle>{{ evento.fecha }} • {{ evento.hora }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p><strong>Descripción:</strong> {{ evento.descripcion }}</p>
+      <p><strong>Ubicación:</strong> {{ evento.ubicacion }}</p>
+      <p><strong>ID Tipo Evento:</strong> {{ evento.idTipoEvento }}</p>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button mat-icon-button color="warn" (click)="eliminarEvento(evento.id)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -13,6 +13,8 @@ import { PublicacionService } from '../../services/publicacion.service';
 import { Publicacion } from '../../models/Publicacion';
 import { CommonModule } from '@angular/common';
 import { CalendarioUsuarioComponent } from '../calendario-usuario/calendario-usuario.component';
+import { MatDialog } from '@angular/material/dialog';
+import { UsuarioPerfilEditarDialogComponent } from '../usuario-perfil-editar-dialog/usuario-perfil-editar-dialog.component';
 
 @Component({
   selector: 'app-usuario-perfil',
@@ -23,7 +25,7 @@ import { CalendarioUsuarioComponent } from '../calendario-usuario/calendario-usu
     MatButtonModule,
     MatProgressSpinnerModule,
     MatDividerModule,
-     CalendarioUsuarioComponent // Para el spinner de carga
+    CalendarioUsuarioComponent, // Para el spinner de carga
   ],
   templateUrl: './usuario-perfil.component.html',
   styleUrl: './usuario-perfil.component.css',
@@ -35,7 +37,8 @@ export class UsuarioPerfilComponent implements OnInit {
 
   constructor(
     private usuarioPerfilService: UsuarioPerfilService,
-    private publicacionService: PublicacionService
+    private publicacionService: PublicacionService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -72,26 +75,25 @@ export class UsuarioPerfilComponent implements OnInit {
   }
   // Método para actualizar el perfil del usuario
   actualizarPerfil(): void {
-    const updatedPerfil: PerfilUsuario = {
-      ...this.perfil,
-      nombre: 'Nuevo Nombre',
-      apellido: 'Nuevo Apellido',
-      foto: 'new_photo_url.jpg',
-      bio: 'Nueva biografía',
-      idUsuario: this.perfil.idUsuario, // conservar el idUsuario
-      id: this.perfil.id, // conservar el id del perfil
-    };
+    const dialogRef = this.dialog.open(UsuarioPerfilEditarDialogComponent, {
+      width: '400px',
+      data: this.perfil,
+    });
 
-    this.usuarioPerfilService
-      .actualizarPerfil(this.perfil.id, updatedPerfil)
-      .subscribe({
-        next: (perfilActualizado) => {
-          this.perfil = perfilActualizado;
-          console.log('✅ Perfil actualizado correctamente');
-        },
-        error: (error) => {
-          console.error('❌ Error al actualizar el perfil', error);
-        },
-      });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.usuarioPerfilService
+          .actualizarPerfil(this.perfil.id, result)
+          .subscribe({
+            next: (perfilActualizado) => {
+              this.perfil = perfilActualizado;
+              console.log('✅ Perfil actualizado correctamente');
+            },
+            error: (err) => {
+              console.error('❌ Error al actualizar el perfil', err);
+            },
+          });
+      }
+    });
   }
 }

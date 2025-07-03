@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  Validators,
+  FormGroup,
+} from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -21,10 +26,10 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
     MatButtonModule,
     RouterModule,
-    MatSnackBarModule
+    MatSnackBarModule,
   ],
   templateUrl: './usuario-perfil-crear.component.html',
-  styleUrl: './usuario-perfil-crear.component.css'
+  styleUrl: './usuario-perfil-crear.component.css',
 })
 export class UsuarioPerfilCrearComponent {
   perfilForm!: FormGroup;
@@ -45,7 +50,7 @@ export class UsuarioPerfilCrearComponent {
       apellido: ['', Validators.required],
       foto: [''],
       bio: [''],
-      urlImagen: ['']
+      urlImagen: [''],
     });
   }
 
@@ -77,21 +82,38 @@ export class UsuarioPerfilCrearComponent {
   registrarPerfil() {
     if (this.perfilForm.invalid) return;
 
-    this.perfilService.registrarPerfil(this.perfilForm.value).subscribe({
+    const formValues = this.perfilForm.value;
+
+    let fotoFinal = '';
+
+    // Prioriza la imagen subida (base64)
+    if (this.previewUrl) {
+      fotoFinal = this.previewUrl;
+    }
+
+    const perfil = {
+      nombre: formValues.nombre,
+      apellido: formValues.apellido,
+      bio: formValues.bio,
+      foto: fotoFinal,
+      idUsuario: 0, // El backend lo asigna con el JWT
+    };
+
+    this.perfilService.registrarPerfil(perfil).subscribe({
       next: () => {
         this.snackBar.open('¡Perfil creado correctamente!', 'Cerrar', {
           duration: 2500,
-          verticalPosition: 'top'
+          verticalPosition: 'top',
         });
         this.router.navigate(['/home']);
       },
       error: (err) => {
         this.snackBar.open('Error al registrar perfil', 'Cerrar', {
           duration: 2500,
-          verticalPosition: 'top'
+          verticalPosition: 'top',
         });
         console.error(err);
-      }
+      },
     });
   }
 }

@@ -4,10 +4,9 @@ import { Observable } from 'rxjs';
 import { Evento } from '../models/Eventos';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EventoService {
-
   private apiUrl = 'http://localhost:8080/api/eventos';
 
   constructor(private http: HttpClient) {}
@@ -16,34 +15,37 @@ export class EventoService {
     const token = localStorage.getItem('jwtToken');
     return new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${token}`,
     });
   }
 
   crearEvento(formData: FormData): Observable<Evento> {
-    return this.http.post<Evento>(`${this.apiUrl}/registrar`,formData, {
-      headers: {
-      Authorization: `Bearer ${localStorage.getItem('jwtToken') || ''}`
-    }
-  });
+    return this.http.post<Evento>(`${this.apiUrl}/registrar`, formData, {
+      headers: this.getAuthHeaders(),
+    });
   }
 
   listarEventos(): Observable<Evento[]> {
     return this.http.get<Evento[]>(this.apiUrl, {
-      headers: this.getAuthHeaders()
+      headers: this.getAuthHeaders(),
     });
   }
-  obtenerEventoPorId(id: number): Observable <Evento> {
+  obtenerEventoPorId(id: number): Observable<Evento> {
     return this.http.get<Evento>(`${this.apiUrl}/id/${id}`);
   }
   eliminarEvento(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`, {
-      headers: this.getAuthHeaders()
+      headers: this.getAuthHeaders(),
     });
   }
   actualizarEvento(id: number, dto: Evento): Observable<Evento> {
     return this.http.put<Evento>(`${this.apiUrl}/${id}`, dto, {
-      headers: this.getAuthHeaders()
+      headers: this.getAuthHeaders(),
+    });
+  }
+  buscarPorUbicacion(ubicacion: string): Observable<Evento[]> {
+    return this.http.get<Evento[]>(`${this.apiUrl}/ubicacion/${ubicacion}`, {
+      headers: this.getAuthHeaders(),
     });
   }
 }

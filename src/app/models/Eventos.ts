@@ -1,8 +1,9 @@
 export interface Evento {
-    idEvento: number;
-    nombre: string;
-    descripcion: string;
-    fecha: string;
-    hora: string;
-    ubicacion: string
+  id: number;
+  nombre: string;
+  descripcion: string;
+  fecha: string;        // ISO format (yyyy-MM-dd)
+  hora: string;         // HH:mm:ss
+  ubicacion: string;
+  idTipoEvento: number;
 }

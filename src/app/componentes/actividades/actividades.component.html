@@ -1,1 +1,42 @@
-<p>actividades works!</p>
+<div class="contenedor-actividades">
+  <h2 class="titulo">Mis Actividades Ambientales</h2>
+
+  <div *ngIf="isLoading" class="cargando">
+    <mat-spinner></mat-spinner>
+    <p>Cargando actividades...</p>
+  </div>
+
+  <div *ngIf="!isLoading && actividades.length === 0" class="mensaje-vacio">
+    <p>No se han registrado actividades aún.</p>
+  </div>
+
+  <div class="lista-actividades" *ngIf="actividades.length > 0">
+    <mat-card *ngFor="let actividad of actividades" class="actividad-card">
+      <mat-card-header>
+        <mat-card-title>{{ actividad.titulo }}</mat-card-title>
+        <mat-card-subtitle
+          >{{ actividad.fecha }} - {{ actividad.hora }}</mat-card-subtitle
+        >
+      </mat-card-header>
+
+      <mat-card-content>
+        <p>
+          <strong>Evento relacionado:</strong> ID
+          {{ actividad.idEvento || "No asignado" }} - Fecha
+          {{ actividad.fechaEvento || "Sin fecha" }}
+        </p>
+        <p>{{ actividad.descripcion }}</p>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="eliminarActividad(actividad.id)"
+        >
+          Eliminar
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

@@ -3,10 +3,11 @@ import { Evento } from "./Eventos";
 
 export interface ActividadCalendario {
     id: number;
+    idCalendario: Calendario;
+    idEvento: Evento;
+    fechaEvento: string;
     titulo: string;
-    descripcion: string;
     fecha: string;
-    hora: string
-    calendario: Calendario;
-    evento: Evento;
+    hora: string;
+    descripcion: string;
 }
