@@ -248,95 +248,90 @@
   color: var(--color-bg-primary) !important;
   border-color: white !important;
 }
-/*FOOTER*/
-footer {
+
+
+/* Footer */
+.footer {
   background-color: var(--color-bg-primary);
-  padding: 24px 48px;
+  height: 40vh;
+  text-align: center;
   color: var(--color-text-primary);
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  font-size: 14px;
+  padding: 0 64px;
 }
 
-/* Sección de Contacto */
 .footer__contact {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding-bottom: 12px;
+  flex: 2;
+  border-bottom: 1px solid black;
 }
 
-.footer__logo-image-container {
-  display: flex;
-  align-items: center;
-}
 .footer__logo-image-container:hover {
   cursor: pointer;
 }
+
 .footer__logo-image {
-  height: 40px;
-  width: auto;
+  max-height: 50px;
 }
 
-/* Redes Sociales */
 .footer__contact-list {
   display: flex;
-  gap: 16px;
-  list-style: none;
+  list-style-type: none;
   padding: 0;
   margin: 0;
-}
-
-
-.footer__contact-item {
-  display: inline;
+  gap: 12px;
 }
 
 .footer__contact-link {
-  color: var(--color-text-primary);
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
 }
 
-.footer__contact-link:hover {
+.footer__contact-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: inline-block;
+  color: var(--color-text-primary);
+  transition: all 0.4s ease;
+}
+
+.footer__contact-icon:hover {
   color: var(--color-bg-secondary);
-  text-decoration: underline;
+  text-shadow: 0 0 2px var(--color-bg-secondary);
+  transform: translateZ(5px) scale(1.2);
 }
 
-/* Sección de Políticas */
 .footer__policies {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 24px;
+  flex: 1;
   align-items: center;
-  gap: 12px;
 }
+
 .footer__policies-text {
+  font-size: 14px;
   margin: 0;
-  font-size: 12px;
-  color: #999;
 }
 
 .footer__policies-list {
-  display: flex;
-  gap: 15px;
-  list-style: none;
+  list-style-type: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
 }
-
-.footer__policies-item {}
 
 .footer__policies-link {
+  font-size: 14px;
   color: var(--color-text-primary);
   text-decoration: none;
-  font-size: 12px;
 }
 
-.footer__policies-link:hover {
+.footer__policies-item:hover .footer__policies-link {
   text-decoration: underline;
-  color: var(--color-bg-secondary);
 }
