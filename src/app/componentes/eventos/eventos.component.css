@@ -1,50 +1,107 @@
-:host {
-  display: block;
-  padding: 16px;
-  background-color: var(--color-bg-primary);
-  color: var(--color-text-primary);
-}
-
-.loading-container {
+/* Contenedor del botón */
+.header-acciones {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 80px;
-  color: var(--color-text-primary);
+  justify-content: flex-start;
+  padding: 1rem 1.5rem 0.5rem;
 }
 
+.header-acciones button {
+  font-weight: 600;
+  border-radius: 24px;
+  padding: 0.6rem 1.2rem;
+}
+
+/* Contenedor de carga */
+.loading-container {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.loading-container p {
+  margin-top: 0.8rem;
+  font-weight: 500;
+  color: #444;
+}
+
+/* Mensaje vacío */
 .empty-message {
   text-align: center;
-  margin-top: 60px;
-  color: var(--color-text-primary);
-  font-weight: bold;
+  color: #777;
+  font-style: italic;
+  margin-top: 2rem;
 }
 
+/* Contenedor de todas las tarjetas */
 .eventos-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem;
 }
 
+/* Tarjeta de evento */
 .evento-card {
-  background-color: var(--color-bg-secondary);
-  color: var(--color-text-secondary);
+  background-color: #58a79e;
+  color: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-mat-card-title,
-mat-card-subtitle {
-  color: var(--color-text-secondary);
+.evento-card:hover {
+  transform: scale(1.015);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
-mat-card-content p {
-  margin: 4px 0;
-  color: var(--color-text-secondary);
+/* Título del evento */
+.evento-card mat-card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
-mat-card-actions {
+/* Subtítulo con fecha/hora */
+.evento-card mat-card-subtitle {
+  font-size: 0.9rem;
+  color: #e0f2f1;
+}
+
+/* Descripción y detalles */
+.evento-card mat-card-content p {
+  font-size: 0.95rem;
+  margin: 0.3rem 0;
+  color: #ffffff;
+}
+
+/* Acciones (botón eliminar) */
+.evento-card mat-card-actions {
   display: flex;
   justify-content: flex-end;
+  padding-right: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.evento-card mat-card-actions button {
+  color: #ffebee;
+  transition: background-color 0.2s;
+}
+
+.evento-card mat-card-actions button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .eventos-container {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+  }
+
+  .header-acciones {
+    justify-content: center;
+    padding: 1rem;
+  }
 }

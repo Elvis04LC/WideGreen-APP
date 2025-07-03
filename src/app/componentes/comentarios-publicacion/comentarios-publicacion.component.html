@@ -1,0 +1,19 @@
+<div class="comentarios">
+  <div *ngFor="let c of comentarios" class="comentario">
+    <p><strong>{{ c.autorEmail }}</strong> • {{ c.fecha | date:'short' }}</p>
+    <p>{{ c.contenido }}</p>
+    <button *ngIf="c.autorEmail === usuarioActual" (click)="eliminarComentario(c.idComentario!)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</div>
+
+<form [formGroup]="formComentario" (ngSubmit)="publicarComentario()">
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Escribe un comentario</mat-label>
+    <textarea matInput formControlName="contenido"></textarea>
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit" [disabled]="formComentario.invalid">
+    Comentar
+  </button>
+</form>

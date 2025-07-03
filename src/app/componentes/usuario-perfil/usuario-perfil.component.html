@@ -4,10 +4,16 @@
 </div>
 
 <div *ngIf="!isLoading && perfil" class="perfil-container">
+  <!-- Tarjeta solo para perfil -->
   <mat-card class="perfil-card">
     <mat-card-header>
       <div mat-card-avatar class="perfil-avatar">
-        <img *ngIf="perfil.foto" [src]="perfil.foto" alt="Foto de perfil" class="perfil-foto">
+        <img
+          *ngIf="perfil.foto"
+          [src]="obtenerRutaFoto(perfil.foto)"
+          alt="Foto de perfil"
+          class="perfil-foto"
+        />
       </div>
       <mat-card-title>{{ perfil.nombre }} {{ perfil.apellido }}</mat-card-title>
       <mat-card-subtitle>Perfil de usuario</mat-card-subtitle>
@@ -20,29 +26,45 @@
     </mat-card-content>
 
     <mat-card-actions align="end">
-      <button mat-raised-button color="primary" (click)="actualizarPerfil()">Actualizar Perfil</button>
+      <button mat-raised-button color="primary" (click)="actualizarPerfil()">
+        Actualizar Perfil
+      </button>
     </mat-card-actions>
   </mat-card>
 
   <mat-divider class="mt-3 mb-2"></mat-divider>
 
-  <h3>Publicaciones de {{ perfil.nombre }}</h3>
+  <!-- Sección de calendario + publicaciones -->
+  <div class="contenedor-flex">
+    <!-- Calendario -->
+    <div class="columna-calendario">
+      <app-calendario-usuario></app-calendario-usuario>
 
-  <div *ngIf="publicaciones.length === 0">
-    <p>No tienes publicaciones todavía.</p>
-  </div>
+    </div>
 
-  <mat-card *ngFor="let pub of publicaciones" class="publicacion-card">
-    <mat-card-header>
-      <mat-card-title>{{ pub.titulo }}</mat-card-title>
-      <mat-card-subtitle>{{ pub.fecha | date:'medium' }}</mat-card-subtitle>
-    </mat-card-header>
-    <img *ngIf="pub.imagenUrl" mat-card-image [src]="pub.imagenUrl" alt="Imagen de publicación" />
-    <mat-card-content>
-      <p>{{ pub.contenido }}</p>
-    </mat-card-content>
-  </mat-card>
-    <div style="flex: 1;">
-    <app-calendario-usuario></app-calendario-usuario>
+    <!-- Publicaciones -->
+    <div class="columna-publicaciones">
+<h3>{{ perfil.nombre }}, tienes {{ totalPublicaciones }} publicación{{ totalPublicaciones === 1 ? '' : 'es' }}</h3>
+
+      <div *ngIf="publicaciones.length === 0">
+        <p>No tienes publicaciones todavía.</p>
+      </div>
+
+      <mat-card *ngFor="let pub of publicaciones" class="publicacion-card">
+        <mat-card-header>
+          <mat-card-title>{{ pub.titulo }}</mat-card-title>
+          <mat-card-subtitle>{{ pub.fecha | date : "medium" }}</mat-card-subtitle>
+        </mat-card-header>
+        <img
+          *ngIf="pub.imagenUrl"
+          mat-card-image
+          [src]="pub.imagenUrl"
+          alt="Imagen de publicación"
+        />
+        <mat-card-content>
+          <p>{{ pub.contenido }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
 </div>

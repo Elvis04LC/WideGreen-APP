@@ -1,4 +1,4 @@
-<div class="header-acciones">
+<div class="header-acciones" *ngIf="isAdmin">
   <button mat-raised-button color="primary" (click)="abrirDialogRegistro()">
     <mat-icon>add</mat-icon> Registrar Evento
   </button>

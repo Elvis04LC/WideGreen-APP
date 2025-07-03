@@ -9,6 +9,77 @@
   <div *ngIf="!isLoading && actividades.length === 0" class="mensaje-vacio">
     <p>No se han registrado actividades aún.</p>
   </div>
+  <mat-card class="actividad-form-card">
+    <form (ngSubmit)="registrarActividad()" #actividadForm="ngForm">
+      <!-- Título -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Título</mat-label>
+        <input
+          matInput
+          name="titulo"
+          [(ngModel)]="nuevaActividad.titulo"
+          required
+        />
+      </mat-form-field>
+      <!-- Descripción -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Descripción</mat-label>
+        <textarea
+          matInput
+          name="descripcion"
+          [(ngModel)]="nuevaActividad.descripcion"
+        ></textarea>
+      </mat-form-field>
+      <!-- Fecha -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Fecha</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          name="fecha"
+          [(ngModel)]="nuevaActividad.fecha"
+          required
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <!-- Hora -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Hora</mat-label>
+        <input
+          matInput
+          type="time"
+          name="hora"
+          [(ngModel)]="nuevaActividad.hora"
+          required
+        />
+      </mat-form-field>
+      <!-- Evento -->
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Vincular a evento</mat-label>
+        <mat-select
+          [(ngModel)]="nuevaActividad.idEvento"
+          name="idEvento"
+          required
+        >
+          <mat-option
+            *ngFor="let evento of listaEventos"
+            [value]="evento.id"
+          >
+            {{ evento.nombre }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="actividadForm.invalid"
+      >
+        Registrar Actividad
+      </button>
+    </form>
+  </mat-card>
 
   <div class="lista-actividades" *ngIf="actividades.length > 0">
     <mat-card *ngFor="let actividad of actividades" class="actividad-card">
@@ -32,7 +103,7 @@
         <button
           mat-raised-button
           color="warn"
-          (click)="eliminarActividad(actividad.id)"
+          (click)="eliminarActividad(actividad.id!)"
         >
           Eliminar
         </button>

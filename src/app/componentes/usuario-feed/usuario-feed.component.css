@@ -1,280 +1,150 @@
-/* NUEVA PUBLICACIÓN */
+/* Contenedor del formulario de nueva publicación */
 .main__nueva-publicacion {
-  background: #fff;
   padding: 2rem;
+  background-color: #f0fdf7;
   border-radius: 12px;
-  max-width: 600px;
-  width: 100%;
-  margin: 3rem auto;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  margin: 2rem auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
-/* Centrar el contenedor de todo el formulario */
-body {
-  display: flex;
-  justify-content: center; /* Centrado horizontal */
-  align-items: center; /* Centrado vertical */
-  height: 100vh; /* Asegura que ocupe toda la altura de la pantalla */
-  margin: 0;
-  background-color: #f0f8f1; /* Fondo para visualizar mejor el centrado */
+body{
+  display: block;
+  height: auto;
 }
-/* Estilo a los campos */
-mat-form-field {
+/* Campos de texto */
+.main__nueva-publicacion-titulo,
+.main__nueva-publicacion-textarea,
+.main__nueva-publicacion-urlimg {
   width: 100%;
-  margin-bottom: 1rem;
 }
 
-.main__nueva-publicacion-titulo{
-  width: 95%;
-  padding: 0.75rem;
-  border-radius: 8px;
-  background-color: #f7f7f7;
-  border: 1px solid #ddd;
-  font-size: 1rem;
-  min-height: 100px;
-}
-.main__nueva-publicacion-textarea {
-  width:  95%;
-  padding: 0.75rem;
-  border-radius: 8px;
-  background-color: #f7f7f7;
-  border: 1px solid #ddd;
-  font-size: 1rem;
-  min-height: 100px;
-}
-
-.main__nueva-publicacion-textarea {
-  height: 120px;
-}
-
-/* Cambiar el borde del input al foco */
-.main__nueva-publicacion-textarea:focus,
-.main__nueva-publicacion-titulo:focus {
-  border: 1px solid #4caf50;
-  outline: none;
-}
-
-/* Acciones de los botones */
+/* Botones y acciones */
 .main__nueva-publicacion-actions {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 20px;
-  width: 100%;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: flex-end;
 }
 
-/* Para el campo de la URL de la imagen */
-
-/* Botón de selección de imagen (Ícono) */
-
-.main__nueva-publicacion-actions button:hover {
-  color: white;
-  background-color: #4caf50;
-}
-
-/* Botón de publicar */
-button.mat-raised-button {
-  background-color: #4caf50;
-  color: white;
-  border-radius: 8px;
-  padding: 0.75rem 2rem;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-button.mat-raised-button:hover {
+.foto-btn {
   background-color: #388e3c;
-  transform: translateY(-2px);
+  color: #fff;
+  border-radius: 8px;
 }
 
-/* Botones de acción (Foto y URL) */
-button.foto-btn.mat-icon-button {
-  padding: 12px;
-  background-color: #e0f7e0;
-  border-radius: 50%;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid #4caf50;
+.foto-btn:hover {
+  background-color: #2e7d32;
 }
 
-button.foto-btn.mat-icon-button:hover {
-  background-color: #c8e6c9;
-  transform: scale(1.1);
-}
-
-button.foto-btn.mat-icon-button mat-icon {
-  font-size: 24px;
-  color: #4caf50;
-}
-
-/* Botón inactivo */
-button.mat-icon-button:disabled {
-  background-color: #f1f1f1; /* Fondo gris claro cuando está desactivado */
-  border-color: #dcdcdc; /* Borde gris claro */
-}
-
-button.mat-icon-button:disabled mat-icon {
-  color: #bdbdbd; /* Icono gris cuando está desactivado */
-}
-/* Estilos de los errores */
-mat-error {
-  font-size: 0.875rem;
-  color: #f44336;
-  margin-top: 0.25rem;
-}
-/* Imagen de vista previa */
+/* Vista previa de imagen */
 .preview-container {
   margin-top: 1rem;
   text-align: center;
 }
 
 .preview-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Selección de categoría */
+mat-form-field {
   width: 100%;
-  max-width: 280px;
-  max-height: 200px;
-  object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  margin-bottom: 1rem;
-}
-/* Mejorar los iconos */
-button.mat-icon-button {
-  padding: 6px;
-  border-radius: 50%;
-  background-color: #e0f7e0;
-  transition: background-color 0.3s ease;
 }
 
-button.mat-icon-button:hover {
-  background-color: #c8e6c9;
-}
-
-/* Estilo del campo de URL de imagen */
-.main__nueva-publicacion-urlimg input {
-  width: 95%;
-  padding: 0.5rem;
-  
-  border-radius: 8px;
-  background-color: #f1f1f1;
-  border: 1px solid #ddd;
-  margin-bottom: 1rem;
-  margin-top: 1.5rem;
-  font-size: 1rem;
-}
-/* FEED DE PUBLICACIONES */
+/* Feed de publicaciones */
 .feed-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  align-items: center;
-  margin-top: 2rem;
-  padding: 0 1rem;
+  gap: 1.5rem;
 }
-/* PUBLICACIÓN INDIVIDUAL */
+
+/* Publicación individual */
 .publicacion {
-  width: 100%;
-  max-width: 640px;
-  padding: 1.5rem;
   background-color: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin-bottom: 1.5rem;
+  padding: 1.2rem;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .publicacion:hover {
-  transform: translateY(-5px);
+  transform: scale(1.01);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* ENCABEZADO */
 .publicacion-header {
   display: flex;
   justify-content: space-between;
-  font-weight: 600;
-  color: #2e7d32;
-  font-size: 0.95rem;
-  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 0.5rem;
 }
 
-/* IMAGEN */
 .publicacion-imagen {
   width: 100%;
   max-height: 400px;
   object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 0.75rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-}
-
-/* CONTENIDO */
-.publicacion-contenido {
-  font-size: 1.1rem;
-  margin-bottom: 0.75rem;
-  color: #333;
+  border-radius: 10px;
+  margin: 0.8rem 0;
 }
 
 .publicacion-contenido h3 {
-  margin: 0 0 0.4rem;
-  font-size: 1.3rem;
-  color: #1b5e20;
+  margin: 0.5rem 0 0.3rem;
+  font-size: 1.2rem;
+  color: #2d5c4d;
 }
 
-/* FOOTER DE ICONOS */
+.publicacion-contenido p {
+  font-size: 1rem;
+  color: #444;
+}
+
+/* Footer de la publicación */
 .publicacion-footer {
   display: flex;
-  justify-content: start;
-  gap: 16px;
-}
-
-.publicacion-footer button {
-  color: #4caf50;
-  transition: color 0.3s ease;
-}
-
-.publicacion-footer button:hover {
-  color: #1b5e20;
-}
-/* Botón de publicar */
-button.mat-raised-button {
-  background-color: #4caf50;
-  color: white;
-  border-radius: 8px;
-  padding: 0.75rem 2rem;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-button.mat-raised-button:hover {
-  background-color: #1b5e20;
-  transform: translateY(-2px);
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
 }
 
 /* Botón eliminar */
-button.mat-icon-button.color-warn {
-  background-color: #ff7043;
+.publicacion-footer button[color="warn"] {
+  background-color: transparent;
+  color: #d32f2f;
+}
+
+.publicacion-footer button[color="warn"]:hover {
+  background-color: rgba(211, 47, 47, 0.1);
   border-radius: 50%;
-  padding: 8px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-button.mat-icon-button.color-warn:hover {
-  background-color: #d32f2f;
-  transform: scale(1.1);
-}
-/* Sidebar */
-.sidebar {
-  background-color: #f0f8f1;
-  width: 250px;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
+/* Responsivo */
+@media (max-width: 600px) {
+  .main__nueva-publicacion,
+  .feed-container {
+    padding: 1rem;
+  }
 
-/* Mejorar márgenes en general */
-.main__nueva-publicacion {
-  margin-left: 2rem;
-  margin-right: 2rem;
+  .main__nueva-publicacion-actions {
+    justify-content: center;
+  }
+
+  .publicacion-header {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .publicacion-footer {
+    justify-content: center;
+  }
 }

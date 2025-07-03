@@ -4,11 +4,14 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { importProvidersFrom } from '@angular/core';
+import { importProvidersFrom, LOCALE_ID } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { authInterceptor } from './app/interceptors/auth.interceptor';
+import { CalendarWrapperModule } from './app/modules/calendar-wrapper.module';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 
 //prueba de commit: Gabriel Infante
 
@@ -18,7 +21,12 @@ bootstrapApplication(AppComponent, {
     provideRouter(routes),
     provideAnimations(),
     importProvidersFrom(
-      ReactiveFormsModule
-    )
+      ReactiveFormsModule,
+      MatDatepickerModule,
+      MatNativeDateModule
+    ),
+    { provide: LOCALE_ID, useValue: 'es' },
+    { provide: MAT_DATE_LOCALE, useValue: 'es-PE' },
+    CalendarWrapperModule,
   ],
 });

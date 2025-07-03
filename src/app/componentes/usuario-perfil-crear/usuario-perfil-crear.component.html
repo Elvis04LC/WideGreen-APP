@@ -20,40 +20,60 @@
         <!-- Apellido -->
         <mat-form-field appearance="outline" class="main__create-account-input">
           <mat-label>Apellido</mat-label>
-          <input matInput formControlName="apellido" placeholder="Tu apellido" />
+          <input
+            matInput
+            formControlName="apellido"
+            placeholder="Tu apellido"
+          />
           <mat-error *ngIf="perfilForm.get('apellido')?.hasError('required')">
             El apellido es obligatorio
           </mat-error>
         </mat-form-field>
 
         <!-- Botón de subir foto -->
-        <div class="foto-container">
-          <button
-            mat-icon-button
-            type="button"
-            class="foto-btn"
-            (click)="fileInput.click()"
-            matTooltip="Subir foto"
-            [disabled]="urlImagenSeleccionada"
-          >
-            <mat-icon>photo_camera</mat-icon>
-          </button>
-          <input type="file" hidden (change)="onFileSelected($event)" #fileInput />
-        </div>
+        <button
+          mat-icon-button
+          type="button"
+          class="foto-btn"
+          (click)="fileInput.click()"
+          [disabled]="urlImagenSeleccionada"
+          matTooltip="Subir foto"
+        >
+          <mat-icon>photo_camera</mat-icon>
+        </button>
+        <input
+          type="file"
+          hidden
+          (change)="onFileSelected($event)"
+          #fileInput
+        />
 
         <!-- Vista previa si hay imagen -->
         <div class="preview" *ngIf="previewUrl">
           <img [src]="previewUrl" alt="Vista previa de imagen" />
+          <button
+            mat-icon-button
+            color="warn"
+            (click)="eliminarImagen()"
+            aria-label="Eliminar imagen"
+          >
+            <mat-icon>cancel</mat-icon>
+          </button>
         </div>
 
         <!-- Campo de URL de imagen -->
-        <mat-form-field appearance="fill" class="main__create-account-input" *ngIf="!imagenSeleccionada">
+        <mat-form-field
+          appearance="fill"
+          class="main__create-account-input"
+          *ngIf="!imagenSeleccionada"
+        >
           <mat-label>URL de la imagen (opcional)</mat-label>
           <input
             matInput
             placeholder="https://ejemplo.com/tu-imagen.jpg"
             formControlName="urlImagen"
             (input)="onUrlImagenChange($event)"
+            [disabled]="imagenSeleccionada !== null"
           />
         </mat-form-field>
 

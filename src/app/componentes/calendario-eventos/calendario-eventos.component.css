@@ -1,0 +1,93 @@
+/* Título del calendario */
+h2 {
+  text-align: left;
+  font-size: 1.5rem;
+  color: #2d5c4d;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+/* Estilo general */
+::ng-deep .cal-month-view {
+  background-color: #f9fdfa;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Encabezado de días */
+::ng-deep .cal-header .cal-cell {
+  color: #333;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-transform: lowercase;
+}
+
+/* Día actual */
+::ng-deep .cal-day-cell.cal-today {
+  background-color: #e0f2f1 !important;
+  border-radius: 8px;
+}
+
+/* Día de mes */
+::ng-deep .cal-day-number {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Fines de semana */
+::ng-deep .cal-cell.cal-weekend .cal-day-number {
+  color: #d32f2f !important;
+}
+
+/* Eventos pequeños tipo punto */
+::ng-deep .cal-day-cell .cal-events {
+  margin-top: 0.3rem;
+}
+
+::ng-deep .cal-event {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background-color: #388e3c;
+  display: inline-block;
+}
+
+/* Etiqueta tipo "1" en círculo rojo */
+::ng-deep .cal-event-title {
+  background-color: #c62828;
+  color: white;
+  border-radius: 999px;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+/* Tooltip o contenido de eventos (si lo activas luego) */
+::ng-deep .cal-tooltip {
+  background-color: #2d5c4d !important;
+  color: white !important;
+  padding: 0.5rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+/* Hover en celda de día */
+::ng-deep .cal-day-cell:hover {
+  background-color: #d0f0e0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  ::ng-deep .cal-day-cell {
+    padding: 0.3rem;
+  }
+
+  ::ng-deep .cal-day-number {
+    font-size: 0.85rem;
+  }
+}

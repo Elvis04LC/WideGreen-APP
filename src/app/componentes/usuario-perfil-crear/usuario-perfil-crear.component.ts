@@ -36,7 +36,8 @@ export class UsuarioPerfilCrearComponent {
   imagenSeleccionada: File | null = null;
   urlImagenSeleccionada = false;
   previewUrl: string | null = null;
-
+  modoImagenLocal = false;
+  modoUrlImagen = false;
   constructor(
     private fb: FormBuilder,
     private perfilService: UsuarioPerfilCrearService,
@@ -59,6 +60,7 @@ export class UsuarioPerfilCrearComponent {
     if (fileInput.files && fileInput.files.length > 0) {
       this.imagenSeleccionada = fileInput.files[0];
       this.urlImagenSeleccionada = false;
+
       this.perfilForm.get('urlImagen')?.disable();
 
       const reader = new FileReader();
@@ -68,14 +70,23 @@ export class UsuarioPerfilCrearComponent {
       reader.readAsDataURL(this.imagenSeleccionada);
     }
   }
+  eliminarImagen(): void {
+    this.previewUrl = null;
+    this.imagenSeleccionada = null;
+    this.urlImagenSeleccionada = false;
 
+    this.perfilForm.get('urlImagen')?.enable();
+    this.perfilForm.get('urlImagen')?.reset();
+  }
   onUrlImagenChange(event: any): void {
-    const value = event.target.value;
-    this.urlImagenSeleccionada = !!value;
-    if (value) {
+    const value = (event.target as HTMLInputElement).value;
+    if (value && value.trim() !== '') {
+      this.urlImagenSeleccionada = true;
       this.imagenSeleccionada = null;
       this.previewUrl = value;
-      this.perfilForm.get('urlImagen')?.enable();
+    } else {
+      this.urlImagenSeleccionada = false;
+      this.previewUrl = null;
     }
   }
 
@@ -83,23 +94,22 @@ export class UsuarioPerfilCrearComponent {
     if (this.perfilForm.invalid) return;
 
     const formValues = this.perfilForm.value;
+    const formData = new FormData();
 
-    let fotoFinal = '';
+    formData.append('nombre', formValues.nombre);
+    formData.append('apellido', formValues.apellido);
+    formData.append('bio', formValues.bio);
 
-    // Prioriza la imagen subida (base64)
-    if (this.previewUrl) {
-      fotoFinal = this.previewUrl;
+    // Si el usuario subió un archivo
+    if (this.imagenSeleccionada) {
+      formData.append('foto', this.imagenSeleccionada);
+    }
+    // Si el usuario colocó una URL
+    else if (this.urlImagenSeleccionada && formValues.urlImagen) {
+      formData.append('urlfoto', formValues.urlImagen);
     }
 
-    const perfil = {
-      nombre: formValues.nombre,
-      apellido: formValues.apellido,
-      bio: formValues.bio,
-      foto: fotoFinal,
-      idUsuario: 0, // El backend lo asigna con el JWT
-    };
-
-    this.perfilService.registrarPerfil(perfil).subscribe({
+    this.perfilService.registrarPerfil(formData).subscribe({
       next: () => {
         this.snackBar.open('¡Perfil creado correctamente!', 'Cerrar', {
           duration: 2500,

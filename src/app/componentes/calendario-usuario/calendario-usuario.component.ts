@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { CalendarioService } from '../../services/calendario.service';
 import { Calendario } from '../../models/Calendario';
 import { MatCardModule } from '@angular/material/card';
+import { CalendarioEventosComponent } from '../calendario-eventos/calendario-eventos.component';
 
 @Component({
   selector: 'app-calendario-usuario',
   standalone: true,
-  imports: [CommonModule, MatCardModule],
+  imports: [CommonModule, MatCardModule,CalendarioEventosComponent],
   templateUrl: './calendario-usuario.component.html',
   styleUrls: ['./calendario-usuario.component.css']
 })

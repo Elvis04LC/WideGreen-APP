@@ -34,6 +34,7 @@ export class UsuarioPerfilComponent implements OnInit {
   perfil!: PerfilUsuario;
   isLoading: boolean = true;
   publicaciones: Publicacion[] = [];
+  totalPublicaciones: number = 0;
 
   constructor(
     private usuarioPerfilService: UsuarioPerfilService,
@@ -43,6 +44,7 @@ export class UsuarioPerfilComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPerfilAutenticadoYPublicaciones();
+    
   }
 
   getPerfilAutenticadoYPublicaciones(): void {
@@ -65,6 +67,7 @@ export class UsuarioPerfilComponent implements OnInit {
         this.publicaciones = data.sort(
           (a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime()
         );
+        this.totalPublicaciones = data.length; // Asigna la cantidad
         this.isLoading = false;
       },
       error: (error) => {
@@ -95,5 +98,14 @@ export class UsuarioPerfilComponent implements OnInit {
           });
       }
     });
+  }
+  obtenerRutaFoto(foto: string): string {
+    // Si comienza con "http://" o "https://", es una URL completa
+    if (foto.startsWith('http://') || foto.startsWith('https://')) {
+      return foto;
+    }
+
+    // Si no, asumimos que es una ruta relativa (imagen subida)
+    return 'http://localhost:8080' + foto;
   }
 }

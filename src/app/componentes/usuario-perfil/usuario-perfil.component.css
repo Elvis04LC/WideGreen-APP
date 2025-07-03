@@ -1,54 +1,168 @@
-.loading-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 40px;
-  color: #777;
-}
-
+/* Contenedor general del perfil */
 .perfil-container {
-  display: flex;
-  flex-direction: row;
-  gap: 24px;
-  padding: 20px;
-  flex-wrap: wrap; /* Hace que sea responsive */
+  max-width: 1800px;
+  margin: 1rem auto;
+  padding: 1rem;
+  background-color: #c1e3d5;
+  border-radius: 12px;
 }
 
+/* Card del perfil */
 .perfil-card {
-  flex: 1 1 300px;
-  min-width: 300px;
-  max-width: 500px;
+  background-color: #f0fdf7;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
 }
 
+/* Avatar circular */
 .perfil-avatar {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+  width: 56px;
+  height: 56px;
   overflow: hidden;
-  background-color: #ccc;
+  border-radius: 50%;
+  background-color: #e0f2f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .perfil-foto {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: 50%;
 }
 
+/* Título y subtítulo */
+mat-card-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2e7d32;
+}
+
+mat-card-subtitle {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+/* Contenido de la bio */
+mat-card-content p {
+  font-size: 1rem;
+  color: #333;
+  margin: 0.5rem 0;
+}
+
+/* Botón actualizar */
+mat-card-actions {
+  padding: 0 1rem 1rem;
+}
+
+button[color="primary"] {
+  font-weight: 600;
+  border-radius: 8px;
+}
+
+/* Contenedor flexible */
+.contenedor-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+/* Columna del calendario */
+.columna-calendario {
+  flex: 1;
+  min-width: 320px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Columna de publicaciones */
+.columna-publicaciones {
+  flex: 2;
+  min-width: 380px;
+}
+
+/* Título publicaciones */
+.columna-publicaciones h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2d5c4d;
+  margin-bottom: 1rem;
+}
+
+/* Tarjeta de publicación */
 .publicacion-card {
-  margin-top: 20px;
-  width: 100%;
-  max-width: 800px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  margin-bottom: 1rem;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-h3 {
-  margin-top: 30px;
-  font-weight: bold;
-  color: #2c3e50;
+.publicacion-card:hover {
+  transform: scale(1.01);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.12);
 }
 
-app-calendario-usuario {
-  flex: 1 1 300px;
-  min-width: 300px;
-  max-width: 500px;
-  margin-top: 20px;
+.publicacion-card mat-card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.publicacion-card mat-card-subtitle {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.publicacion-card mat-card-content p {
+  color: #444;
+  margin-top: 0.5rem;
+}
+
+/* Imagen en publicación */
+mat-card-image {
+  max-height: 300px;
+  object-fit: cover;
+}
+
+/* Loading */
+.loading-container {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.loading-container p {
+  margin-top: 1rem;
+  font-weight: 500;
+  color: #444;
+}
+
+/* Separador entre tarjetas */
+.mt-3 {
+  margin-top: 2rem;
+}
+.mb-2 {
+  margin-bottom: 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contenedor-flex {
+    flex-direction: column;
+  }
+
+  .columna-publicaciones,
+  .columna-calendario {
+    width: 100%;
+  }
+
+  .perfil-container {
+    padding: 1rem 0.5rem;
+  }
 }

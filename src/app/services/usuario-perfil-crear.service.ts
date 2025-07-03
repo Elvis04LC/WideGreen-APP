@@ -9,12 +9,8 @@ export class UsuarioPerfilCrearService {
 
   constructor(private http: HttpClient) {}
 
-  registrarPerfil(perfil: any): Observable<any> {
-    const token = localStorage.getItem('jwtToken');
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`
-    });
-    return this.http.post(`${this.apiUrl}/registrar`, perfil, { headers });
-  }
+registrarPerfil(perfilFormData: FormData): Observable<PerfilUsuario> {
+  return this.http.post<PerfilUsuario>(`${this.apiUrl}/registrar`, perfilFormData);
+}
 
 }

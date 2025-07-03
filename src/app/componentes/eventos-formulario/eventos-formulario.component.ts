@@ -25,13 +25,13 @@ import { TipoEvento } from '../../models/TipoEvento';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule,
-    MatSelectModule,
-    MatDialogModule,
-    MatSnackBarModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatIconModule
+    MatButtonModule,
+    MatIconModule,
+    MatSelectModule,
+    MatDialogModule,
+    MatSnackBarModule
   ]
 })
 export class EventosFormularioComponent implements OnInit{

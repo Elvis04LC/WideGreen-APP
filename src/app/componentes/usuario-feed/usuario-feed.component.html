@@ -1,111 +1,121 @@
 <!-- NUEVA PUBLICACIÓN -->
- <body>
-  
-
-<form
-  [formGroup]="formPublicacion"
-  (ngSubmit)="publicar()"
-  enctype="multipart/form-data"
-  class="main__nueva-publicacion"
->
-<mat-form-field appearance="fill" class="main__nueva-publicacion-titulo">
-  <mat-label>Título de la publicación</mat-label>
-  <input matInput placeholder="Título de la publicación" formControlName="titulo" />
-  <!-- Error: El campo título es obligatorio -->
-  <mat-error *ngIf="formPublicacion.get('titulo')?.hasError('required')">
-    El título es obligatorio.
-  </mat-error>
-  <!-- Error: El título debe tener un máximo de 100 caracteres -->
-  <mat-error *ngIf="formPublicacion.get('titulo')?.hasError('maxlength')">
-    El título no puede tener más de 100 caracteres.
-  </mat-error>
-</mat-form-field>
-
-<mat-form-field appearance="fill" class="main__nueva-publicacion-textarea">
-  <mat-label>¿Qué estás pensando?</mat-label>
-  <textarea matInput placeholder="Escribe aquí..." formControlName="contenido"></textarea>
-  <!-- Error: El contenido es obligatorio -->
-  <mat-error *ngIf="formPublicacion.get('contenido')?.hasError('required')">
-    El contenido es obligatorio.
-  </mat-error>
-  <!-- Error: El contenido debe tener un máximo de 500 caracteres -->
-  <mat-error *ngIf="formPublicacion.get('contenido')?.hasError('maxlength')">
-    El contenido no puede tener más de 500 caracteres.
-  </mat-error>
-</mat-form-field>
-
-<mat-form-field appearance="fill">
-  <mat-label>Categoría</mat-label>
-  <mat-select formControlName="idCategoria" required>
-    <mat-option *ngFor="let cat of categorias" [value]="cat.id">
-      {{ cat.nombreCategoria }}
-    </mat-option>
-  </mat-select>
-  <mat-error *ngIf="formPublicacion.get('idCategoria')?.hasError('required')">
-    Selecciona una categoría.
-  </mat-error>
-</mat-form-field>
-
-  <!-- INPUT PARA IMAGEN -->
-  <input
-    type="file"
-    #fileInput
-    style="display: none"
-    accept="image/*"
-    (change)="onFileSelected($event)"
-  />
-
-  <div class="main__nueva-publicacion-actions">
-    <!-- Botón para Foto -->
-    <button
-      mat-icon-button
-      type="button"
-      class="foto-btn"
-      (click)="fileInput.click()"
-      matTooltip="Foto/video"
-      [disabled]="urlImagenSeleccionada"
-    >
-      <mat-icon>photo_camera</mat-icon>
-    </button>
-
-    <!-- Botón para URL de imagen -->
-    <mat-form-field
-      appearance="fill"
-      class="main__nueva-publicacion-urlimg"
-      *ngIf="!imagenSeleccionada"
-    >
-      <mat-label >URL de la imagen (opcional)</mat-label>
+<body>
+  <form
+    [formGroup]="formPublicacion"
+    (ngSubmit)="publicar()"
+    enctype="multipart/form-data"
+    class="main__nueva-publicacion"
+  >
+    <mat-form-field appearance="fill" class="main__nueva-publicacion-titulo">
+      <mat-label>Título de la publicación</mat-label>
       <input
         matInput
-        placeholder="https://ejemplo.com/tu-imagen.jpg"
-        formControlName="urlImagen"
-        (input)="onUrlImagenChange($event)"
+        placeholder="Título de la publicación"
+        formControlName="titulo"
       />
+      <!-- Error: El campo título es obligatorio -->
+      <mat-error *ngIf="formPublicacion.get('titulo')?.hasError('required')">
+        El título es obligatorio.
+      </mat-error>
+      <!-- Error: El título debe tener un máximo de 100 caracteres -->
+      <mat-error *ngIf="formPublicacion.get('titulo')?.hasError('maxlength')">
+        El título no puede tener más de 100 caracteres.
+      </mat-error>
     </mat-form-field>
 
-    <!-- Botón de publicar -->
-    <button
-      mat-raised-button
-      color="primary"
-      type="submit"
-      [disabled]="formPublicacion.invalid"
-    >
-      Publicar
-    </button>
-  </div>
+    <mat-form-field appearance="fill" class="main__nueva-publicacion-textarea">
+      <mat-label>¿Qué estás pensando?</mat-label>
+      <textarea
+        matInput
+        placeholder="Escribe aquí..."
+        formControlName="contenido"
+      ></textarea>
+      <!-- Error: El contenido es obligatorio -->
+      <mat-error *ngIf="formPublicacion.get('contenido')?.hasError('required')">
+        El contenido es obligatorio.
+      </mat-error>
+      <!-- Error: El contenido debe tener un máximo de 500 caracteres -->
+      <mat-error
+        *ngIf="formPublicacion.get('contenido')?.hasError('maxlength')"
+      >
+        El contenido no puede tener más de 500 caracteres.
+      </mat-error>
+    </mat-form-field>
 
-  <div
-    class="preview-container"
-    *ngIf="imagenSeleccionada || formPublicacion.get('urlImagen')?.value"
-  >
-    <img
-      [src]="previewUrl || formPublicacion.get('urlImagen')?.value"
-      alt="Vista previa"
-      class="preview-img"
+    <mat-form-field appearance="fill">
+      <mat-label>Categoría</mat-label>
+      <mat-select formControlName="idCategoria" required>
+        <mat-option *ngFor="let cat of categorias" [value]="cat.id">
+          {{ cat.nombreCategoria }}
+        </mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="formPublicacion.get('idCategoria')?.hasError('required')"
+      >
+        Selecciona una categoría.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- INPUT PARA IMAGEN -->
+    <input
+      type="file"
+      #fileInput
+      style="display: none"
+      accept="image/*"
+      (change)="onFileSelected($event)"
     />
-  </div>
-</form>
- </body>
+
+    <div class="main__nueva-publicacion-actions">
+      <!-- Botón para Foto -->
+      <button
+        mat-icon-button
+        type="button"
+        class="foto-btn"
+        (click)="fileInput.click()"
+        matTooltip="Foto/video"
+        [disabled]="urlImagenSeleccionada"
+      >
+        <mat-icon>photo_camera</mat-icon>
+      </button>
+
+      <!-- Botón para URL de imagen -->
+      <mat-form-field
+        appearance="fill"
+        class="main__nueva-publicacion-urlimg"
+        *ngIf="!imagenSeleccionada"
+      >
+        <mat-label>URL de la imagen (opcional)</mat-label>
+        <input
+          matInput
+          placeholder="https://ejemplo.com/tu-imagen.jpg"
+          formControlName="urlImagen"
+          (input)="onUrlImagenChange($event)"
+        />
+      </mat-form-field>
+
+      <!-- Botón de publicar -->
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="formPublicacion.invalid"
+      >
+        Publicar
+      </button>
+    </div>
+
+    <div
+      class="preview-container"
+      *ngIf="imagenSeleccionada || formPublicacion.get('urlImagen')?.value"
+    >
+      <img
+        [src]="previewUrl || formPublicacion.get('urlImagen')?.value"
+        alt="Vista previa"
+        class="preview-img"
+      />
+    </div>
+  </form>
+</body>
 
 <mat-form-field appearance="fill">
   <mat-label>Seleccionar categoría</mat-label>
@@ -162,7 +172,9 @@
       >
         <mat-icon>delete</mat-icon>
       </button>
+      
     </div>
+    <app-comentarios-publicacion [idPublicacion]="pub.idPublicacion"></app-comentarios-publicacion>
+
   </div>
 </div>
-

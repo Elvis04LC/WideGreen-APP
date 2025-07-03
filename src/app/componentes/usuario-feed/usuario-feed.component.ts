@@ -14,6 +14,7 @@ import { PublicacioncategoriaService } from '../../services/publicacioncategoria
 import { CategoriaPublicacionService } from '../../services/categoria-publicacion.service';
 import { MatSelectModule } from '@angular/material/select';
 import { PublicacionCategoria } from '../../models/publicacion-categoria';
+import { ComentariosPublicacionComponent } from '../comentarios-publicacion/comentarios-publicacion.component';
 
 
 
@@ -27,7 +28,8 @@ import { PublicacionCategoria } from '../../models/publicacion-categoria';
     MatFormField,
     //HttpClientModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    ComentariosPublicacionComponent
   ],
   templateUrl: './usuario-feed.component.html',
   styleUrl: './usuario-feed.component.css'

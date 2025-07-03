@@ -10,6 +10,8 @@ import { EventoService } from '../../services/evento.service';
 import { Evento } from '../../models/Eventos';
 import { EventosFormularioComponent } from '../eventos-formulario/eventos-formulario.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -23,7 +25,9 @@ import { MatDialog } from '@angular/material/dialog';
     MatButtonModule,
     MatIconModule,
     MatSnackBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   templateUrl: './eventos.component.html',
   styleUrls: ['./eventos.component.css']
@@ -59,7 +63,16 @@ export class EventosComponent implements OnInit {
       }
     });
   }
-
+  get isAdmin(): boolean {
+    const token = localStorage.getItem('jwtToken');
+    if (!token) return false;
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.role === 'ROLE_ADMIN'; // o el nombre exacto del rol
+    } catch {
+      return false;
+    }
+  }
   eliminarEvento(id: number): void {
     if (confirm('¿Deseas eliminar este evento?')) {
       this.eventoService.eliminarEvento(id).subscribe({
