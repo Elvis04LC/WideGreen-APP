@@ -1,5 +1,10 @@
-<!-- NUEVA PUBLICACIÓN -->
-<body>
+<section class="main__publicacion-formulario">
+  <h2 class="main__feed-title">Comparte tu experiencia</h2>
+  <p class="main__feed-subtitle">
+    Queremos escuchar tus ideas, propuestas y vivencias ambientales.
+  </p>
+
+  <!-- FORMULARIO DE NUEVA PUBLICACIÓN -->
   <form
     [formGroup]="formPublicacion"
     (ngSubmit)="publicar()"
@@ -13,13 +18,11 @@
         placeholder="Título de la publicación"
         formControlName="titulo"
       />
-      <!-- Error: El campo título es obligatorio -->
       <mat-error *ngIf="formPublicacion.get('titulo')?.hasError('required')">
         El título es obligatorio.
       </mat-error>
-      <!-- Error: El título debe tener un máximo de 100 caracteres -->
       <mat-error *ngIf="formPublicacion.get('titulo')?.hasError('maxlength')">
-        El título no puede tener más de 100 caracteres.
+        Máximo 100 caracteres.
       </mat-error>
     </mat-form-field>
 
@@ -30,15 +33,11 @@
         placeholder="Escribe aquí..."
         formControlName="contenido"
       ></textarea>
-      <!-- Error: El contenido es obligatorio -->
       <mat-error *ngIf="formPublicacion.get('contenido')?.hasError('required')">
         El contenido es obligatorio.
       </mat-error>
-      <!-- Error: El contenido debe tener un máximo de 500 caracteres -->
-      <mat-error
-        *ngIf="formPublicacion.get('contenido')?.hasError('maxlength')"
-      >
-        El contenido no puede tener más de 500 caracteres.
+      <mat-error *ngIf="formPublicacion.get('contenido')?.hasError('maxlength')">
+        Máximo 500 caracteres.
       </mat-error>
     </mat-form-field>
 
@@ -49,14 +48,12 @@
           {{ cat.nombreCategoria }}
         </mat-option>
       </mat-select>
-      <mat-error
-        *ngIf="formPublicacion.get('idCategoria')?.hasError('required')"
-      >
+      <mat-error *ngIf="formPublicacion.get('idCategoria')?.hasError('required')">
         Selecciona una categoría.
       </mat-error>
     </mat-form-field>
 
-    <!-- INPUT PARA IMAGEN -->
+    <!-- INPUT PARA SUBIR IMAGEN -->
     <input
       type="file"
       #fileInput
@@ -66,19 +63,17 @@
     />
 
     <div class="main__nueva-publicacion-actions">
-      <!-- Botón para Foto -->
       <button
         mat-icon-button
         type="button"
         class="foto-btn"
         (click)="fileInput.click()"
-        matTooltip="Foto/video"
+        matTooltip="Subir foto"
         [disabled]="urlImagenSeleccionada"
       >
         <mat-icon>photo_camera</mat-icon>
       </button>
 
-      <!-- Botón para URL de imagen -->
       <mat-form-field
         appearance="fill"
         class="main__nueva-publicacion-urlimg"
@@ -87,13 +82,12 @@
         <mat-label>URL de la imagen (opcional)</mat-label>
         <input
           matInput
-          placeholder="https://ejemplo.com/tu-imagen.jpg"
+          placeholder="https://ejemplo.com/imagen.jpg"
           formControlName="urlImagen"
           (input)="onUrlImagenChange($event)"
         />
       </mat-form-field>
 
-      <!-- Botón de publicar -->
       <button
         mat-raised-button
         color="primary"
@@ -115,66 +109,71 @@
       />
     </div>
   </form>
-</body>
+</section>
 
-<mat-form-field appearance="fill">
-  <mat-label>Seleccionar categoría</mat-label>
-  <mat-select
-    [(value)]="idCategoriaSeleccionada"
-    (selectionChange)="filtrarPorCategoria()"
-  >
-    <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
-      {{ categoria.nombreCategoria }}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-<!-- FEED DE PUBLICACIONES -->
-<div class="feed-container">
-  <div class="publicacion mat-elevation-z2" *ngFor="let pub of publicaciones">
-    <div class="publicacion-header">
+<section class="main__publicacion-feed">
+  <mat-form-field appearance="fill">
+    <mat-label>Seleccionar categoría</mat-label>
+    <mat-select
+      [(value)]="idCategoriaSeleccionada"
+      (selectionChange)="filtrarPorCategoria()"
+    >
+      <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
+        {{ categoria.nombreCategoria }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- SIN PUBLICACIONES -->
+  <div *ngIf="publicaciones.length === 0" class="sin-publicaciones">
+    <p>Aún no hay publicaciones. ¡Sé el primero en compartir algo!</p>
+  </div>
+
+  <!-- LISTADO DE PUBLICACIONES -->
+  <div class="feed-container">
+    <div class="publicacion mat-elevation-z2" *ngFor="let pub of publicaciones">
+      <div class="publicacion-header">
       <span>{{ pub.usuarioEmail }}</span>
       <span>{{ pub.fecha | date : "dd/MM/yyyy HH:mm" }}</span>
     </div>
-    <!-- Imagen por subir PC -->
-    <img
-      *ngIf="pub.imagenUrl"
-      [src]="'http://localhost:8080' + pub.imagenUrl"
-      alt=""
-      class="publicacion-imagen"
-    />
-    <!-- Imagen por URL externa -->
-    <img
-      *ngIf="pub.imagenUrl"
-      [src]="
-        pub.imagenUrl.startsWith('http')
-          ? pub.imagenUrl
-          : 'http://localhost:8080/' + pub.imagenUrl
-      "
-      alt=""
-      class="publicacion-imagen"
-    />
 
-    <div class="publicacion-contenido">
-      <h3 *ngIf="pub.titulo">{{ pub.titulo }}</h3>
-      <p>{{ pub.contenido }}</p>
+
+      <!-- Imagen publicada -->
+      <img
+        *ngIf="pub.imagenUrl"
+        [src]="pub.imagenUrl.startsWith('http')? pub.imagenUrl: 'http://localhost:8080/' + pub.imagenUrl"
+        alt="Imagen publicada"
+        class="publicacion-imagen"
+      />
+
+      <!-- Contenido -->
+      <div class="publicacion-contenido">
+        <h3 *ngIf="pub.titulo">{{ pub.titulo }}</h3>
+        <p>{{ pub.contenido }}</p>
+      </div>
+
+      <!-- Acciones -->
+      <div class="publicacion-footer">
+        <button mat-icon-button matTooltip="Me gusta">
+          <mat-icon>favorite</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Comentar">
+          <mat-icon>chat</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Compartir">
+          <mat-icon>share</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="warn"
+          matTooltip="Eliminar"
+          (click)="eliminar(pub.idPublicacion)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
+      <app-comentarios-publicacion [idPublicacion]="pub.idPublicacion"></app-comentarios-publicacion>
     </div>
-
-    <div class="publicacion-footer">
-      <button mat-icon-button><mat-icon>favorite</mat-icon></button>
-      <button mat-icon-button><mat-icon>chat</mat-icon></button>
-      <button mat-icon-button><mat-icon>share</mat-icon></button>
-
-      <!-- Mostrar botón eliminar solo si el post es del usuario (lógica a definir) -->
-      <button
-        mat-icon-button
-        color="warn"
-        (click)="eliminar(pub.idPublicacion)"
-      >
-        <mat-icon>delete</mat-icon>
-      </button>
-      
-    </div>
-    <app-comentarios-publicacion [idPublicacion]="pub.idPublicacion"></app-comentarios-publicacion>
-
   </div>
-</div>
+</section>

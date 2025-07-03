@@ -1,23 +1,42 @@
-/* Contenedor del formulario de nueva publicación */
-.main__nueva-publicacion {
-  padding: 2rem;
-  background-color: #f0fdf7;
-  border-radius: 12px;
+/* --- Estilos generales de la sección --- */
+.main__publicacion-formulario,
+.main__publicacion-feed {
   max-width: 900px;
   margin: 2rem auto;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  background-color: #f0fdf7;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Títulos de sección */
+.main__feed-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 0.2rem;
+  color: #2f6e5e;
+  text-align: center;
+}
+
+.main__feed-subtitle {
+  font-size: 1rem;
+  color: #4f726a;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Formulario */
+.main__nueva-publicacion {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.2rem;
 }
-body{
-  display: block;
-  height: auto;
-}
+
 /* Campos de texto */
 .main__nueva-publicacion-titulo,
 .main__nueva-publicacion-textarea,
-.main__nueva-publicacion-urlimg {
+.main__nueva-publicacion-urlimg,
+mat-form-field {
   width: 100%;
 }
 
@@ -30,96 +49,107 @@ body{
   justify-content: flex-end;
 }
 
+/* Botón de imagen */
 .foto-btn {
   background-color: #388e3c;
   color: #fff;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 .foto-btn:hover {
   background-color: #2e7d32;
 }
 
-/* Vista previa de imagen */
+/* Vista previa */
 .preview-container {
-  margin-top: 1rem;
   text-align: center;
+  margin-top: 1rem;
 }
 
 .preview-img {
   max-width: 100%;
   height: auto;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
 }
 
-/* Selección de categoría */
-mat-form-field {
-  width: 100%;
-}
-
-/* Feed de publicaciones */
+/* Publicaciones */
 .feed-container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  margin-top: 2rem;
 }
 
-/* Publicación individual */
+/* Contenedor individual */
 .publicacion {
   background-color: #ffffff;
-  border-radius: 12px;
-  padding: 1.2rem;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .publicacion:hover {
   transform: scale(1.01);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
+/* Cabecera */
 .publicacion-header {
   display: flex;
   justify-content: space-between;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: #555;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.8rem;
 }
 
+.user-nombre {
+  font-weight: 600;
+  color: #2f6e5e;
+}
+
+.user-fecha {
+  font-style: italic;
+  color: #888;
+}
+
+/* Imagen */
 .publicacion-imagen {
   width: 100%;
   max-height: 400px;
   object-fit: cover;
-  border-radius: 10px;
-  margin: 0.8rem 0;
+  border-radius: 12px;
+  margin: 1rem 0;
 }
 
+/* Contenido */
 .publicacion-contenido h3 {
-  margin: 0.5rem 0 0.3rem;
-  font-size: 1.2rem;
+  margin: 0.3rem 0;
+  font-size: 1.3rem;
   color: #2d5c4d;
 }
 
 .publicacion-contenido p {
   font-size: 1rem;
   color: #444;
+  line-height: 1.5;
 }
 
-/* Footer de la publicación */
+/* Footer (botones de acción) */
 .publicacion-footer {
   display: flex;
   justify-content: flex-end;
-  gap: 0.5rem;
-  margin-top: 0.8rem;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.publicacion-footer button {
+  transition: background-color 0.2s ease;
 }
 
 /* Botón eliminar */
 .publicacion-footer button[color="warn"] {
-  background-color: transparent;
   color: #d32f2f;
 }
 
@@ -128,10 +158,18 @@ mat-form-field {
   border-radius: 50%;
 }
 
+/* Mensaje cuando no hay publicaciones */
+.sin-publicaciones {
+  text-align: center;
+  color: #666;
+  padding: 2rem;
+  font-style: italic;
+}
+
 /* Responsivo */
 @media (max-width: 600px) {
-  .main__nueva-publicacion,
-  .feed-container {
+  .main__publicacion-formulario,
+  .main__publicacion-feed {
     padding: 1rem;
   }
 
