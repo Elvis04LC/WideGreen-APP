@@ -18,6 +18,7 @@ import { ForoComponent } from './componentes/foro/foro.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'inicio', component: HomeComponent },
   { path: 'registro', component: UsuarioRegistrarComponent },
   { path: 'login', component: UsuarioLoginComponent },
   { path: 'crear-perfil', component: UsuarioPerfilCrearComponent },
