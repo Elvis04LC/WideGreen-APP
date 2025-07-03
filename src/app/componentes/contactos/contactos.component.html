@@ -64,9 +64,11 @@
 
     <footer class="footer">
         <div class="footer__contact">
-                <div class="footer__logo-image-container">
-                <img class="footer__logo-image" src="/assets/Logox3.png" alt="WideGreen logo" />
-                </div>
+          <div class="footer__logo-image-container">
+            <a routerLink="/inicio" (click)="scrollToTop()" class="footer__logo-image-container">
+                <img class="footer__logo-image" src="/assets/Logox3.png" alt="WideGreen logo">
+            </a>
+          </div>
             <ul class="footer__contact-list">
                 <li class="footer__contact-item"><a href="https://www.facebook.com/" class="footer__contact-link"><span class="footer__contact-icon"><i class="fa-brands fa-facebook fa-xl"></i></span></a></li>
                 <li class="footer__contact-item"><a href="https://www.instagram.com/" class="footer__contact-link"><span class="footer__contact-icon"><i class="fa-brands fa-instagram fa-xl"></i></span></a></li>

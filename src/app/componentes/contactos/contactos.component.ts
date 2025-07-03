@@ -18,5 +18,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
   styleUrl: './contactos.component.css'
 })
 export class ContactosComponent {
-
+scrollToTop(): void {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 }
