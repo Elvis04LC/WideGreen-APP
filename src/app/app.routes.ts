@@ -10,6 +10,7 @@ import { AcercaDeComponent } from './componentes/acerca-de/acerca-de.component';
 import { ContactosComponent } from './componentes/contactos/contactos.component';
 import { ActividadesComponent } from './componentes/actividades/actividades.component';
 import { UsuarioPerfilComponent } from './componentes/usuario-perfil/usuario-perfil.component';
+import { EventosComponent } from './componentes/eventos/eventos.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -25,8 +26,11 @@ export const routes: Routes = [
       { path: 'home', component: UsuarioFeedComponent },
       { path: 'noticias', component: NoticiasComponent },
       { path: 'actividades', component: ActividadesComponent },
-      { path: 'perfil',component: UsuarioPerfilComponent,},
-      //{ path: 'actividades', component: ActividadesComponent },
+      { path: 'perfil', component: UsuarioPerfilComponent },
+      {
+        path: 'eventos',
+        component: EventosComponent,
+      },
       //{ path: 'mapa', component: MapaComponent }
     ],
   },

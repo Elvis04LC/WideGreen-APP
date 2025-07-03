@@ -1,1 +1,12 @@
-<p>tipo-evento-formulario works!</p>
+<h2 mat-dialog-title>Registrar Tipo de Evento</h2>
+<mat-dialog-content [formGroup]="tipoForm">
+  <mat-form-field appearance="fill" class="w-full">
+    <mat-label>Nombre del tipo</mat-label>
+    <input matInput formControlName="nombreTipo" />
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-flat-button color="primary" (click)="registrar()">Registrar</button>
+</mat-dialog-actions>

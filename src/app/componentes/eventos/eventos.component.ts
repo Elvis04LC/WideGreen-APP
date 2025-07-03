@@ -8,6 +8,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
 import { EventoService } from '../../services/evento.service';
 import { Evento } from '../../models/Eventos';
+import { EventosFormularioComponent } from '../eventos-formulario/eventos-formulario.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 
@@ -32,7 +34,9 @@ export class EventosComponent implements OnInit {
 
   constructor(
     private eventoService: EventoService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
+
   ) {}
 
   ngOnInit(): void {
@@ -75,4 +79,15 @@ export class EventosComponent implements OnInit {
       });
     }
   }
+  abrirDialogRegistro(): void {
+  const dialogRef = this.dialog.open(EventosFormularioComponent, {
+    width: '500px'
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      this.obtenerEventos(); // Refrescar la lista si se creó uno nuevo
+    }
+  });
+}
 }
