@@ -18,5 +18,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
   styleUrl: './acerca-de.component.css'
 })
 export class AcercaDeComponent {
-
+scrollToTop(): void {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 }
