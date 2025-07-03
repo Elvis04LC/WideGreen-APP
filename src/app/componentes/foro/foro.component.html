@@ -1,0 +1,45 @@
+<!-- foro.component.html -->
+<mat-card class="foro-container" appearance="outlined">
+  <mat-card-title>Crear Foro</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="foroForm" (ngSubmit)="crearForo()">
+      <div class="form-field">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Título</mat-label>
+          <input matInput id="titulo" formControlName="titulo" placeholder="Ingrese un título">
+          <mat-error *ngIf="foroForm.get('titulo')?.hasError('required')">El título es obligatorio</mat-error>
+          <mat-error *ngIf="foroForm.get('titulo')?.hasError('maxlength')">Máximo 100 caracteres</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-field">
+        <mat-form-field appearance="fill" class="full-width">
+          <mat-label>Descripción</mat-label>
+          <textarea matInput id="descripcion" formControlName="descripcion" placeholder="Ingrese la descripción"></textarea>
+          <mat-error *ngIf="foroForm.get('descripcion')?.hasError('required')">La descripción es obligatoria</mat-error>
+          <mat-error *ngIf="foroForm.get('descripcion')?.hasError('maxlength')">Máximo 500 caracteres</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="button-container">
+        <button mat-raised-button color="primary" type="submit" [disabled]="foroForm.invalid">Crear Foro</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+<!-- Lista de foros creados -->
+<mat-card class="foro-list-container" appearance="outlined" *ngIf="foros.length > 0">
+  <mat-card-title>Foros Creados</mat-card-title>
+  <mat-card-content  class="foro-list-content">
+    <mat-list>
+      <mat-list-item *ngFor="let foro of foros">
+        <h3 mat-line>{{ foro.titulo }}</h3>
+        <p mat-line>{{ foro.descripcion }}</p>
+        <small mat-line>{{ foro.fechaCreacion | date }}</small>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
+<mat-card *ngIf="foros.length === 0">
+  <mat-card-title>No hay foros creados todavía.</mat-card-title>
+</mat-card>
