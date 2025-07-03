@@ -13,7 +13,6 @@ import { UsuarioPerfilComponent } from './componentes/usuario-perfil/usuario-per
 import { EventosComponent } from './componentes/eventos/eventos.component';
 import { AdminDashboardComponent } from './componentes/admin-dashboard/admin-dashboard.component';
 import { MapaDistritosComponent } from './componentes/mapa-distritos/mapa-distritos.component';
-import { ForoComponent } from './componentes/foro/foro.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,7 +20,9 @@ export const routes: Routes = [
   { path: 'login', component: UsuarioLoginComponent },
   { path: 'crear-perfil', component: UsuarioPerfilCrearComponent },
   { path: 'acerca-de', component: AcercaDeComponent },
-  { path: 'contactos', component: ContactosComponent },
+  { path: 'contactos', component: ContactosComponent},
+  { path: 'nuestro-equipo', component:  NuestroEquipoComponent},
+   
   {
     path: '',
     component: MainLayoutComponent,
