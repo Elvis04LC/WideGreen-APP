@@ -40,10 +40,12 @@
           [matDatepicker]="picker"
           name="fecha"
           [(ngModel)]="nuevaActividad.fecha"
+          #fecha = "ngModel"
           required
         />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="fecha.invalid && fecha.touched">Introduzca una fecha válida</mat-error>
       </mat-form-field>
       <!-- Hora -->
       <mat-form-field appearance="outline" class="full-width">
@@ -53,8 +55,10 @@
           type="time"
           name="hora"
           [(ngModel)]="nuevaActividad.hora"
+          #hora = "ngModel"
           required
         />
+        <mat-error *ngIf="hora.invalid && hora.touched">Introduzca una hora del día</mat-error>
       </mat-form-field>
       <!-- Evento -->
       <mat-form-field appearance="fill" class="w-full">
