@@ -13,6 +13,8 @@ import { UsuarioPerfilComponent } from './componentes/usuario-perfil/usuario-per
 import { EventosComponent } from './componentes/eventos/eventos.component';
 import { AdminDashboardComponent } from './componentes/admin-dashboard/admin-dashboard.component';
 import { MapaDistritosComponent } from './componentes/mapa-distritos/mapa-distritos.component';
+import { NuestroEquipoComponent } from './componentes/nuestro-equipo/nuestro-equipo.component';
+import { ForoComponent } from './componentes/foro/foro.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
