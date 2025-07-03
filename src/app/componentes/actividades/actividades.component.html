@@ -18,8 +18,10 @@
           matInput
           name="titulo"
           [(ngModel)]="nuevaActividad.titulo"
+          #titulo = "ngModel"
           required
         />
+        <mat-error *ngIf="titulo.invalid && titulo.touched">El título es obligatorio</mat-error>
       </mat-form-field>
       <!-- Descripción -->
       <mat-form-field appearance="outline" class="full-width">
