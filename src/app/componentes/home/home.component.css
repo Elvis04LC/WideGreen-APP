@@ -10,7 +10,7 @@
 }
 
 .main__hero-content {
-  background: linear-gradient(135deg, #e5f9e7, #f1f8f5);
+  background: linear-gradient(135deg, #bbdfbf, #f1f8f5);
   padding: 48px 64px;
   display: flex;
   align-items: center;
@@ -196,7 +196,7 @@
 
 /* <------------------------------------- JOIN ------------------------------------> */
 .main__join {
-  background-color: #f4fdf4;
+  background: linear-gradient(135deg, #cce4cf, #f1f8f5);;
   padding: 64px 80px;
   display: flex;
   justify-content: space-between;
@@ -250,7 +250,7 @@
 
 /* <------------------------------------- FOOTER ------------------------------------> */
 .footer {
-  background-color: #2e3d31;
+  background-color: #3e6746;
   color: white;
   padding: 32px 64px;
   display: flex;
