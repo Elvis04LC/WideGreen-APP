@@ -224,6 +224,47 @@
   margin: 0;
 }
 
+/* Botones */
+.header__actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+button[mat-button],
+button[mat-flat-button],
+button[mat-stroked-button] {
+  font-weight: 500;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* ✅ Botón Inicia Sesión */
+#login-button {
+  border: 1px solid var(--verde-oscuro);
+  color: var(--verde-oscuro);
+  background-color: white;
+}
+
+#login-button:hover {
+  background-color: rgb(143, 196, 69);
+}
+
+/* ✅ Botón Regístrate con verde más fuerte */
+#register-button {
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+}
+
+#register-button:hover {
+  background-color: rgb(143, 196, 69);
+}
+
+#login-button mat-icon,
+#register-button mat-icon {
+  margin-right: 0.3rem;
+}
+
 .main__join-buttons-container {
   flex: 1 1 35%;
   display: flex;
