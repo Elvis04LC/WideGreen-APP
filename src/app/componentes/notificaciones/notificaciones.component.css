@@ -1,0 +1,81 @@
+mat-card {
+  max-width: 600px;
+  margin: 24px auto;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  background-color: #ffffff;
+}
+
+mat-card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+mat-list-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #e0e0e0;
+  transition: background-color 0.3s ease;
+}
+
+mat-list-item:hover {
+  background-color: #f9f9f9;
+}
+
+mat-icon[matListIcon] {
+  color: #1976d2;
+  margin-right: 16px;
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.contenido {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 12px;
+}
+
+.mensaje {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.nueva-notificacion {
+  font-weight: 600;
+  color: #d32f2f;
+}
+
+.leida-notificacion {
+  color: #616161;
+  font-weight: 400;
+}
+
+.fecha {
+  font-size: 0.8rem;
+  color: #999999;
+  margin-top: 4px;
+}
+
+.acciones {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+button[mat-icon-button] {
+  background-color: #e0f7fa;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
+button[mat-icon-button]:hover {
+  transform: scale(1.15);
+}

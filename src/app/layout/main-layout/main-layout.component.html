@@ -2,35 +2,51 @@
   <mat-sidenav mode="side" opened class="sidenav">
     <img src="/assets/Logox3.png" alt="Logo" class="logo" />
     <mat-nav-list>
-      <a mat-list-item routerLink="/home"> <mat-icon>home</mat-icon> Inicio </a>
-      <mat-nav-list>
-        <!-- otras opciones -->
-        <a mat-list-item [routerLink]="['/perfil']">
-          <mat-icon>person</mat-icon>
-          <span>Perfil</span>
-        </a>
-      </mat-nav-list>
+      <a mat-list-item routerLink="/home">
+        <mat-icon>home</mat-icon> Inicio
+      </a>
+      
+      <a mat-list-item routerLink="/perfil">
+        <mat-icon>person</mat-icon>
+        <span>Perfil</span>
+      </a>
 
       <a mat-list-item routerLink="/noticias">
         <mat-icon>feed</mat-icon> Noticias
       </a>
+
       <a mat-list-item routerLink="/actividades">
         <mat-icon>event</mat-icon> Actividades
       </a>
+
       <a mat-list-item routerLink="/eventos">
         <mat-icon>event_available</mat-icon>
         <span>Eventos</span>
       </a>
+
       <a mat-list-item routerLink="/foro">
         <mat-icon>nature_people</mat-icon>
         <span>Foro</span>
       </a>
 
-      <a mat-list-item routerLink="/mapa"> <mat-icon>map</mat-icon> Mapa </a>
+      <!-- 🔔 Notificaciones con badge -->
+      <a mat-list-item routerLink="/notificaciones" routerLinkActive="active-link">
+        <mat-icon matListIcon>notifications</mat-icon>
+        <span>Notificaciones</span>
+        <span class="notificacion-badge" *ngIf="notificacionesNoVistas > 0">
+          {{ notificacionesNoVistas }}
+        </span>
+      </a>
+
+      <a mat-list-item routerLink="/mapa">
+        <mat-icon>map</mat-icon> Mapa
+      </a>
+
       <a *ngIf="isAdmin" mat-list-item routerLink="/admin-dashboard">
         <mat-icon>admin_panel_settings</mat-icon>
         <span>Admin</span>
       </a>
+
       <a mat-list-item (click)="logout()">
         <mat-icon>logout</mat-icon> Salir
       </a>

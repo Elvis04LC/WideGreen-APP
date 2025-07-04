@@ -15,6 +15,7 @@ import { AdminDashboardComponent } from './componentes/admin-dashboard/admin-das
 import { MapaDistritosComponent } from './componentes/mapa-distritos/mapa-distritos.component';
 import { NuestroEquipoComponent } from './componentes/nuestro-equipo/nuestro-equipo.component';
 import { ForoComponent } from './componentes/foro/foro.component';
+import { NotificacionesComponent } from './componentes/notificaciones/notificaciones.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -23,9 +24,9 @@ export const routes: Routes = [
   { path: 'login', component: UsuarioLoginComponent },
   { path: 'crear-perfil', component: UsuarioPerfilCrearComponent },
   { path: 'acerca-de', component: AcercaDeComponent },
-  { path: 'contactos', component: ContactosComponent},
-  { path: 'nuestro-equipo', component:  NuestroEquipoComponent},
-   
+  { path: 'contactos', component: ContactosComponent },
+  { path: 'nuestro-equipo', component: NuestroEquipoComponent },
+
   {
     path: '',
     component: MainLayoutComponent,
@@ -38,6 +39,10 @@ export const routes: Routes = [
       { path: 'admin-dashboard', component: AdminDashboardComponent },
       { path: 'mapa', component: MapaDistritosComponent },
       { path: 'foro', component: ForoComponent },
+      {
+        path: 'notificaciones',
+        component: NotificacionesComponent,
+      },
     ],
   },
 ];
