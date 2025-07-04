@@ -1,0 +1,119 @@
+:root {
+  --verde-navbar: #2f4f4f;       /* más oscuro, para el fondo del navbar */
+  --verde-boton: #57a95b;        /* más claro, para el botón registrar */
+  --beige-suave: #f3f3e6;
+  --texto: #ffffff;
+  --hover: #e0f2f1;
+}
+
+.header {
+  background-color: #57a95b;  /* ✅ Verde ambiental claro */
+  height: 70px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  padding: 0 2rem;
+}
+
+.header__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Logo */
+#logo-link {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--verde-oscuro);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+/* Iconos */
+.header__icon {
+  font-size: 1.3rem;
+  color: var(--verde-icono);
+}
+
+/* Navegación */
+.header__nav-list {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.header__nav-link {
+  color: var(--texto);
+  font-weight: 500;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.header__nav-link:hover {
+  color: var(--verde-oscuro);
+}
+
+/* Botones */
+.header__actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+button[mat-button],
+button[mat-flat-button],
+button[mat-stroked-button] {
+  font-weight: 500;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* ✅ Botón Inicia Sesión */
+#login-button {
+  border: 1px solid var(--verde-oscuro);
+  color: var(--verde-oscuro);
+  background-color: white;
+}
+
+#login-button:hover {
+  background-color: rgb(143, 196, 69);
+}
+
+/* ✅ Botón Regístrate con verde más fuerte */
+#register-button {
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+}
+
+#register-button:hover {
+  background-color: rgb(143, 196, 69);
+}
+
+#login-button mat-icon,
+#register-button mat-icon {
+  margin-right: 0.3rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header__nav-list {
+    display: none;
+  }
+
+  .header__actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  #logo-link {
+    font-size: 1.2rem;
+  }
+}
