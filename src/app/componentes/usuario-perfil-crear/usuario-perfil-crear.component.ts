@@ -115,7 +115,7 @@ export class UsuarioPerfilCrearComponent {
           duration: 2500,
           verticalPosition: 'top',
         });
-        this.router.navigate(['/home']);
+        this.router.navigate(['/login']);
       },
       error: (err) => {
         this.snackBar.open('Error al registrar perfil', 'Cerrar', {

@@ -16,6 +16,7 @@ import { MapaDistritosComponent } from './componentes/mapa-distritos/mapa-distri
 import { NuestroEquipoComponent } from './componentes/nuestro-equipo/nuestro-equipo.component';
 import { ForoComponent } from './componentes/foro/foro.component';
 import { NotificacionesComponent } from './componentes/notificaciones/notificaciones.component';
+import { autorizacionGuard } from './guards/autorizacion.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -30,6 +31,7 @@ export const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
+    canActivate : [autorizacionGuard],
     children: [
       { path: 'home', component: UsuarioFeedComponent },
       { path: 'noticias', component: NoticiasComponent },
