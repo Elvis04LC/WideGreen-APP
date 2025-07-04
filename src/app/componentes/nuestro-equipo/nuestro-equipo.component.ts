@@ -47,7 +47,7 @@ integrantes = [
       nombre: 'Maikol Garcia Zavaleta',
       rol: 'CEO, Co-Founder',
       descripcion: 'Maikol, un diseñador talentoso, está comprometido con soluciones innovadoras para los problemas ambientales.',
-      imagen: '/assets/',
+      imagen: '/assets/maikol1.jpeg',
       redes: {
         facebook: '#',
         instagram: '#',
