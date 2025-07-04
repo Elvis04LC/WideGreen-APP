@@ -91,3 +91,13 @@ h2 {
     font-size: 0.85rem;
   }
 }
+
+
+.actividad-detalle {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 2px solid #388e3c;
+  border-radius: 8px;
+  background-color: #dde8c5;
+  color: #57a95b;
+}

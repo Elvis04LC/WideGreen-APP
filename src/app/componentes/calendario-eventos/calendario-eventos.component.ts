@@ -29,12 +29,20 @@ export class CalendarioEventosComponent implements OnInit {
   actividadService = inject(ActividadCalendarioService);
   calendarioService = inject(CalendarioService);
   usuarioService = inject(UsuarioService);
+  
+
+ 
 
   activeDayIsOpen = false;
 
   view: CalendarView = CalendarView.Month;
   viewDate: Date = new Date();
   events: CalendarEvent[] = [];
+  actividadSeleccionada: CalendarEvent | null = null;
+
+  handleEventClick({ event }: { event: CalendarEvent }): void {
+  this.actividadSeleccionada = event;
+}
 
 ngOnInit(): void {
   this.usuarioService.getUsuarioAutenticado().subscribe({
@@ -52,6 +60,7 @@ ngOnInit(): void {
                 start: new Date(`${actividad.fecha}T${actividad.hora}`),
                 color: { primary: '#388e3c', secondary: '#c8e6c9' },
               }));
+              
             },
             error: (err) => console.error('Error cargando actividades', err),
           });
@@ -61,6 +70,8 @@ ngOnInit(): void {
     },
     error: (err) => console.error('Error obteniendo usuario autenticado', err),
   });
+
+  
 }
 
 

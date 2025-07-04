@@ -5,6 +5,15 @@
   [events]="events"
   [locale]="'es'"
   [activeDayIsOpen]="activeDayIsOpen"
+
+  
+  (eventClicked)="handleEventClick($event)">
 >
 </mwl-calendar-month-view>
+</div>
+
+<div *ngIf="actividadSeleccionada" class="actividad-detalle">
+  <h3>Detalle de la Actividad</h3>
+  <p><strong>Título:</strong> {{ actividadSeleccionada.title }}</p>
+  <p><strong>Inicio:</strong> {{ actividadSeleccionada.start | date:'full' }}</p>
 </div>
