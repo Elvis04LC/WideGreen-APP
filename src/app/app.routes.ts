@@ -17,15 +17,19 @@ import { NuestroEquipoComponent } from './componentes/nuestro-equipo/nuestro-equ
 import { ForoComponent } from './componentes/foro/foro.component';
 import { NotificacionesComponent } from './componentes/notificaciones/notificaciones.component';
 import { autorizacionGuard } from './guards/autorizacion.guard';
+<<<<<<< HEAD
 import { AdminCategoriasComponent } from './componentes/admin-categorias/admin-categorias.component';
 import { AdminGuard } from './guards/admin.guard';
+=======
+import { perfilCrearGuard } from './guards/perfil-crear.guard';
+>>>>>>> 0cc09c0bb23ca6eeb777abf64f36b205fea4c012
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'inicio', component: HomeComponent },
   { path: 'registro', component: UsuarioRegistrarComponent },
   { path: 'login', component: UsuarioLoginComponent },
-  { path: 'crear-perfil', component: UsuarioPerfilCrearComponent },
+  { path: 'crear-perfil', component: UsuarioPerfilCrearComponent, canActivate: [perfilCrearGuard] },
   { path: 'acerca-de', component: AcercaDeComponent },
   { path: 'contactos', component: ContactosComponent },
   { path: 'nuestro-equipo', component: NuestroEquipoComponent },
