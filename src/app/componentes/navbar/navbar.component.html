@@ -1,27 +1,36 @@
 <mat-toolbar class="header" color="primary">
   <nav class="header__nav">
-    <a routerLink="/" id="logo-link" class="header__nav-link">🌿 WideGreen</a>
+    <a routerLink="/" id="logo-link" class="header__nav-link">
+      <mat-icon class="header__icon">eco</mat-icon> WideGreen
+    </a>
 
     <ul class="header__nav-list">
       <li class="header__nav-item">
-        <a mat-button routerLink="/nuestro-equipo" class="header__nav-link">Nuestro Equipo</a>
+        <a mat-button routerLink="/nuestro-equipo" class="header__nav-link">
+          <mat-icon class="header__icon">group</mat-icon> Equipo
+        </a>
       </li>
       <li class="header__nav-item">
-        <a mat-button routerLink="/acerca-de" class="header__nav-link">Acerca de</a>
+        <a mat-button routerLink="/acerca-de" class="header__nav-link">
+          <mat-icon class="header__icon">info</mat-icon> Acerca de
+        </a>
       </li>
       <li class="header__nav-item">
-        <a mat-button routerLink="/contactos" class="header__nav-link">Contactos</a>
+        <a mat-button routerLink="/contactos" class="header__nav-link">
+          <mat-icon class="header__icon">contact_mail</mat-icon> Contacto
+        </a>
       </li>
     </ul>
 
-  <div class="header__actions">
-    <button id="login-button" mat-button class="header__button" routerLink="/login">
-      <span class="header__button-text">Inicia Sesión</span>
-    </button>
-    <button id="register-button" mat-button class="header__button" routerLink="/registro">
-      <span class="header__button-text">Regístrate</span>
-    </button>
-  </div>
-
+    <div class="header__actions">
+      <button id="login-button" mat-stroked-button color="primary" routerLink="/login">
+        <mat-icon>login</mat-icon>
+        Inicia Sesión
+      </button>
+      <button id="register-button" mat-flat-button color="primary" routerLink="/registro">
+        <mat-icon>person_add</mat-icon>
+        Regístrate
+      </button>
+    </div>
   </nav>
 </mat-toolbar>
