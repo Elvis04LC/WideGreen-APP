@@ -17,13 +17,14 @@ import { NuestroEquipoComponent } from './componentes/nuestro-equipo/nuestro-equ
 import { ForoComponent } from './componentes/foro/foro.component';
 import { NotificacionesComponent } from './componentes/notificaciones/notificaciones.component';
 import { autorizacionGuard } from './guards/autorizacion.guard';
+import { perfilCrearGuard } from './guards/perfil-crear.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'inicio', component: HomeComponent },
   { path: 'registro', component: UsuarioRegistrarComponent },
   { path: 'login', component: UsuarioLoginComponent },
-  { path: 'crear-perfil', component: UsuarioPerfilCrearComponent },
+  { path: 'crear-perfil', component: UsuarioPerfilCrearComponent, canActivate: [perfilCrearGuard] },
   { path: 'acerca-de', component: AcercaDeComponent },
   { path: 'contactos', component: ContactosComponent },
   { path: 'nuestro-equipo', component: NuestroEquipoComponent },
