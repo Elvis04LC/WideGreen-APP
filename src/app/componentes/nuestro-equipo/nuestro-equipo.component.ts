@@ -47,7 +47,7 @@ integrantes = [
       nombre: 'Maikol Garcia Zavaleta',
       rol: 'CEO, Co-Founder',
       descripcion: 'Maikol, un diseñador talentoso, está comprometido con soluciones innovadoras para los problemas ambientales.',
-      imagen: '/assets/maikol.jpeg',
+      imagen: '/assets/',
       redes: {
         facebook: '#',
         instagram: '#',
@@ -57,7 +57,7 @@ integrantes = [
     {
       nombre: 'Gabriel Infante Sutta',
       rol: 'CEO, Co-Founder',
-      descripcion: 'Gabriel es un ingeniero comprometido con el desarrollo de soluciones sustentables.',
+      descripcion: 'Gabriel es un ingeniero comprometido con el desarrollo de soluciones sustentables y le apasiona planear y difundir iniciativas medioambientales.',
       imagen: '/assets/gabriel.jpeg',
       redes: {
         facebook: '#',
