@@ -1,13 +1,59 @@
-<google-map
-  height="500px"
-  width="100%"
-  [center]="center"
-  [zoom]="zoom"
->
+<div style="margin-bottom: 16px; max-width: 400px">
+  <mat-form-field appearance="outline" style="width: 100%">
+    <input
+      matInput
+      placeholder="Buscar distrito"
+      [(ngModel)]="searchDistrito"
+      (ngModelChange)="filtrarDistritos()"
+      [matAutocomplete]="auto"
+    />
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      (optionSelected)="buscarYEnfocarDistrito($event.option.value)"
+    >
+      <mat-option
+        *ngFor="let d of distritosFiltrados"
+        [value]="d.nombreDistrito"
+      >
+        {{ d.nombreDistrito }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>
+<google-map [center]="center" [zoom]="zoom" height="500px" width="100%">
   <map-marker
     *ngFor="let marcador of marcadores"
+    exportAs="mapMarker"
+    #marker="mapMarker"
     [position]="{ lat: marcador.latitud, lng: marcador.longitud }"
     [label]="marcador.nombreDistrito"
-    title="{{ marcador.zona }}"
+    [title]="marcador.zona"
+    (mapClick)="abrirInfo(marcador, marker)"
   ></map-marker>
+
+  <map-info-window #infoWindow>
+    <div>
+      <strong>{{ distritoSeleccionado?.nombreDistrito }}</strong
+      ><br />
+      Zona: {{ distritoSeleccionado?.zona }}<br />
+      Lat: {{ distritoSeleccionado?.latitud }}<br />
+      Lng: {{ distritoSeleccionado?.longitud }}
+      <hr />
+      <div *ngIf="eventosDistrito.length > 0">
+        <strong>Eventos en este distrito:</strong>
+        <ul>
+          <li *ngFor="let ev of eventosDistrito">
+            <span>{{ ev.nombre }}</span
+            ><br />
+            <small>{{ ev.fecha | date : "mediumDate" }} - {{ ev.hora }}</small
+            ><br />
+            <small>{{ ev.descripcion }}</small>
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="eventosDistrito.length === 0">
+        <em>No hay eventos registrados en este distrito.</em>
+      </div>
+    </div>
+  </map-info-window>
 </google-map>

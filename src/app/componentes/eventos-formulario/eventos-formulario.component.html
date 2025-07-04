@@ -23,10 +23,20 @@
     <input matInput type="time" formControlName="hora" />
   </mat-form-field>
 
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Ubicación</mat-label>
-    <input matInput formControlName="ubicacion" />
-  </mat-form-field>
+<mat-form-field appearance="outline" style="width: 100%;">
+  <input
+    matInput
+    placeholder="Ubicación (distrito)"
+    [matAutocomplete]="autoDistrito"
+    formControlName="ubicacion"
+    required
+  />
+  <mat-autocomplete #autoDistrito="matAutocomplete">
+    <mat-option *ngFor="let d of distritosFiltrados | async" [value]="d.nombreDistrito">
+      {{ d.nombreDistrito }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
 
   <mat-form-field appearance="fill" class="w-full">
     <mat-label>Tipo de evento</mat-label>

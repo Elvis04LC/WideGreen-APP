@@ -28,13 +28,15 @@ export class MainLayoutComponent implements OnInit {
     private notificacionService: NotificacionService
   ) {}
   ngOnInit(): void {
-    this.notificacionService.obtenerMisNotificaciones().subscribe({
-      next: (data) => {
-        this.notificacionesNoVistas = data.filter((n) => !n.visto).length;
-      },
-      error: (err) => console.error('Error al cargar notificaciones', err),
-    });
-  }
+  // Suscribimos el contador al observable reactivo
+  this.notificacionService.notificacionesNoVistas$.subscribe({
+    next: (contador) => {
+      this.notificacionesNoVistas = contador;
+    }
+  });
+  this.notificacionService.obtenerMisNotificaciones().subscribe();
+}
+
   logout(): void {
     localStorage.removeItem('token'); //
     this.router.navigate(['/login']); //

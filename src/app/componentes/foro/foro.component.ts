@@ -28,7 +28,7 @@ import { MatListModule } from '@angular/material/list';
     MatButtonModule,
     MatSnackBarModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
   ],
   templateUrl: './foro.component.html',
   styleUrls: ['./foro.component.css'],
@@ -38,7 +38,11 @@ export class ForoComponent implements OnInit {
   foros: Foro[] = [];
   idUsuarioFormulario: number = 0; // Variable para almacenar el id del usuario (puedes obtenerlo de localStorage o del servicio de autenticación)
 
-  constructor(private fb: FormBuilder, private foroService: ForoService, private snackBar: MatSnackBar) {}
+  constructor(
+    private fb: FormBuilder,
+    private foroService: ForoService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.foroForm = this.fb.group({
@@ -48,14 +52,16 @@ export class ForoComponent implements OnInit {
     });
     this.cargarForos();
   }
-cargarForos(): void {
+  cargarForos(): void {
     this.foroService.obtenerForos().subscribe({
       next: (data) => {
-        this.foros = data.reverse();  // Cargar los foros más recientes primero
+        this.foros = data.reverse(); // Cargar los foros más recientes primero
       },
       error: () => {
-        this.snackBar.open('Error al cargar los foros', 'Cerrar', { duration: 3000 });
-      }
+        this.snackBar.open('Error al cargar los foros', 'Cerrar', {
+          duration: 3000,
+        });
+      },
     });
   }
   crearForo() {
@@ -74,6 +80,8 @@ cargarForos(): void {
           this.snackBar.open('Foro creado con éxito', 'Cerrar', {
             duration: 3000,
           });
+          this.foroForm.reset();
+          this.cargarForos();
         },
         error: (err) => {
           this.snackBar.open('Error al crear foro', 'Cerrar', {

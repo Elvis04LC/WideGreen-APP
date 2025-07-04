@@ -169,15 +169,17 @@ export class EventosComponent implements OnInit {
     });
   }
   abrirFormularioInscripcion(idEvento: number): void {
-  const dialogRef = this.dialog.open(InscripcionEventoComponent, {
-    width: '500px',
-    data: { idEvento }
-  });
+    const dialogRef = this.dialog.open(InscripcionEventoComponent, {
+      width: '500px',
+      data: { idEvento },
+    });
 
-  dialogRef.afterClosed().subscribe(result => {
-    if (result) {
-      this.snackBar.open('✅ Inscripción registrada', 'Cerrar', { duration: 3000 });
-    }
-  });
-}
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.snackBar.open('✅ Inscripción registrada', 'Cerrar', {
+          duration: 3000,
+        });
+      }
+    });
+  }
 }

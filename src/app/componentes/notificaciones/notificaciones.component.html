@@ -1,34 +1,25 @@
 <mat-card>
   <mat-card-title>Mis notificaciones</mat-card-title>
-
   <mat-list>
     <mat-list-item *ngFor="let noti of notificaciones">
-      
-      <!-- Icono a la izquierda -->
+      <span *ngIf="notificacionesNoVistas > 0">{{ notificacionesNoVistas }}</span>
+
       <mat-icon matListIcon>
         {{ noti.visto ? "notifications" : "notifications_active" }}
       </mat-icon>
-
-      <!-- Contenido del mensaje + fecha -->
       <div class="contenido">
-        <div
-          class="mensaje"
-          [ngClass]="noti.visto ? 'leida-notificacion' : 'nueva-notificacion'"
-        >
+        <div class="mensaje" [ngClass]="noti.visto ? 'leida' : 'nueva'">
           {{ noti.contenido }}
         </div>
         <div class="fecha">
           {{ noti.fecha | date : "short" }}
         </div>
       </div>
-
-      <!-- Botón para marcar como visto -->
-      <div class="acciones" *ngIf="!noti.visto">
-        <button mat-icon-button (click)="marcarComoVisto(noti.id)">
+      <div class="acciones">
+        <button *ngIf="!noti.visto" mat-icon-button (click)="marcarComoVisto(noti.id)">
           <mat-icon>done</mat-icon>
         </button>
       </div>
-
     </mat-list-item>
   </mat-list>
 </mat-card>
