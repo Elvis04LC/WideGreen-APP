@@ -40,6 +40,7 @@ export class InscripcionEventoComponent implements OnInit {
   eventos: Evento[] = [];
   form: FormGroup;
   eventoNombre: string = '';
+  isInscrito = false; 
 
   constructor(
     private fb: FormBuilder,
@@ -69,6 +70,7 @@ export class InscripcionEventoComponent implements OnInit {
             this.eventoNombre = eventoSeleccionado.nombre;
           }
         }
+        this.verificarInscripcion(this.data?.idEvento);
       },
       error: () =>
         this.snackBar.open('Error al cargar eventos', 'Cerrar', {
@@ -76,7 +78,16 @@ export class InscripcionEventoComponent implements OnInit {
         }),
     });
   }
-
+  verificarInscripcion(idEvento: number): void {
+    this.inscripcionService.verificarInscripcion(idEvento).subscribe({
+      next: (isRegistered) => {
+        this.isInscrito = isRegistered; // Cambiar el estado si ya está inscrito
+      },
+      error: () => {
+        this.isInscrito = false; // Si hubo un error, asumimos que no está inscrito
+      },
+    });
+  }
   abrirDialogConfirmacion(): void {
     if (this.form.valid) {
       const dialogRef = this.dialog.open(ConfirmacionDialogComponent, {
@@ -110,11 +121,20 @@ export class InscripcionEventoComponent implements OnInit {
           });
         }
       });
+    } else if (this.isInscrito) {
+      // Si ya está inscrito, muestra un mensaje
+      this.snackBar.open(
+        'Ya te encuentras registrado a este evento',
+        'Cerrar',
+        {
+          duration: 3000,
+          verticalPosition: 'top',
+        }
+      );
     }
   }
 
   cerrarDialogo(): void {
-  this.dialog.closeAll();
-}
-
+    this.dialog.closeAll();
+  }
 }

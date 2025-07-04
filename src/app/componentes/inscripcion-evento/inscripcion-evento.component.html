@@ -1,11 +1,21 @@
 <!-- Botón de cerrar (X) en esquina superior derecha -->
-<button mat-icon-button class="cerrar-dialogo" matTooltip="Cancelar" (click)="cerrarDialogo()">
+<button
+  mat-icon-button
+  class="cerrar-dialogo"
+  matTooltip="Cancelar"
+  (click)="cerrarDialogo()"
+>
   <mat-icon>close</mat-icon>
 </button>
 
 <form [formGroup]="form" class="formulario-inscripcion">
   <ng-container *ngIf="eventos.length > 0; else cargando">
-
+    <div *ngIf="isInscrito" class="mensaje-ya-inscrito">
+      <p>
+        <mat-icon>check_circle</mat-icon> Ya te encuentras registrado a este
+        evento.
+      </p>
+    </div>
     <mat-form-field appearance="fill" *ngIf="!data?.idEvento">
       <mat-label>Selecciona un evento</mat-label>
       <mat-select formControlName="idEvento">
@@ -17,7 +27,9 @@
 
     <div *ngIf="data?.idEvento && eventoNombre" class="evento-confirmacion">
       <p><mat-icon>event</mat-icon> Estás a punto de registrarte al evento:</p>
-      <p class="evento-nombre"><strong>📌 {{ eventoNombre }}</strong></p>
+      <p class="evento-nombre">
+        <strong>📌 {{ eventoNombre }}</strong>
+      </p>
     </div>
 
     <div class="boton-inscribirse">
@@ -26,12 +38,11 @@
         color="primary"
         disableRipple
         (click)="abrirDialogConfirmacion()"
-        [disabled]="form.invalid"
+        [disabled]="form.invalid || isInscrito"
       >
         <mat-icon>event_available</mat-icon> Registrarse al evento
       </button>
     </div>
-
   </ng-container>
 
   <ng-template #cargando>

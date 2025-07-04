@@ -34,7 +34,7 @@ export class UsuarioPerfilEditarDialogComponent {
       nombre: [this.data.nombre, Validators.required],
       apellido: [this.data.apellido, Validators.required],
       foto: [this.data.foto],
-      bio: [this.data.bio]
+      bio: [this.data.bio, Validators.maxLength(255)] 
     });
   }
 

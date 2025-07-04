@@ -9,73 +9,79 @@
   <div *ngIf="!isLoading && actividades.length === 0" class="mensaje-vacio">
     <p>No se han registrado actividades aún.</p>
   </div>
+
   <mat-card class="actividad-form-card">
-    <form (ngSubmit)="registrarActividad()" #actividadForm="ngForm">
+    <form [formGroup]="actividadForm" (ngSubmit)="registrarActividad()">
+      <!-- Evento -->
+      <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label>Selecciona evento</mat-label>
+        <mat-select
+          formControlName="evento"
+          (selectionChange)="onEventoSeleccionado($event.value)"
+        >
+          <mat-option *ngFor="let ev of listaEventos" [value]="ev.id">
+            {{ ev.nombre }} ({{ ev.fecha | date : "mediumDate" }} {{ ev.hora }})
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
       <!-- Título -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Título</mat-label>
-        <input
-          matInput
-          name="titulo"
-          [(ngModel)]="nuevaActividad.titulo"
-          #titulo = "ngModel"
-          required
-        />
-        <mat-error *ngIf="titulo.invalid && titulo.touched">El título es obligatorio</mat-error>
+        <input matInput formControlName="titulo" required />
+        <mat-error
+          *ngIf="
+            actividadForm.controls['titulo'].invalid &&
+            actividadForm.controls['titulo'].touched
+          "
+        >
+          El título es obligatorio
+        </mat-error>
       </mat-form-field>
+
       <!-- Descripción -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Descripción</mat-label>
-        <textarea
-          matInput
-          name="descripcion"
-          [(ngModel)]="nuevaActividad.descripcion"
-        ></textarea>
+        <textarea matInput formControlName="descripcion"></textarea>
       </mat-form-field>
+
       <!-- Fecha -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Fecha</mat-label>
         <input
           matInput
           [matDatepicker]="picker"
-          name="fecha"
-          [(ngModel)]="nuevaActividad.fecha"
-          #fecha = "ngModel"
+          formControlName="fecha"
           required
+          [min]="hoy"
         />
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-        <mat-error *ngIf="fecha.invalid && fecha.touched">Introduzca una fecha válida</mat-error>
+        <mat-error
+          *ngIf="
+            actividadForm.controls['fecha'].invalid &&
+            actividadForm.controls['fecha'].touched
+          "
+        >
+          Introduzca una fecha válida
+        </mat-error>
       </mat-form-field>
+
       <!-- Hora -->
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Hora</mat-label>
-        <input
-          matInput
-          type="time"
-          name="hora"
-          [(ngModel)]="nuevaActividad.hora"
-          #hora = "ngModel"
-          required
-        />
-        <mat-error *ngIf="hora.invalid && hora.touched">Introduzca una hora del día</mat-error>
-      </mat-form-field>
-      <!-- Evento -->
-      <mat-form-field appearance="fill" class="w-full">
-        <mat-label>Vincular a evento</mat-label>
-        <mat-select
-          [(ngModel)]="nuevaActividad.idEvento"
-          name="idEvento"
-          required
+        <input matInput type="time" formControlName="hora" required />
+        <mat-error
+          *ngIf="
+            actividadForm.controls['hora'].invalid &&
+            actividadForm.controls['hora'].touched
+          "
         >
-          <mat-option
-            *ngFor="let evento of listaEventos"
-            [value]="evento.id"
-          >
-            {{ evento.nombre }}
-          </mat-option>
-        </mat-select>
+          Introduzca una hora válida
+        </mat-error>
       </mat-form-field>
+
+      
+
       <button
         mat-raised-button
         color="primary"

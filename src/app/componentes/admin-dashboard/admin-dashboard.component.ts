@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { OrganizadorFormularioComponent } from '../organizador-formulario/organizador-formulario.component';
 import { MatDialog } from '@angular/material/dialog';
 import { EventoOrganizadorFormularioComponent } from '../evento-organizador-formulario/evento-organizador-formulario.component';
+import { TipoEventoFormularioComponent } from '../tipo-evento-formulario/tipo-evento-formulario.component';
 
 // admin-dashboard.component.ts
 @Component({
@@ -58,4 +59,12 @@ export class AdminDashboardComponent implements OnInit {
       panelClass: 'custom-dialog-container',
     });
   }
+  abrirDialogoTipoEvento(): void {
+  this.dialog.open(TipoEventoFormularioComponent, {
+    width: '400px',
+    disableClose: true,
+    autoFocus: true,
+    panelClass: 'custom-dialog-container',
+  });
+}
 }

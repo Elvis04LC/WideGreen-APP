@@ -24,4 +24,7 @@ export class InscripcionEventoService {
   contarPorEvento(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/CantidadPorEvento`);
   }
+   verificarInscripcion(idEvento: number): Observable<boolean> {
+    return this.http.get<boolean>(`${this.baseUrl}/verificar/${idEvento}`);
+  }
 }

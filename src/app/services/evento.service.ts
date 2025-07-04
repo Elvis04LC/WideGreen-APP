@@ -48,4 +48,7 @@ export class EventoService {
       headers: this.getAuthHeaders(),
     });
   }
+   listarEventosPorUsuario(idUsuario: number): Observable<Evento[]> {
+    return this.http.get<Evento[]>(`${this.apiUrl}/usuario/${idUsuario}`);
+  }
 }
