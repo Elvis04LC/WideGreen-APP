@@ -11,6 +11,13 @@
   height: 70px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   padding: 0 2rem;
+   position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+main {
+  margin-top: 10vh; /* ajusta según la altura real del navbar */
 }
 
 .header__nav {
