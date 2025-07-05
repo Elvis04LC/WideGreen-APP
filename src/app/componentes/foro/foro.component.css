@@ -6,6 +6,16 @@
   border-radius: 16px;
   background-color: #ffffff;
 }
+
+.foro-titulo-principal {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #2e7d32;
+  font-weight: 600;
+
+}
+
 .foro-item-card {
   margin-bottom: 16px;
   padding: 16px;
