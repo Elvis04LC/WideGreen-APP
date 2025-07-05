@@ -17,7 +17,10 @@ import { NuestroEquipoComponent } from './componentes/nuestro-equipo/nuestro-equ
 import { ForoComponent } from './componentes/foro/foro.component';
 import { NotificacionesComponent } from './componentes/notificaciones/notificaciones.component';
 import { autorizacionGuard } from './guards/autorizacion.guard';
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3b5f47f5e7a786409c4503085172e7cba846384c
 import { AdminCategoriasComponent } from './componentes/admin-categorias/admin-categorias.component';
 import { AdminGuard } from './guards/admin.guard';
 import { perfilCrearGuard } from './guards/perfil-crear.guard';

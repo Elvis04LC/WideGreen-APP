@@ -1,29 +1,22 @@
-import { CanActivate, Router, UrlTree } from '@angular/router';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { CanActivateFn } from '@angular/router';
+import { inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-@Injectable({
-  providedIn: 'root'
-})
+export const autorizacionGuard: CanActivateFn = (route, state) => {
+  const token = localStorage.getItem('token');
 
-export class autorizacionGuard implements CanActivate {
-  
-  constructor(private router:Router, private snackBar: MatSnackBar) {}
+  if(token) {
+    return true;
+  }
+  else {
+    const snackBar = inject(MatSnackBar);
+    const router = inject(Router);
 
-  canActivate(): 
-    | Observable <boolean | UrlTree>
-    | Promise <boolean | UrlTree>
-    | boolean
-    | UrlTree {
-      const token = localStorage.getItem('token');
+    snackBar.open('Tienes que iniciar sesión', 'Cerrar', {
+      duration: 4000
+    });
 
-      if (token) {
-        return true;
-      }
-      else {
-        this.snackBar.open('Tienes que iniciar sesión', 'Cerrar', { duration: 4000 });
-        return this.router.parseUrl('/login');
-      }
-    }
-}
+    return router.parseUrl('/login');
+  }
+};
