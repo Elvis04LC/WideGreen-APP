@@ -186,3 +186,62 @@ mat-form-field {
     justify-content: center;
   }
 }
+
+
+/*LIKEEEES*/
+/* Contenedor de los botones de interacción */
+.likes {
+  display: flex;
+  align-items: center; /* Alinea verticalmente los íconos */
+  justify-content: flex-start;
+  gap: 8px; /* Espacio entre los elementos */
+}
+
+/* Asegura que los botones se vean bien y estén alineados */
+button.mat-icon-button {
+  padding: 4px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Efecto de hover para los botones */
+button.mat-icon-button:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Fondo suave cuando el cursor pasa por encima */
+  border-radius: 50%;
+}
+
+/* Estilo del ícono de "Me gusta" */
+mat-icon {
+  font-size: 24px; /* Tamaño del ícono */
+  transition: color 0.3s ease;
+}
+
+/* Cambia el color cuando el usuario ha dado "Me gusta" */
+button.mat-icon-button [color="accent"] mat-icon {
+  color: #ff4081; /* Color de "Me gusta" activado */
+}
+
+/* Cambia el color cuando el usuario no ha dado "Me gusta" */
+button.mat-icon-button [color="primary"] mat-icon {
+  color: #607d8b; /* Color de "Me gusta" desactivado */
+}
+
+/* Añadir un contador de "Me gusta" con espacio adecuado */
+.likes span {
+font-size: 14px;
+  color: #333; /* Un color más oscuro para que sea legible */
+  margin-left: 8px; /* Espacio entre el ícono y el contador */
+  display: inline-block;
+  vertical-align: middle;
+  font-weight: bold; /* Hace el texto más grueso */
+  padding: 2px 8px; /* Espaciado dentro del contador */
+  background-color: rgba(0, 0, 0, 0.1); /* Fondo sutil */
+  border-radius: 12px; /* Bordes redondeados */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Suavizar transición */
+}
+.likes span:hover {
+  background-color: rgba(0, 0, 0, 0.2); /* Fondo un poco más oscuro al pasar el mouse */
+  color: #ff4081; /* Cambia el color a un tono atractivo cuando el mouse pasa sobre el contador */
+}

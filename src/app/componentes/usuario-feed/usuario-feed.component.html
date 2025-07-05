@@ -36,7 +36,9 @@
       <mat-error *ngIf="formPublicacion.get('contenido')?.hasError('required')">
         El contenido es obligatorio.
       </mat-error>
-      <mat-error *ngIf="formPublicacion.get('contenido')?.hasError('maxlength')">
+      <mat-error
+        *ngIf="formPublicacion.get('contenido')?.hasError('maxlength')"
+      >
         Máximo 500 caracteres.
       </mat-error>
     </mat-form-field>
@@ -48,7 +50,9 @@
           {{ cat.nombreCategoria }}
         </mat-option>
       </mat-select>
-      <mat-error *ngIf="formPublicacion.get('idCategoria')?.hasError('required')">
+      <mat-error
+        *ngIf="formPublicacion.get('idCategoria')?.hasError('required')"
+      >
         Selecciona una categoría.
       </mat-error>
     </mat-form-field>
@@ -133,31 +137,51 @@
   <div class="feed-container">
     <div class="publicacion mat-elevation-z2" *ngFor="let pub of publicaciones">
       <div class="publicacion-header">
-      <span>{{ pub.usuarioEmail }}</span>
-      <span>{{ pub.fecha | date : "dd/MM/yyyy HH:mm" }}</span>
-    </div>
-
+        <span>{{ pub.usuarioEmail }}</span>
+        <span>{{ pub.fecha | date : "dd/MM/yyyy HH:mm" }}</span>
+      </div>
 
       <!-- Imagen publicada -->
       <img
         *ngIf="pub.imagenUrl"
-        [src]="pub.imagenUrl.startsWith('http')? pub.imagenUrl: 'http://localhost:8080/' + pub.imagenUrl"
+        [src]="
+          pub.imagenUrl.startsWith('http')
+            ? pub.imagenUrl
+            : 'http://localhost:8080/' + pub.imagenUrl
+        "
         alt="Imagen publicada"
         class="publicacion-imagen"
       />
 
-      <!-- Contenido -->
-      <div class="publicacion-contenido">
-        <h3 *ngIf="pub.titulo">{{ pub.titulo }}</h3>
+      <div class="publicacion-body">
+        <h3>{{ pub.titulo }}</h3>
         <p>{{ pub.contenido }}</p>
+
+        
       </div>
 
-      <!-- Acciones -->
+      <!-- Botones de acción dentro del mat-card -->
       <div class="publicacion-footer">
-        <button mat-icon-button matTooltip="Me gusta">
-          <mat-icon>favorite</mat-icon>
-        </button>
-        <button mat-icon-button matTooltip="Comentar">
+        <!-- Contador de likes y botón de Me gusta -->
+        <div class="likes">
+          <button mat-icon-button (click)="toggleLike(pub.idPublicacion)">
+            <mat-icon
+              [color]="
+                usuario && likes[pub.idPublicacion].has(usuario.idUsuario)
+                  ? 'accent'
+                  : 'primary'
+              "
+              >favorite</mat-icon
+            >
+          </button>
+
+          <span>{{ likes[pub.idPublicacion].size || 0 }} Me gusta</span>
+        </div>
+        <button
+          mat-icon-button
+          matTooltip="Comentar"
+          (click)="toggleComentarios(pub.idPublicacion)"
+        >
           <mat-icon>chat</mat-icon>
         </button>
         <button mat-icon-button matTooltip="Compartir">
@@ -173,7 +197,11 @@
         </button>
       </div>
 
-      <app-comentarios-publicacion [idPublicacion]="pub.idPublicacion"></app-comentarios-publicacion>
+      <!-- Sección de comentarios -->
+      <app-comentarios-publicacion
+        *ngIf="showComentarios[pub.idPublicacion]"
+        [idPublicacion]="pub.idPublicacion"
+      ></app-comentarios-publicacion>
     </div>
   </div>
 </section>

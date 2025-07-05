@@ -20,6 +20,9 @@ import { CategoriaPublicacionService } from '../../services/categoria-publicacio
 import { MatSelectModule } from '@angular/material/select';
 import { PublicacionCategoria } from '../../models/publicacion-categoria';
 import { ComentariosPublicacionComponent } from '../comentarios-publicacion/comentarios-publicacion.component';
+import { Observable } from 'rxjs';
+import { Usuario } from '../../models/Usuario';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
   selector: 'app-usuario-feed',
@@ -47,13 +50,17 @@ export class UsuarioFeedComponent {
   idCategoriaSeleccionada: number | null = null;
   publicacionCategoria: PublicacionCategoria[] = [];
   idCategoriaFormulario: number | null = null;
+  showComentarios: { [key: number]: boolean } = {};
+  usuario: Usuario | undefined;
+  likes: { [key: number]: Set<number> } = {};
 
   constructor(
     private fb: FormBuilder,
     private publicacionService: PublicacionService,
     private publicacionCategoriaService: PublicacioncategoriaService,
     private categoriaPublicacionService: CategoriaPublicacionService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private usuarioService: UsuarioService
   ) {
     this.formPublicacion = this.fb.group({
       titulo: ['', [Validators.required, Validators.maxLength(100)]],
@@ -64,8 +71,20 @@ export class UsuarioFeedComponent {
   }
 
   ngOnInit(): void {
-    this.cargarPublicaciones();
+    this.usuarioService.getUsuarioAutenticado().subscribe({
+      next: (usuario) => {
+        this.usuario = usuario; // Asignamos el usuario autenticado
+        this.cargarPublicaciones();
+      },
+      error: () =>
+        this.snackBar.open('Error al obtener el usuario', 'Cerrar', {
+          duration: 3000,
+        }),
+    });
     this.cargarCategorias();
+  }
+  toggleComentarios(id: number): void {
+    this.showComentarios[id] = !this.showComentarios[id];
   }
   cargarCategorias(): void {
     this.categoriaPublicacionService.listarCategorias().subscribe({
@@ -81,12 +100,50 @@ export class UsuarioFeedComponent {
       next: (data) => {
         console.log('📦 Publicaciones cargadas:', data);
         this.publicaciones = data.reverse();
+        // Inicializamos el Map para manejar "Me gusta" por publicación
+        this.publicaciones.forEach((pub) => {
+          if (!this.likes[pub.idPublicacion]) {
+            this.likes[pub.idPublicacion] = new Set(); // Inicializamos el Set para los likes
+          }
+        });
       },
       error: () =>
         this.snackBar.open('Error al cargar publicaciones', 'Cerrar', {
           duration: 3000,
         }),
     });
+  }
+  toggleLike(publicacionId: number): void {
+    if (this.usuario) {
+      console.log(`Usuario ${this.usuario.idUsuario} hizo clic en "Me gusta" para publicación ${publicacionId}`);
+
+      // Verificamos si el usuario ya ha dado "Me gusta"
+      const hasLiked = this.likes[publicacionId].has(this.usuario.idUsuario);
+      console.log(
+        `Usuario ${this.usuario.idUsuario} haciendo clic en "Me gusta" para publicación ${publicacionId}`
+      );
+      console.log(
+        `Estado de "Me gusta" actual: ${
+          hasLiked ? 'Ya ha dado Me gusta' : 'No ha dado Me gusta'
+        }`
+      );
+
+      if (hasLiked) {
+        // Si ya dio "Me gusta", lo quitamos
+        this.likes[publicacionId].delete(this.usuario.idUsuario);
+      } else {
+        // Si no ha dado "Me gusta", lo agregamos
+        this.likes[publicacionId].add(this.usuario.idUsuario);
+        console.log(
+          `Añadido "Me gusta" a la publicación ${publicacionId} por el usuario ${this.usuario.idUsuario}`
+        );
+      }
+    } else {
+      console.log('No hay usuario autenticado.');
+    }
+  }
+  getLikeCount(publicacionId: number): number {
+    return this.likes[publicacionId]?.size || 0; // Devolvemos el tamaño del Set de "Me gusta"
   }
 
   publicar(): void {

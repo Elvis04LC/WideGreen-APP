@@ -4,5 +4,6 @@ export interface Publicacion {
   contenido: string;
   imagenUrl?: string | null; 
   fecha: string; // formato ISO 8601
-  usuarioEmail?: string; // para mostrar quién la publicó
+  usuarioEmail?: string; 
+   likes: number;// para mostrar quién la publicó
 }
