@@ -77,17 +77,17 @@ export class ForoComponent implements OnInit {
 
       this.foroService.crearForo(foroPayload).subscribe({
         next: (foroCreado) => {
-          this.snackBar.open('Foro creado con éxito', 'Cerrar', {
+          this.snackBar.open('Contribución creada con éxito', 'Cerrar', {
             duration: 3000,
           });
           this.foroForm.reset();
           this.cargarForos();
         },
         error: (err) => {
-          this.snackBar.open('Error al crear foro', 'Cerrar', {
+          this.snackBar.open('Error al crear contribución', 'Cerrar', {
             duration: 3000,
           });
-          console.error('Error al crear foro:', err);
+          console.error('Error al crear contribución:', err);
         },
       });
     }
