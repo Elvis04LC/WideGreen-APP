@@ -1,54 +1,90 @@
-<h2 mat-dialog-title>Registrar Nuevo Evento</h2>
+<mat-card>
+  <mat-card-title>Registrar evento</mat-card-title>
+  <mat-card-content>
 
-<form [formGroup]="eventoForm" (ngSubmit)="registrarEvento()">
+<form [formGroup]="eventoForm" (ngSubmit)="registrarEvento()" style="padding: 20px;">
+  <!-- Nombre -->
   <mat-form-field appearance="outline" class="full-width">
     <mat-label>Nombre</mat-label>
-    <input matInput formControlName="nombre" required />
+    <input matInput formControlName="nombre" />
+    <mat-error *ngIf="eventoForm.get('nombre')?.hasError('required')">
+      Este campo es obligatorio.
+    </mat-error>
   </mat-form-field>
 
+  <!-- Descripción -->
   <mat-form-field appearance="outline" class="full-width">
     <mat-label>Descripción</mat-label>
     <textarea matInput formControlName="descripcion" rows="3"></textarea>
+    <mat-error *ngIf="eventoForm.get('descripcion')?.hasError('required')">
+      Este campo es obligatorio.
+    </mat-error>
   </mat-form-field>
 
+  <!-- Fecha -->
   <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Fecha</mat-label>
-    <input matInput [matDatepicker]="picker" formControlName="fecha" />
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
+  <mat-label>Fecha*</mat-label>
+  <input matInput [matDatepicker]="picker" formControlName="fecha" />
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
 
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Hora</mat-label>
-    <input matInput type="time" formControlName="hora" />
-  </mat-form-field>
-
-<mat-form-field appearance="outline" style="width: 100%;">
-  <input
-    matInput
-    placeholder="Ubicación (distrito)"
-    [matAutocomplete]="autoDistrito"
-    formControlName="ubicacion"
-    required
-  />
-  <mat-autocomplete #autoDistrito="matAutocomplete">
-    <mat-option *ngFor="let d of distritosFiltrados | async" [value]="d.nombreDistrito">
-      {{ d.nombreDistrito }}
-    </mat-option>
-  </mat-autocomplete>
+  <mat-error *ngIf="eventoForm.get('fecha')?.hasError('required')">
+    Este campo es obligatorio.
+  </mat-error>
+  <mat-error
+    *ngIf="eventoForm.get('fecha')?.hasError('fechaFutura') && !eventoForm.get('fecha')?.hasError('required')">
+    La fecha debe ser futura.
+  </mat-error>
 </mat-form-field>
 
-  <mat-form-field appearance="fill" class="w-full">
+  <!-- Hora -->
+  <mat-form-field appearance="outline" class="full-width">
+  <mat-label>Hora</mat-label>
+  <input matInput type="time" formControlName="hora" />
+  <mat-error *ngIf="eventoForm.get('hora')?.hasError('required')">
+    Este campo es obligatorio
+  </mat-error>
+  <mat-error *ngIf="eventoForm.get('hora')?.hasError('horaInvalida')">
+    La hora debe ser mayor a la hora actual si el evento es hoy
+  </mat-error>
+</mat-form-field>
+
+  <!-- Ubicación (Autocomplete de distrito) -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Ubicación (distrito)</mat-label>
+    <input matInput [matAutocomplete]="autoDistrito" formControlName="ubicacion" />
+    <mat-autocomplete #autoDistrito="matAutocomplete">
+      <mat-option *ngFor="let d of distritosFiltrados | async" [value]="d.nombreDistrito">
+        {{ d.nombreDistrito }}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-error *ngIf="eventoForm.get('ubicacion')?.hasError('required')">
+      Este campo es obligatorio.
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Tipo de evento -->
+  <mat-form-field appearance="fill" class="full-width">
     <mat-label>Tipo de evento</mat-label>
     <mat-select formControlName="idTipoEvento">
       <mat-option *ngFor="let tipo of tiposEvento" [value]="tipo.idTipoEvento">
         {{ tipo.nombreTipo }}
       </mat-option>
     </mat-select>
+    <mat-error *ngIf="eventoForm.get('idTipoEvento')?.hasError('required')">
+      Debe seleccionar un tipo de evento.
+    </mat-error>
   </mat-form-field>
 
-  <div class="botones">
-    <button mat-raised-button color="primary" type="submit">Registrar</button>
-    <button mat-button type="button" (click)="cancelar()">Cancelar</button>
+  <!-- Botones -->
+  <div style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 12px;">
+    <button mat-raised-button color="primary" type="submit" [disabled]="eventoForm.invalid">
+      Registrar
+    </button>
+    <button mat-raised-button type="button" (click)="cancelar()" color="accent">
+      Cancelar
+    </button>
   </div>
 </form>
+  </mat-card-content>
+</mat-card>
