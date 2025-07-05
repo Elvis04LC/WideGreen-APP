@@ -51,7 +51,7 @@ export const routes: Routes = [
         canActivate: [AdminGuard], // Opcional: protege con guardia de admin
       },
       { path: 'mapa', component: MapaDistritosComponent },
-      { path: 'foro', component: ForoComponent },
+      { path: 'foro-contribuciones', component: ForoComponent },
       {
         path: 'notificaciones',
         component: NotificacionesComponent,
