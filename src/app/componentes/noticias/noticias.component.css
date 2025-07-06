@@ -176,7 +176,8 @@ mat-form-field {
   margin-bottom: 0.5rem;
   /* Opcional: recorta líneas con puntos suspensivos en multilinea */
   display: -webkit-box;
-  -webkit-line-clamp: 2; /* Máximo de líneas antes de los ... */
-  -webkit-box-orient: vertical;
   overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* Fallback for older Safari/Chrome versions */
+  line-clamp: 2; 
 }
