@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChartConfiguration } from 'chart.js';
-import { NgChartsModule } from 'ng2-charts';
+import { BaseChartDirective, NgChartsModule } from 'ng2-charts';
 import jsPDF from 'jspdf';
 import { InscripcionEventoService } from '../../services/inscripcion-evento.service';
 import { FormsModule } from '@angular/forms';
@@ -12,7 +12,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { CategoriaConteoService } from '../../services/categoria-conteo.service';
 import { UsuarioService } from '../../services/usuario.service';
-type ReporteKey = 'inscripcionesEvento' | 'publicacionesCategoria' | 'usuariosRegistrados';
+import autoTable from 'jspdf-autotable';
+
+type ReporteKey =
+  | 'inscripcionesEvento'
+  | 'publicacionesCategoria'
+  | 'usuariosRegistrados';
 
 @Component({
   selector: 'app-estadisticas',
@@ -30,9 +35,7 @@ type ReporteKey = 'inscripcionesEvento' | 'publicacionesCategoria' | 'usuariosRe
   templateUrl: './estadisticas.component.html',
   styleUrls: ['./estadisticas.component.css'],
 })
-
 export class EstadisticasComponent implements OnInit {
-  
   reporteSeleccionado: ReporteKey | null = null;
   displayedColumns: string[] = ['evento', 'inscritos'];
   dataSource: any[] = [];
@@ -189,8 +192,49 @@ export class EstadisticasComponent implements OnInit {
       }));
     });
   }
+  @ViewChild('chartBar') chartBar!: BaseChartDirective;
+  @ViewChild('chartPie') chartPie!: BaseChartDirective;
+  @ViewChild('chartLine') chartLine!: BaseChartDirective;
 
   generarPDF(): void {
-    // se agregará luego
+    const doc = new jsPDF();
+    let chartImage: string | undefined;
+    let titulo = '';
+    let tableRows: any[] = [];
+    let tableColumn: string[] = [];
+
+    if (this.reporteSeleccionado === 'inscripcionesEvento') {
+      titulo = 'Reporte de Inscripciones por Evento';
+      chartImage = this.chartBar?.chart?.toBase64Image();
+      tableColumn = ['Evento', 'Inscritos'];
+      tableRows = this.dataSource.map((row) => [row.evento, row.inscritos]);
+    } else if (this.reporteSeleccionado === 'publicacionesCategoria') {
+      titulo = 'Reporte de Publicaciones por Categoría';
+      chartImage = this.chartPie?.chart?.toBase64Image();
+      tableColumn = ['Categoría', 'Cantidad'];
+      tableRows = this.dataSourceCategoria.map((row) => [
+        row.categoria,
+        row.cantidad,
+      ]);
+    } else if (this.reporteSeleccionado === 'usuariosRegistrados') {
+      titulo = 'Usuarios Registrados por Mes';
+      chartImage = this.chartLine?.chart?.toBase64Image();
+      tableColumn = ['Mes', 'Cantidad'];
+      tableRows = this.dataSourceUsuarios.map((row) => [row.mes, row.cantidad]);
+    }
+
+    doc.text(titulo, 10, 10);
+
+    if (chartImage) {
+      doc.addImage(chartImage, 'PNG', 10, 20, 180, 60);
+    }
+
+    (autoTable as any)(doc, {
+      head: [tableColumn],
+      body: tableRows,
+      startY: 90,
+    });
+
+    doc.save(`${titulo}.pdf`);
   }
 }
