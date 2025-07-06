@@ -101,17 +101,33 @@
   <section class="main__noticias">
     <div class="main__noticias-container">
       <div class="busqueda-container">
-  <mat-form-field appearance="fill">
-    <mat-label>Buscar por título</mat-label>
-    <input matInput [(ngModel)]="busquedaTitulo" (keyup.enter)="buscarPorTitulo()" placeholder="Escribe y presiona Enter" />
-  </mat-form-field>
-  <button mat-icon-button color="primary" (click)="buscarPorTitulo()" aria-label="Buscar">
-    <mat-icon>search</mat-icon>
-  </button>
-  <button mat-icon-button color="warn" *ngIf="busquedaTitulo" (click)="limpiarBusqueda()" aria-label="Limpiar búsqueda">
-    <mat-icon>clear</mat-icon>
-  </button>
-</div>
+        <mat-form-field appearance="fill">
+          <mat-label>Buscar por título</mat-label>
+          <input
+            matInput
+            [(ngModel)]="busquedaTitulo"
+            (keyup.enter)="buscarPorTitulo()"
+            placeholder="Escribe y presiona Enter"
+          />
+        </mat-form-field>
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="buscarPorTitulo()"
+          aria-label="Buscar"
+        >
+          <mat-icon>search</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="warn"
+          *ngIf="busquedaTitulo"
+          (click)="limpiarBusqueda()"
+          aria-label="Limpiar búsqueda"
+        >
+          <mat-icon>clear</mat-icon>
+        </button>
+      </div>
       <div class="main__noticia" *ngFor="let noticia of noticias">
         <!-- Aquí tu card/noticia, igual que antes -->
         <div class="main__noticia-header" *ngIf="noticia.imagenUrl">
@@ -136,9 +152,26 @@
           </div>
         </div>
         <div class="main__noticia-footer">
-          <button class="main__noticia-button" (click)="abrirDetalle(noticia)">
-            <mat-icon>article</mat-icon> Ver Noticia
-          </button>
+          <mat-card-actions>
+            
+
+            <!-- BOTÓN PARA ELIMINAR (AÑADIR ESTO) -->
+            <button
+              mat-icon-button
+              color="warn"
+              *ngIf="isAdmin"
+              (click)="eliminarNoticia(noticia.id!)"
+              aria-label="Eliminar noticia"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button
+              class="main__noticia-button"
+              (click)="abrirDetalle(noticia)"
+            >
+              <mat-icon>article</mat-icon> Ver Noticia
+            </button>
+          </mat-card-actions>
         </div>
       </div>
     </div>

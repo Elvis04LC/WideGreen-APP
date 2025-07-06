@@ -52,4 +52,8 @@ crearNoticia(data: any) {
   filtrarNoticiasPorTema(tema: string): Observable<Noticia[]> {
     return this.http.get<Noticia[]>(`${this.apiUrl}/filtrar/tema?tema=${tema}`);
   }
+  eliminarNoticia(id: number): Observable<void> {
+  // El token de autorización ya debería ser manejado por tu interceptor de JWT
+  return this.http.delete<void>(`${this.apiUrl}/${id}`);
+}
 }

@@ -47,3 +47,33 @@
   justify-content: flex-end;
   margin-top: 0.7rem;
 }
+/* --- SECCIÓN RESPONSIVE --- */
+/* Estilos para pantallas más pequeñas (móviles) */
+@media (max-width: 600px) {
+  .detalle-noticia-dialog {
+    /* Reducimos el padding para dar más espacio al contenido */
+    padding: 1.5rem 1.5rem 1rem 1.5rem;
+    border-radius: 1.5rem;
+  }
+
+  .detalle-titulo {
+    /* Hacemos el título un poco más pequeño */
+    font-size: 1.3rem;
+  }
+
+  .detalle-img {
+    /* Reducimos la altura máxima de la imagen */
+    max-height: 200px;
+  }
+
+  .detalle-contenido {
+    /* Ajustamos el tamaño de fuente del contenido */
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .detalle-dialog-actions {
+    /* Quitamos el margen superior para un look más compacto */
+    margin-top: 0;
+  }
+}

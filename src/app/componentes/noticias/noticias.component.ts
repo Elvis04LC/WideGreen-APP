@@ -203,4 +203,20 @@ limpiarBusqueda(): void {
   this.busquedaTitulo = '';
   this.cargarNoticias();
 }
+eliminarNoticia(id: number): void {
+    // Pedir confirmación antes de eliminar
+    const confirmacion = confirm('¿Estás seguro de que deseas eliminar esta noticia? Esta acción no se puede deshacer.');
+
+    if (confirmacion) {
+      this.noticiaService.eliminarNoticia(id).subscribe({
+        next: () => {
+          this.snackBar.open('Noticia eliminada con éxito', 'Cerrar', { duration: 3000 });
+          this.cargarNoticias(); // Refresca la lista para quitar la noticia eliminada
+        },
+        error: () => {
+          this.snackBar.open('Error al eliminar la noticia', 'Cerrar', { duration: 3000 });
+        }
+      });
+    }
+  }
 }
