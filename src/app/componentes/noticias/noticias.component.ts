@@ -9,7 +9,7 @@ import { NoticiasService } from '../../services/noticias.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialog } from '@angular/material/dialog';
 import { NoticiaDetalleDialogComponent } from '../noticia-detalle-dialog/noticia-detalle-dialog.component';
@@ -26,7 +26,8 @@ import { NoticiaDetalleDialogComponent } from '../noticia-detalle-dialog/noticia
     MatDatepickerModule,
     MatNativeDateModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   templateUrl: './noticias.component.html',
   styleUrl: './noticias.component.css'
@@ -36,6 +37,8 @@ export class NoticiasComponent implements OnInit {
   formNoticia: FormGroup;
   imagenSeleccionada: File | null = null;
   previewUrl: string | null = null;
+  busquedaTitulo: string = '';
+
 
 
   constructor(
@@ -47,7 +50,8 @@ export class NoticiasComponent implements OnInit {
     this.formNoticia = this.fb.group({
       titulo: ['', Validators.required],
       contenido: ['', Validators.required],
-      fecha: ['', Validators.required]
+      fecha: ['', Validators.required],
+      imagenUrl: ['', [Validators.pattern('^https?://.+')]]
     });
   }
 
@@ -86,32 +90,71 @@ export class NoticiasComponent implements OnInit {
   }
 
   crearNoticia(): void {
-    if (this.formNoticia.invalid) return;
+ if (this.formNoticia.invalid) return;
 
-  const formData = new FormData();
-  formData.append('titulo', this.formNoticia.value.titulo);
-  formData.append('contenido', this.formNoticia.value.contenido);
+  const imagenUrl = (this.formNoticia.value.imagenUrl || '').trim();
 
-  // Aquí conviertes la fecha a yyyy-MM-dd
-  const fecha = this.formNoticia.value.fecha;
-  let fechaFormateada = '';
-  if (fecha instanceof Date) {
-    // Si es Date, conviértela manualmente
-    const year = fecha.getFullYear();
-    const month = String(fecha.getMonth() + 1).padStart(2, '0');
-    const day = String(fecha.getDate()).padStart(2, '0');
-    fechaFormateada = `${year}-${month}-${day}`;
-  } else if (typeof fecha === 'string') {
-    // Si por alguna razón ya viene en string yyyy-MM-dd
-    fechaFormateada = fecha.split('T')[0];
+  // Si el admin pegó una URL de imagen, envía JSON
+  if (imagenUrl) {
+    const noticiaData = {
+      titulo: this.formNoticia.value.titulo,
+      contenido: this.formNoticia.value.contenido,
+      fecha: this.formNoticia.value.fecha,
+      imagenUrl: imagenUrl
+    };
+
+    this.noticiaService.crearNoticia(noticiaData).subscribe({
+      next: noticia => {
+        this.snackBar.open('Noticia creada', 'Cerrar', { duration: 3000 });
+        this.cargarNoticias();
+        this.formNoticia.reset();
+        this.imagenSeleccionada = null;
+        this.previewUrl = '';
+      },
+      error: () => this.snackBar.open('Error al crear noticia', 'Cerrar', { duration: 3000 })
+    });
+    return;
   }
-  formData.append('fecha', fechaFormateada);
 
+  // Si hay archivo, envía FormData
   if (this.imagenSeleccionada) {
-    formData.append('imagen', this.imagenSeleccionada);
-  }
+    const formData = new FormData();
+    formData.append('titulo', this.formNoticia.value.titulo);
+    formData.append('contenido', this.formNoticia.value.contenido);
 
-  this.noticiaService.crearNoticia(formData).subscribe({
+    // Formatea fecha a yyyy-MM-dd
+    const fecha = this.formNoticia.value.fecha;
+    let fechaFormateada = '';
+    if (fecha instanceof Date) {
+      const year = fecha.getFullYear();
+      const month = String(fecha.getMonth() + 1).padStart(2, '0');
+      const day = String(fecha.getDate()).padStart(2, '0');
+      fechaFormateada = `${year}-${month}-${day}`;
+    } else if (typeof fecha === 'string') {
+      fechaFormateada = fecha.split('T')[0];
+    }
+    formData.append('fecha', fechaFormateada);
+
+    formData.append('imagen', this.imagenSeleccionada);
+
+    this.noticiaService.crearNoticia(formData).subscribe({
+      next: noticia => {
+        this.snackBar.open('Noticia creada', 'Cerrar', { duration: 3000 });
+        this.cargarNoticias();
+        this.formNoticia.reset();
+        this.imagenSeleccionada = null;
+        this.previewUrl = '';
+      },
+      error: () => this.snackBar.open('Error al crear noticia', 'Cerrar', { duration: 3000 })
+    });
+    return;
+  }
+  const noticiaSinImagen = {
+    titulo: this.formNoticia.value.titulo,
+    contenido: this.formNoticia.value.contenido,
+    fecha: this.formNoticia.value.fecha
+  };
+  this.noticiaService.crearNoticia(noticiaSinImagen).subscribe({
     next: noticia => {
       this.snackBar.open('Noticia creada', 'Cerrar', { duration: 3000 });
       this.cargarNoticias();
@@ -134,5 +177,30 @@ export class NoticiasComponent implements OnInit {
     width: '500px',
     data: noticia
   });
+  
+}
+getImagenUrl(noticia: Noticia): string {
+  // Si la imagen es una URL completa
+  if (noticia.imagenUrl && noticia.imagenUrl.startsWith('http')) {
+    return noticia.imagenUrl;
+  }
+  // Si es una ruta local/backend
+  return 'https://widegreenapi.onrender.com' + noticia.imagenUrl;
+}
+buscarPorTitulo(): void {
+  const titulo = this.busquedaTitulo.trim();
+  if (!titulo) {
+    this.cargarNoticias(); // Si el input está vacío, carga todas las noticias
+    return;
+  }
+  this.noticiaService.filtrarNoticiasPorTema(titulo).subscribe({
+    next: (data) => this.noticias = data,
+    error: () => this.snackBar.open('Error al buscar noticias', 'Cerrar', { duration: 3000 }),
+  });
+}
+
+limpiarBusqueda(): void {
+  this.busquedaTitulo = '';
+  this.cargarNoticias();
 }
 }

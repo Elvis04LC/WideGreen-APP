@@ -28,13 +28,20 @@ export class NoticiasService {
   }
 
   // Crear noticia
-crearNoticia(formData: FormData) {
-  return this.http.post<Noticia>(`${environment.apiUrl}/noticias/crear`, formData, {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem('jwtToken') || ''}`
+crearNoticia(data: any) {
+  // Automáticamente detecta si es FormData o JSON plano
+  return this.http.post<Noticia>(
+    `${environment.apiUrl}/noticias/crear`,
+    data,
+    {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('jwtToken') || ''}`
+        // NO pongas Content-Type, Angular lo maneja solo
+      }
     }
-  });
+  );
 }
+
 
   // Filtrar por fecha
   filtrarNoticiasPorFecha(fecha: string): Observable<Noticia[]> {

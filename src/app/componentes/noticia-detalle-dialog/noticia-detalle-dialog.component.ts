@@ -4,6 +4,7 @@ import { Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { Noticia } from '../../models/Noticias';
 
 @Component({
   selector: 'app-noticia-detalle-dialog',
@@ -23,5 +24,13 @@ export class NoticiaDetalleDialogComponent {
 
   cerrar(): void {
     this.dialogRef.close();
+  }
+  getImagenUrl(noticia: Noticia): string {
+    // Si la imagen es una URL completa
+    if (noticia.imagenUrl && noticia.imagenUrl.startsWith('http')) {
+      return noticia.imagenUrl;
+    }
+    // Si es una ruta local/backend
+    return 'https://widegreenapi.onrender.com' + noticia.imagenUrl;
   }
 }

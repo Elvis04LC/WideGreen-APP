@@ -27,7 +27,28 @@
         <mat-label>Contenido</mat-label>
         <textarea matInput formControlName="contenido" required></textarea>
       </mat-form-field>
-
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>URL de Imagen</mat-label>
+        <input
+          matInput
+          formControlName="imagenUrl"
+          placeholder="Pega aquí la URL de la imagen (opcional)"
+        />
+        <mat-error *ngIf="formNoticia.get('imagenUrl')?.hasError('pattern')">
+          Ingresa una URL válida (que empiece con http)
+        </mat-error>
+        <ng-container
+          *ngIf="
+            formNoticia.value.imagenUrl && formNoticia.get('imagenUrl')?.valid
+          "
+        >
+          <img
+            [src]="formNoticia.value.imagenUrl"
+            alt="Preview URL"
+            style="max-width: 100%; max-height: 200px; margin-bottom: 10px"
+          />
+        </ng-container>
+      </mat-form-field>
       <!-- El input file SIEMPRE va fuera de mat-form-field -->
 
       <input
@@ -79,11 +100,24 @@
 <main class="main">
   <section class="main__noticias">
     <div class="main__noticias-container">
+      <div class="busqueda-container">
+  <mat-form-field appearance="fill">
+    <mat-label>Buscar por título</mat-label>
+    <input matInput [(ngModel)]="busquedaTitulo" (keyup.enter)="buscarPorTitulo()" placeholder="Escribe y presiona Enter" />
+  </mat-form-field>
+  <button mat-icon-button color="primary" (click)="buscarPorTitulo()" aria-label="Buscar">
+    <mat-icon>search</mat-icon>
+  </button>
+  <button mat-icon-button color="warn" *ngIf="busquedaTitulo" (click)="limpiarBusqueda()" aria-label="Limpiar búsqueda">
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>
       <div class="main__noticia" *ngFor="let noticia of noticias">
         <!-- Aquí tu card/noticia, igual que antes -->
         <div class="main__noticia-header" *ngIf="noticia.imagenUrl">
           <img
-            [src]="'http://localhost:8080' + noticia.imagenUrl"
+            *ngIf="noticia.imagenUrl"
+            [src]="getImagenUrl(noticia)"
             alt="Imagen de la noticia"
             class="main__noticia-image"
             loading="lazy"
