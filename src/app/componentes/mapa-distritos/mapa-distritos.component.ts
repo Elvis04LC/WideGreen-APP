@@ -5,7 +5,7 @@ import {
   MapInfoWindow,
   MapMarker,
 } from '@angular/google-maps';
-import { environment } from '../../../environment/environment';
+import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { MapaDistrito } from '../../models/MapaDistrito';
 import { MapaDistritoService } from '../../services/mapa-distrito.service';

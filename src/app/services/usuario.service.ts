@@ -4,12 +4,13 @@ import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Usuario, UsuarioLogin, UsuarioRegistro } from '../models/Usuario';
 import { Token } from '../models/Token';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsuarioService {
-  private apiUrl = 'http://localhost:8080/api/auth';
+  private apiUrl = '${environment.apiUrl}/auth';
 
   constructor(private http: HttpClient) {}
 
@@ -38,12 +39,12 @@ export class UsuarioService {
   }
   getUsuarioAutenticado(): Observable<Usuario> {
     return this.http.get<Usuario>(
-      'http://localhost:8080/api/usuarios/autenticado'
+      '${environment.apiUrl}/usuarios/autenticado'
     );
   }
   usuariosPorMes(): Observable<any[]> {
     return this.http.get<any[]>(
-      `http://localhost:8080/api/usuarios/usuariosPorMes`
+      `${environment.apiUrl}/usuarios/usuariosPorMes`
     );
   }
 }
