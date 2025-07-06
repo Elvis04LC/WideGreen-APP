@@ -43,7 +43,7 @@ export const routes: Routes = [
       { path: 'perfil', component: UsuarioPerfilComponent },
       { path: 'eventos', component: EventosComponent },
       { path: 'mapa', component: MapaDistritosComponent },
-      { path: 'foro', component: ForoComponent },
+      { path: 'foro-contribuciones', component: ForoComponent },
       {path: 'notificaciones',component: NotificacionesComponent, },
       {path: 'estadisticas', component: EstadisticasComponent,canActivate: [AdminGuard], },
       { path: 'admin-dashboard', component: AdminDashboardComponent,canActivate: [AdminGuard], },

@@ -55,7 +55,7 @@ export class ForoComponent implements OnInit {
   cargarForos(): void {
     this.foroService.obtenerForos().subscribe({
       next: (data) => {
-        this.foros = data.reverse(); // Cargar loas contribuciones más recientes primero
+        this.foros = data.reverse(); // Cargar las contribuciones más recientes primero
       },
       error: () => {
         this.snackBar.open('Error al cargar los contribuciones', 'Cerrar', {
