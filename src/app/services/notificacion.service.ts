@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Notificacion } from '../models/Notificacion';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NotificacionService {
-  private baseUrl = 'http://localhost:8080/api/notificaciones';
+  private baseUrl = `${environment.apiUrl}/notificaciones`;
   private notificacionesNoVistasSubject = new BehaviorSubject<number>(0);
   private notificacionesSubject = new BehaviorSubject<Notificacion[]>([]);
   notificaciones$ = this.notificacionesSubject.asObservable();

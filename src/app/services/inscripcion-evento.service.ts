@@ -2,10 +2,11 @@ import { Observable } from "rxjs";
 import { InscripcionEventoDTO } from "../models/InscripcionEvento";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { environment } from "../../environments/environment";
 
 @Injectable({ providedIn: 'root' })
 export class InscripcionEventoService {
-  private baseUrl = 'http://localhost:8080/api/inscripciones';
+  private baseUrl = `${environment.apiUrl}/inscripciones`;
 
   constructor(private http: HttpClient) {}
 

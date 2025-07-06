@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { OrganizadorEvento } from '../models/Organizador';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrganizadorEventoService {
-  private baseUrl = 'http://localhost:8080/api/organizadores';
+  private baseUrl = `${environment.apiUrl}/organizadores`;
 
   constructor(private http: HttpClient) {}
 

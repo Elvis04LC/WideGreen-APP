@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Noticia } from '../models/Noticias';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NoticiasService {
-  private apiUrl = 'http://localhost:8080/api/noticias';
+  private apiUrl = `${environment.apiUrl}/noticias`;
 
   constructor(private http: HttpClient) {}
 
@@ -28,7 +29,7 @@ export class NoticiasService {
 
   // Crear noticia
 crearNoticia(formData: FormData) {
-  return this.http.post<Noticia>('http://localhost:8080/api/noticias/crear', formData, {
+  return this.http.post<Noticia>(`${environment.apiUrl}/noticias/crear`, formData, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('jwtToken') || ''}`
     }

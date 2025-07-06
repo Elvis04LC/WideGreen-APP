@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PerfilUsuario } from '../models/PerfilUsuario';
+import { environment } from '../../environments/environment';
 // Asegúrate de tener este DTO
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioPerfilService {
-  private apiUrl = 'http://localhost:8080/api/perfil';  // URL del backend
+  private apiUrl = `${environment.apiUrl}/perfil`;  // URL del backend
 
   constructor(private http: HttpClient) {}
 
@@ -37,7 +38,7 @@ export class UsuarioPerfilService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
   obtenerPerfilAutenticado(): Observable<PerfilUsuario> {
-  return this.http.get<PerfilUsuario>('http://localhost:8080/api/perfil/autenticado');
+  return this.http.get<PerfilUsuario>(`${environment.apiUrl}/perfil/autenticado`);
   }
 
 }

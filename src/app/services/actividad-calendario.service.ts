@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActividadCalendario } from '../models/Actividad-Calendario';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ActividadCalendarioService {
-private apiUrl = 'http://localhost:8080/api/actividades-calendario';
+private apiUrl = `${environment.apiUrl}/actividades-calendario`;
 
   constructor(private http: HttpClient) {}
 

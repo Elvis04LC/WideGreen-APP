@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class UsuarioService {
-  private apiUrl = '${environment.apiUrl}/auth';
+  private apiUrl = `${environment.apiUrl}/auth`;
 
   constructor(private http: HttpClient) {}
 
@@ -39,8 +39,8 @@ export class UsuarioService {
   }
   getUsuarioAutenticado(): Observable<Usuario> {
     return this.http.get<Usuario>(
-      '${environment.apiUrl}/usuarios/autenticado'
-    );
+  `${environment.apiUrl}/usuarios/autenticado`
+);
   }
   usuariosPorMes(): Observable<any[]> {
     return this.http.get<any[]>(
