@@ -38,7 +38,7 @@ export class MainLayoutComponent implements OnInit {
 }
 
   logout(): void {
-    localStorage.removeItem('token'); //
+    localStorage.removeItem('jwtToken'); //
     this.router.navigate(['/login']); //
   }
   get isAdmin(): boolean {
