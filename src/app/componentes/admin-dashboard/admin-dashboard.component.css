@@ -49,13 +49,6 @@ mat-card-content button {
   margin-bottom: 4px;
 }
 
-
-
-.botonera {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
 .admin-card {
   margin: 16px auto;
   max-width: 600px;
