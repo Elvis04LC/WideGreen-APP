@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 export const autorizacionGuard: CanActivateFn = (route, state) => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('jwtToken');
 
   if(token) {
     return true;

@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 export const perfilCrearGuard: CanActivateFn = (route, state) => {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem('jwtToken');
 
   if(token){
     return true;
