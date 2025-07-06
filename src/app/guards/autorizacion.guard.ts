@@ -14,7 +14,7 @@ export const autorizacionGuard: CanActivateFn = (route, state) => {
     const router = inject(Router);
 
     snackBar.open('Tienes que iniciar sesión', 'Cerrar', {
-      duration: 4000
+      duration: 4000,
     });
 
     return router.parseUrl('/login');
