@@ -25,18 +25,16 @@
       Gestionar Noticias
     </button>
   </mat-card-content>
-</mat-card>
-<mat-card>
-  <mat-card-title>Gestión de Organizadores</mat-card-title>
-  <mat-card-content>
-    <div class="botonera">
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="abrirDialogoOrganizador()"
-      >
-        Registrar Organizador
-      </button>
+    </mat-card>
+
+  <mat-card *ngIf="isAdmin" class="admin-card">
+    <mat-card-title>Gestión de Organizadores</mat-card-title>
+        <mat-card-content>
+                  <button
+                  mat-raised-button
+                  color="primary"
+                  (click)="abrirDialogoOrganizador()"
+      >Registrar Organizador</button>
 
       <button
         mat-raised-button
@@ -45,7 +43,6 @@
       >
         Asociar Organizador a Evento
       </button>
-    </div>
   </mat-card-content>
 </mat-card>
 
