@@ -1,0 +1,102 @@
+/* estadisticas.component.css */
+
+.estadisticas-container {
+  width: 100%;
+  max-width: 700px;
+  margin: 40px auto;
+  background-color: #f9fefb;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 64, 39, 0.1);
+  padding: 24px;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+canvas {
+  max-width: 100%;
+  margin-bottom: 24px;
+}
+.selector-reporte {
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.proximamente {
+  margin-top: 24px;
+  font-size: 1.1rem;
+  color: #338a4a;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Botón PDF */
+button {
+  background-color: #2e7d32 !important; /* verde principal WideGreen */
+  color: white !important;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 8px 24px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #1b5e20 !important; /* verde más oscuro */
+}
+
+.tabla-estadisticas {
+  width: 100%;
+  margin-top: 32px;
+  margin-bottom: 32px;
+  border-radius: 14px;
+  background: #f9fefb;
+  overflow-x: auto;
+  box-shadow: 0 4px 16px rgba(46, 125, 50, 0.07);
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+.tabla-estadisticas th {
+  background: #2e7d32;              /* Verde WideGreen */
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  font-size: 1.1rem;
+  padding: 1px 0 ;
+}
+
+.tabla-estadisticas td {
+  color: #222;
+  background: #f9fefb;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.tabla-estadisticas tr.mat-row:nth-child(even) td {
+  background: #e8f5e9;             /* Verde suave */
+}
+
+.tabla-estadisticas tr.mat-row:hover td {
+  background: #c8e6c9;             /* Hover verde */
+  transition: background 0.2s;
+}
+
+.tabla-estadisticas th, .tabla-estadisticas td {
+  text-align: center;
+}
+
+/* Responsive: en pantallas pequeñas, scroll horizontal y fuente más pequeña */
+@media (max-width: 600px) {
+  .tabla-estadisticas {
+    font-size: 0.92rem;
+    border-radius: 8px;
+  }
+
+  .tabla-estadisticas th,
+  .tabla-estadisticas td {
+    padding: 7px 0;
+    font-size: 0.97rem;
+  }
+}

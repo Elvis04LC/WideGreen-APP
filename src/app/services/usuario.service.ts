@@ -5,9 +5,8 @@ import { Observable } from 'rxjs';
 import { Usuario, UsuarioLogin, UsuarioRegistro } from '../models/Usuario';
 import { Token } from '../models/Token';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsuarioService {
   private apiUrl = 'http://localhost:8080/api/auth';
@@ -38,7 +37,13 @@ export class UsuarioService {
     return localStorage.getItem('jwtToken');
   }
   getUsuarioAutenticado(): Observable<Usuario> {
-  return this.http.get<Usuario>('http://localhost:8080/api/usuarios/autenticado');
-}
-
+    return this.http.get<Usuario>(
+      'http://localhost:8080/api/usuarios/autenticado'
+    );
+  }
+  usuariosPorMes(): Observable<any[]> {
+    return this.http.get<any[]>(
+      `http://localhost:8080/api/usuarios/usuariosPorMes`
+    );
+  }
 }

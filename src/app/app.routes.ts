@@ -17,10 +17,10 @@ import { NuestroEquipoComponent } from './componentes/nuestro-equipo/nuestro-equ
 import { ForoComponent } from './componentes/foro/foro.component';
 import { NotificacionesComponent } from './componentes/notificaciones/notificaciones.component';
 import { autorizacionGuard } from './guards/autorizacion.guard';
-
 import { AdminCategoriasComponent } from './componentes/admin-categorias/admin-categorias.component';
 import { AdminGuard } from './guards/admin.guard';
 import { perfilCrearGuard } from './guards/perfil-crear.guard';
+import { EstadisticasComponent } from './componentes/estadisticas/estadisticas.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -42,20 +42,12 @@ export const routes: Routes = [
       { path: 'actividades', component: ActividadesComponent },
       { path: 'perfil', component: UsuarioPerfilComponent },
       { path: 'eventos', component: EventosComponent },
-      { path: 'admin-dashboard', component: AdminDashboardComponent,
-          canActivate: [AdminGuard],
-      },
-      {
-        path: 'admin-categorias',
-        component: AdminCategoriasComponent, // o loadComponent: () => import... si usas lazy
-        canActivate: [AdminGuard], // Opcional: protege con guardia de admin
-      },
       { path: 'mapa', component: MapaDistritosComponent },
-      { path: 'foro-contribuciones', component: ForoComponent },
-      {
-        path: 'notificaciones',
-        component: NotificacionesComponent,
-      },
+      { path: 'foro', component: ForoComponent },
+      {path: 'notificaciones',component: NotificacionesComponent, },
+      {path: 'estadisticas', component: EstadisticasComponent,canActivate: [AdminGuard], },
+      { path: 'admin-dashboard', component: AdminDashboardComponent,canActivate: [AdminGuard], },
+      { path: 'admin-categorias', component: AdminCategoriasComponent, canActivate: [AdminGuard], },
     ],
   },
 ];

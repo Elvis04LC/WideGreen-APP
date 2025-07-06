@@ -56,6 +56,13 @@ mat-card-content button {
   flex-wrap: wrap;
   gap: 12px;
 }
+.admin-card {
+  margin: 16px auto;
+  max-width: 600px;
+  border-left: 6px solid #2e7d32;
+  box-shadow: 0 4px 12px rgba(0, 64, 39, 0.1);
+  border-radius: 12px;
+}
 
 /* Responsive */
 @media (max-width: 768px) {

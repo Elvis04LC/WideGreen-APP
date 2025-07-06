@@ -1,0 +1,98 @@
+<div class="estadisticas-container">
+  <!-- // ----- SELECTOR DE REPORTES ----- // -->
+  <mat-form-field appearance="outline" class="selector-reporte">
+    <mat-label>Selecciona el reporte</mat-label>
+    <mat-select
+      [(value)]="reporteSeleccionado"
+      (selectionChange)="cambiarReporte()"
+    >
+      <mat-option
+        *ngFor="let reporte of reportesDisponibles"
+        [value]="reporte.value"
+      >
+        {{ reporte.label }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- // ----- GRAFICO Y TABLA: INSCRIPCIONES POR EVENTO ----- // -->
+  <div *ngIf="reporteSeleccionado === 'inscripcionesEvento'" class="grafico-container">
+    <canvas
+      baseChart
+      [data]="barChartData"
+      [options]="barChartOptions"
+      [type]="'bar'">
+    </canvas>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z2 tabla-estadisticas">
+      <!-- Evento Column -->
+      <ng-container matColumnDef="evento">
+        <th mat-header-cell *matHeaderCellDef>Evento</th>
+        <td mat-cell *matCellDef="let row">{{ row.evento }}</td>
+      </ng-container>
+      <!-- Inscritos Column -->
+      <ng-container matColumnDef="inscritos">
+        <th mat-header-cell *matHeaderCellDef>Inscritos</th>
+        <td mat-cell *matCellDef="let row">{{ row.inscritos }}</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderCellDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <button mat-raised-button color="primary" (click)="generarPDF()">
+      Descargar PDF
+    </button>
+  </div>
+
+  <!-- // ----- GRAFICO Y TABLA: USUARIOS REGISTRADOS POR MES ----- // -->
+  <div *ngIf="reporteSeleccionado === 'usuariosRegistrados'" class="grafico-container">
+    <canvas
+      baseChart
+      [data]="lineChartData"
+      [options]="lineChartOptions"
+      [type]="'line'">
+    </canvas>
+    <table mat-table [dataSource]="dataSourceUsuarios" class="mat-elevation-z2 tabla-estadisticas">
+      <!-- Mes Column -->
+      <ng-container matColumnDef="mes">
+        <th mat-header-cell *matHeaderCellDef>Mes</th>
+        <td mat-cell *matCellDef="let row">{{ row.mes }}</td>
+      </ng-container>
+      <!-- Cantidad Column -->
+      <ng-container matColumnDef="cantidad">
+        <th mat-header-cell *matHeaderCellDef>Cantidad</th>
+        <td mat-cell *matCellDef="let row">{{ row.cantidad }}</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsUsuarios"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsUsuarios"></tr>
+    </table>
+    <button mat-raised-button color="primary" (click)="generarPDF()">
+      Descargar PDF
+    </button>
+  </div>
+
+  <!-- // ----- GRAFICO Y TABLA: PUBLICACIONES POR CATEGORÍA ----- // -->
+  <div *ngIf="reporteSeleccionado === 'publicacionesCategoria'" class="grafico-container">
+    <canvas
+      baseChart
+      [data]="pieChartData"
+      [options]="pieChartOptions"
+      [type]="'pie'">
+    </canvas>
+    <table mat-table [dataSource]="dataSourceCategoria" class="mat-elevation-z2 tabla-estadisticas">
+      <!-- Categoría Column -->
+      <ng-container matColumnDef="categoria">
+        <th mat-header-cell *matHeaderCellDef>Categoría</th>
+        <td mat-cell *matCellDef="let row">{{ row.categoria }}</td>
+      </ng-container>
+      <!-- Cantidad Column -->
+      <ng-container matColumnDef="cantidad">
+        <th mat-header-cell *matHeaderCellDef>Cantidad</th>
+        <td mat-cell *matCellDef="let row">{{ row.cantidad }}</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsCategoria"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsCategoria"></tr>
+    </table>
+    <button mat-raised-button color="primary" (click)="generarPDF()">
+      Descargar PDF
+    </button>
+  </div>
+</div>
