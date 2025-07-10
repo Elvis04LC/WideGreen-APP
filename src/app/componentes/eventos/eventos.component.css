@@ -34,7 +34,7 @@
 /* Contenedor de todas las tarjetas */
 .eventos-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
   padding: 1.5rem;
 }
@@ -133,16 +133,17 @@
 }
 /* Estilo para chips de organizadores */
 mat-chip-set {
-  margin-top: 0.5rem;
+  margin-top: 1rem;
 }
 
-mat-chip-option {
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: #004d40;
-  border: 1px solid #004d40;
-  background-color: #b2dfdb;
-  border-radius: 16px;
+mat-chip-row, mat-chip-option {
+  display: inline-flex;
+  align-items: center;
   padding: 4px 12px;
+  border-radius: 16px;
+  background-color: #b2dfdb;
+  color: #004d40;
+  font-size: 0.85rem;
   margin: 4px 4px 0 0;
+  line-height: 1.2;
 }

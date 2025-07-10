@@ -42,6 +42,17 @@ export class UsuarioPerfilComponent implements OnInit {
     private dialog: MatDialog
   ) {}
 
+  get isAdmin(): boolean {
+    const token = localStorage.getItem('jwtToken');
+    if (!token) return false;
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.role === 'ROLE_ADMIN';
+    } catch {
+      return false;
+    }
+  }
+
   ngOnInit(): void {
     this.getPerfilAutenticadoYPublicaciones();
     
