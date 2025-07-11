@@ -1,6 +1,9 @@
 /* <------------------------------------- HERO ------------------------------------> */
+
+
 .main__hero-image-container {
-  height: 58vh;
+  height: 80vh;
+  width: auto;
 }
 
 .main__hero-image {
@@ -305,6 +308,7 @@ button[mat-stroked-button] {
   justify-content: space-between;
   align-items: center;
   flex: 2;
+  
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   padding-bottom: 16px;
 }
@@ -373,4 +377,8 @@ button[mat-stroked-button] {
 
 .footer__policies-item:hover .footer__policies-link {
   text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  /* Ajustes aún más comprimidos si lo necesitas */
 }
