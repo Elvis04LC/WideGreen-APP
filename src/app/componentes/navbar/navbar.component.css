@@ -8,7 +8,8 @@
 
 .header {
   background-color: #57a95b;  /* ✅ Verde ambiental claro */
-  height: 70px;
+  min-height: 70px; /* Por defecto es mejor que un height fijo */
+  height: auto;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   padding: 0 2rem;
    position: fixed;
@@ -112,7 +113,8 @@ button[mat-stroked-button] {
 /* Responsive */
 @media (max-width: 768px) {
   .header__nav-list {
-    display: none;
+    flex-direction: column-reverse;
+    gap: 0rem;
   }
 
   .header__actions {
@@ -123,4 +125,12 @@ button[mat-stroked-button] {
   #logo-link {
     font-size: 1.2rem;
   }
+.header_nav{
+  flex-direction: column;
+    gap: 0rem;
+}
+ 
+.header{
+
+}
 }
