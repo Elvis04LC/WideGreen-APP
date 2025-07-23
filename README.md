@@ -1,59 +1,94 @@
 # AppWidegreen
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.14.
 
-## Development server
+**WideGreen-APP** es la aplicación frontend desarrollada en **Angular 16+ standalone** para la plataforma **WideGreen**, un entorno digital de participación ciudadana orientado a la sostenibilidad urbana. Permite a los usuarios explorar eventos ambientales, registrarse, gestionar su perfil, interactuar con publicaciones y visualizar actividades personales sincronizadas con su calendario.
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
-```
+## 🛠️ Tecnologías principales
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Angular 16+
+- Angular Material
+- TypeScript
+- RxJS
+- Standalone Components
+- JWT Authentication
+- Formulario reactivo
+- SCSS/CSS personalizable
+- HTML5 + Flex Layout
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 🔐 Seguridad y autenticación
 
-```bash
-ng generate component component-name
-```
+- Inicio de sesión con JWT
+- `localStorage` para almacenar el token
+- Guards para proteger rutas según autenticación
+- Interceptor HTTP para adjuntar el token automáticamente
+- Logout con limpieza de sesión
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## 📌 Funcionalidades principales
 
-## Building
+### 👤 Autenticación
+- Login con email y contraseña
+- Decodificación de JWT para extraer datos del usuario
+- Acceso restringido según rol (`USER` o `ADMIN`)
+- Logout con limpieza de sesión
 
-To build the project run:
+### 📰 Publicaciones
+- Visualizar publicaciones públicas
+- Crear publicaciones con imágenes (subida o URL)
+- Filtro por categoría
+- Comentar publicaciones (solo el autor puede eliminar sus comentarios)
 
-```bash
-ng build
-```
+### 📅 Calendario y actividades
+- Vista de calendario personal
+- Registro y eliminación de actividades
+- Sincronización con eventos en los que el usuario está inscrito
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### 📍 Eventos
+- Listado general de eventos
+- Inscripción/cancelación desde la interfaz
+- Visualización de organizadores y estadísticas
 
-## Running unit tests
+### 📊 Panel administrador
+- Gestión de organizadores
+- Registro de eventos y noticias
+- Visualización de reportes y métricas
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+---
 
-```bash
-ng test
-```
+## 🚀 Instalación y ejecución
 
-## Running end-to-end tests
+### 🧱 Requisitos
+- Node.js v20 o superior
+- Angular CLI v16 o superior
 
-For end-to-end (e2e) testing, run:
+### 📦 Instalación
+1. Abre una terminal en la raíz del proyecto.
+2. Ejecuta el siguiente comando para instalar dependencias:
 
-```bash
-ng e2e
-```
+   npm install
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+### ▶️ Ejecución local
+1. Una vez instaladas las dependencias, inicia el servidor de desarrollo con:
 
-## Additional Resources
+   ng serve
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+2. La aplicación estará disponible en:
+
+   http://localhost:4200
+
+---
+
+## 👨‍💻 Autores
+
+- Elvis Leonardo Larico Chavez (Líder de Proyecto)
+- Gabriel Infante
+- Lucia Ly
+- Maykol García
+
+**Curso:** Arquitectura de Aplicaciones Web  
+**Universidad Peruana de Ciencias Aplicadas**
