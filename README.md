@@ -82,7 +82,16 @@
    http://localhost:4200
 
 ---
+---
 
+## 🌐 Despliegue
+
+Esta aplicación está desplegada en **Firebase Hosting** y puede ser accedida públicamente en el siguiente enlace:
+
+🔗 [https://widegreen-app.web.app](https://widegreen-app.web.app)
+
+---
+---
 ## 👨‍💻 Autores
 
 - Elvis Leonardo Larico Chavez (Líder de Proyecto)
